@@ -1,5 +1,12 @@
 Bt3::Application.routes.draw do
-  resources :family_accounts
+  resources :family_accounts do
+    resources :child_accounts
+  end
+
+  resources :landing, only: :index
+
+  root :to => 'landing#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

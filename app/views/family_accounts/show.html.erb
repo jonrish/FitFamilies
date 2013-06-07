@@ -1,0 +1,14 @@
+<h1 id="notice"><%= notice %></h1>
+
+<ul>
+  <li>Name: <%= @family_account.first_name %> <%= @family_account.last_name%></li>
+  <li>Email Address: <%= @family_account.email %></li>
+  <li>Date of Birth: <%= @family_account.zip_code %></li>
+  <li>Zip Code: <%= @family_account.zip_code %></li>
+</ul>
+
+<% @family_account.child_accounts.each do |ca| %>
+  <%= ca.username %><br >
+<% end %>
+
+<h2><%= link_to 'Delete My Account', @family_account, method: :delete, data: { confirm: 'Are you sure?' } %></h2>

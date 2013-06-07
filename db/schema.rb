@@ -11,15 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604232111) do
+ActiveRecord::Schema.define(:version => 20130606125358) do
+
+  create_table "child_accounts", :force => true do |t|
+    t.string   "username",          :null => false
+    t.string   "gender",            :null => false
+    t.date     "date_of_birth",     :null => false
+    t.integer  "family_account_id", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "family_accounts", :force => true do |t|
-    t.string   "email"
-    t.string   "password"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.date     "date_of_birth"
-    t.string   "zip_code"
+    t.string   "email",         :null => false
+    t.string   "password",      :null => false
+    t.string   "first_name",    :null => false
+    t.string   "last_name",     :null => false
+    t.date     "date_of_birth", :null => false
+    t.string   "zip_code",      :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
