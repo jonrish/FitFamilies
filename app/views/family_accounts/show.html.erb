@@ -1,14 +1,28 @@
 <h1 id="notice"><%= notice %></h1>
 
-<ul>
-  <li>Name: <%= @family_account.first_name %> <%= @family_account.last_name%></li>
-  <li>Email Address: <%= @family_account.email %></li>
-  <li>Date of Birth: <%= @family_account.zip_code %></li>
-  <li>Zip Code: <%= @family_account.zip_code %></li>
-</ul>
+<div class='middle-display'>
+  <h2>Here is all of your account information:</h2>
+  <ul>
+    <li>Name: <%= @family_account.first_name %> <%= @family_account.last_name %></li>
+    <li>Email Address: <%= @family_account.email %></li>
+    <li>Date of Birth: <%= @family_account.zip_code %></li>
+    <li>Zip Code: <%= @family_account.zip_code %></li>
+  </ul>
 
-<% @family_account.child_accounts.each do |ca| %>
-  <%= ca.username %><br >
-<% end %>
+  <% if @family_account.child_accounts.count != 0 %>
+    <h2>Below are the children you've already registered:</h2>
+    <ul>
+      <% @family_account.child_accounts.each do |ca| %>
+        <li><%= link_to ca.username, family_account_child_account_path(@family_account, ca) %></li><br >
+      <% end %>
+    </ul>
+  <% end %>
 
-<h2><%= link_to 'Delete My Account', @family_account, method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+  <h2>Would you like to add a child to your account?</h2>
+
+  <%= link_to 'Add a child', new_family_account_child_account_path(@family_account), class: 'submit-button' %><br />
+  <div class='bottom-links'>
+    <%= link_to 'Edit My Family Account', edit_family_account_path(@family_account) %>
+    <%= link_to 'Delete My Family Account', @family_account, method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %>
+  </div>
+</div>

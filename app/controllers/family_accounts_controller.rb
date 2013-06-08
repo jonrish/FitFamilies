@@ -1,6 +1,5 @@
 class FamilyAccountsController < ApplicationController
   def index
-    @family_accounts = FamilyAccount.all
   end
 
   def new
@@ -11,7 +10,7 @@ class FamilyAccountsController < ApplicationController
     @family_account = FamilyAccount.new(params[:family_account])
 
     if @family_account.save
-      redirect_to @family_account, notice: 'Your account has been created.'
+      redirect_to @family_account, notice: 'Welcome to the Family!'
     else
       render action: "new"
     end

@@ -1,0 +1,14 @@
+@import "bourbon";
+@import "neat";
+
+
+.sign-up {
+  @include span-columns(4);
+  @include shift(4);
+  @include button(shiny);
+  text-align: center;
+  h1 {
+    padding: 10px 10px 10px 10px;
+  }
+}
+

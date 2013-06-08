@@ -15,7 +15,113 @@
 @import "bourbon";
 @import "neat";
 
+body {
+  @include outer-container;
+  min-width: 740px;
+  font-family: $verdana;
+}
 
 a {
   text-decoration: none;
+  color: darkblue;
 }
+
+a:visited {
+  color: none;
+}
+
+a:hover {
+  color: #FFFF00;
+}
+
+header {
+  @include background(linear-gradient(#3F92F2, #6E7985));
+  @include span-columns(12);
+  height: 7em;
+  border: 2px solid #0E5F6B;
+  border-radius: 7px;
+  .very-top {
+    @include span-columns(12);
+    .logo {
+      @include span-columns(7 of 12);
+      @include shift(1);
+      font-weight: bold;
+      font-size: 3em;
+      padding: 5px 0;
+    }
+    .signer {
+      @include span-columns(4 of 12);
+      padding: 10px 0;
+      a {
+        padding: 0 10px;
+        @include button(shiny, darkblue);
+      }
+    }
+  }
+  .navbar {
+    @include span-columns(12);
+    padding: 5px 40px;
+    a {
+      @include button;
+      height: 3em;
+      padding: 10px 40px;
+      font-size: .8em;
+    }
+  }
+}
+
+.middle-display {
+  @include span-columns(12);
+  @include background(linear-gradient(#FFFFFF, #AFC4C0));
+  border-radius: 7px;
+  h2 {
+    @include shift(1);
+  }
+  ul {
+    @include shift(2);
+  }
+  .bottom-links {
+    @include span-columns(6 of 12);
+    @include shift(6);
+    padding: 15px 0;
+    a {
+      padding: 0 15px;
+    }
+  }
+}
+
+footer {
+  @include span-columns(12);
+  @include background(linear-gradient(#6E7985, #3F92F2));
+  height: 3em;
+  padding: 15px 0;
+  border: 2px solid #0E5F6B;
+  border-radius: 7px;
+  a {
+    @include span-columns(3 of 12);
+    @include shift(1);
+    padding: 0 25px;
+
+    }
+  }
+
+.basic-form {
+    @include span-columns(12);
+    @include shift(2);
+    padding: 20px 0 25px 0;
+    .create-button {
+      @include button(pill);
+      font-size: 1.2em;
+    }
+  }
+
+.submit-button {
+  @include button(pill);
+  @include shift(2);
+  font-size: 1.2em;
+  }
+
+
+
+
+

@@ -8,7 +8,34 @@
 </head>
 <body>
 
+<header>
+  <div class='very-top'>
+    <%= link_to 'Fit Families', family_accounts_path, class: 'logo' %>
+    <div class='signer'>
+      <%= link_to 'Log In' %>
+      <%= link_to 'My Account' %>
+    </div>
+  </div>
+  <div class='navbar'>
+    <%= link_to 'Nutrition' %>
+    <%= link_to 'Activity' %>
+  </div>
+</header>
+
 <%= yield %>
+
+<footer>
+  <%= link_to 'Contact Us' %>
+  <%= link_to 'FAQ' %>
+  <%= link_to 'About Us' %>
+</footer>
+
 
 </body>
 </html>
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+<div class='middle-display'>
+  <h2 id="notice"><%= notice %></h2>
+
+  <h2>Feel Free to make any changes.</h2>
+
+  <%= render 'form' %>
+
+  <%= link_to "No thanks. We're good.", family_account_child_account_path(@family_account, @child_account), class: 'submit-button' %>
+
+  <div class='bottom-links'>
+    <%= link_to 'Remove My Child From Our Account', [@family_account, @child_account], method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %>
+  </div>
+</div>

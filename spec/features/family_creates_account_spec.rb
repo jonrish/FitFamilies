@@ -20,7 +20,7 @@ describe 'a user creates a family account' do
     select '2000', from: 'family_account_date_of_birth_1i'
 
     click_button "Create/Update Family Account"
-    expect(page).to have_content "Your account has been created."
+    expect(page).to have_content 'Welcome to the Family!'
   end
 
   it 'allows a user to view their account information' do
@@ -42,7 +42,7 @@ describe 'a user creates a family account' do
   end
 
   it 'allows a user to delete their account' do
-    visit family_account_path(family_account.id)
+    visit edit_family_account_path(family_account.id)
     click_link 'Delete My Account'
     expect(page).to have_content 'Your account has been deleted'
   end
