@@ -1,4 +1,9 @@
 class ChildAccountsController < ApplicationController
+  def index
+    @family_account = FamilyAccount.find(params[:family_account_id])
+    @child_account = ChildAccount.find(params[:id])
+  end
+
   def new
     @family_account = FamilyAccount.find(params[:family_account_id])
     @child_account = @family_account.child_accounts.build

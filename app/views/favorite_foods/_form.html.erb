@@ -1,0 +1,23 @@
+<div class='basic-form'>
+    <%= form_for([@child_account, @favorite_food]) do |f| %>
+      <% if @favorite_food.errors.any? %>
+        <div id='error explanation'>
+          <h2><% pluralize(@favorite_food.errors.count, 'error') %><br> 
+            Sorry. That didn't work.</h2>
+          <ul>
+            <% @favorite_food.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end%>
+          </ul>
+        </div>
+      <% end%>
+
+      <%= f.label :name, 'What is your food called?' %><br />
+      <%= f.text_field :name %><br />
+      <%= f.label :food_type, 'What kind of food is it?' %><br />
+      <%= f.select(:food_type, options_from_collection_for_select(FoodType.all, :id, :food_type)) %><br />
+      <%= f.label :food_category, 'When would you like to eat it?' %><br />
+      <%= f.select(:food_category, options_from_collection_for_select(FoodCategory.all, :id, :food_category)) %><br />
+      <%= f.submit 'Add to My Favorites', class: 'create-button' %><br />
+    <% end %>
+  </div>

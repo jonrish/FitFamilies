@@ -3,6 +3,10 @@ Bt3::Application.routes.draw do
     resources :child_accounts
   end
 
+  resources :child_accounts, :only => [] do
+    resources :favorite_foods
+  end
+
   resources :foods
 
   root :to => 'family_accounts#index'

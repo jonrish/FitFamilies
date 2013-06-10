@@ -5,16 +5,6 @@ class FoodsController < ApplicationController
 
   def new
     @food = Food.new
-    @fruit = FoodType.find_by_id(1)
-    @dairy = FoodType.find_by_id(2)
-    @carb = FoodType.find_by_id(3)
-    @protein = FoodType.find_by_id(4)
-    @fat = FoodType.find_by_id(5)
-    @breakfast = FoodCategory.find_by_id(1)
-    @lunch = FoodCategory.find_by_id(2)
-    @dinner = FoodCategory.find_by_id(3)
-    @snack = FoodCategory.find_by_id(4)
-    @treat = FoodCategory.find_by_id(5)
   end
 
   def create

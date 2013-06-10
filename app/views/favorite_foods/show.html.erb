@@ -1,0 +1,11 @@
+<div class='middle-display'>
+  <h2>Here are the details for this favorite.</h2>
+  <ul>
+    <li><%= @favorite_food.name %></li>
+    <li><%= FoodCategory.find(@favorite_food.food_category).food_category %></li>
+    <li><%= FoodType.find(@favorite_food.food_type).food_type %></li>
+  </ul>
+  <div class='bottom-links'>
+    <%= link_to %>
+  </div>  
+</div>

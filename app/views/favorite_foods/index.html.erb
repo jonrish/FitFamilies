@@ -1,0 +1,23 @@
+<h3 id="notice"><%= notice %></h3>
+
+<div class='middle-display'>
+  <h2>Here are all of your favorites!</h2>
+  <% if @child_account.favorite_foods.count == 0 %>
+    <h2>You haven't added any favorites yet.</h2>
+  <% else %>
+    <table>
+      <th>Food</th>
+      <th>Food Category</th>
+      <th>Food Type</th>
+      <th></th>
+      <% @favorite_foods.each do |ff| %>
+        <tr>
+          <td><%= link_to ff.name, child_account_favorite_food_path(@child_account, ff) %></td>
+          <td><%= FoodCategory.find(ff.food_category).food_category %></td>
+          <td><%= FoodType.find(ff.food_type).food_type %></td>
+          <td><%= link_to 'Edit My Food', edit_child_account_favorite_food_path(@child_account, ff) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

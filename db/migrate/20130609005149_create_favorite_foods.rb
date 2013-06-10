@@ -4,7 +4,7 @@ class CreateFavoriteFoods < ActiveRecord::Migration
       t.string :name
       t.integer :child_account_id, :null => false
       t.string :food_category
-      t.integer :food_id, :null => false
+      t.integer :food_id
       t.string :food_type
       t.text :note
       t.integer :rating

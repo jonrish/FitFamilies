@@ -1,11 +1,9 @@
 class FavoriteFood < ActiveRecord::Base
   belongs_to :child_account
   belongs_to :food
-  has_many :food_types
-  has_many :food_categories
 
   validates_presence_of :child_account_id
-  validates_presence_of :food_id
+  # validates_presence_of :food_id
 
   validates_presence_of :name,
     :if => :sharing?
