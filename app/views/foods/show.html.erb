@@ -1,0 +1,14 @@
+<h3 id="notice"><%= notice %></h3>
+
+<div class='middle-display'>
+  <h2>Here are the details.</h2>
+  <ul>
+    <li><%= @food.name %></li>
+    <li><%= @food_category.food_category %></li>
+    <li><%= @food_type.food_type %></li>
+  </ul>
+  <%= link_to 'Add to My Favorites', food_path(@food), class: 'submit-button' %>
+  <div class='bottom-links'>
+    <%= link_to 'Back to the list of food choices', foods_path %>
+  </div>  
+</div>

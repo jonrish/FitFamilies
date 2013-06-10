@@ -31,7 +31,7 @@ describe 'a user creates a family account' do
   it 'tells user if information is entered incorrectly' do
     visit new_family_account_path
     click_button 'Create/Update Family Account'
-    expect(page).to have_content 'Please try again'
+    expect(page).to have_content 'Let\'s get started!'
   end
 
   it 'allows a user to edit their account information' do

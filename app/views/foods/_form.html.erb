@@ -1,0 +1,23 @@
+<div class='basic-form'>
+      <%= form_for(@food) do |f| %>
+        <% if @food.errors.any? %>
+          <div id='error explanation'>
+            <h2><% pluralize(@food.errors.count, 'error') %><br> 
+              Sorry. That didn't work.</h2>
+            <ul>
+              <% @food.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end%>
+            </ul>
+          </div>
+        <% end%>
+
+        <%= f.label :name, 'What is your food called?' %><br />
+        <%= f.text_field :name %><br />
+        <%= f.label :food_type_id, 'What kind of food is it?' %><br />
+        <%= f.select(:food_type_id, [[@fruit.food_type, @fruit.id], [@dairy.food_type, @dairy.id], [@carb.food_type, @carb.id], [@protein.food_type, @protein.id], [@fat.food_type, @fat.id]]) %><br />
+        <%= f.label :food_category_id, 'When would you like eat it?' %><br />
+        <%= f.select(:food_category_id, [[@breakfast.food_category, @breakfast.id], [@lunch.food_category, @lunch.id], [@dinner.food_category, @dinner.id], [@snack.food_category, @snack.id], [@treat.food_category, @treat.id]]) %><br />
+        <%= f.submit 'Create This Food', class: 'create-button' %><br />
+      <% end %>
+    </div>

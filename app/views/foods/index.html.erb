@@ -1,0 +1,22 @@
+<h3 id="notice"><%= notice %></h3>
+
+<div class='middle-display'>
+  <h2>Here are some foods to choose from.</h2>
+  <table>
+    <th>Food</th>
+    <th>Food Category</th>
+    <th>Food Type</th>
+    <th></th>
+    <% @foods.each do |f| %>
+      <tr>
+        <td><%= link_to f.name, food_path(f.id) %></td>
+        <td><%= FoodCategory.find(f.food_category_id).food_category %></td>
+        <td><%= FoodType.find(f.food_type_id).food_type %></td>
+        <td><%= link_to 'Add to My Favorites', foods_path, class: 'submit-button' %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class='bottom-links'>
+    <%= link_to 'Back to My Favorites' %>
+  </div>
+</div>

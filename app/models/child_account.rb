@@ -5,6 +5,9 @@ class ChildAccount < ActiveRecord::Base
   validates_presence_of :username
 
   belongs_to :family_account, :inverse_of => :child_accounts
+  has_many :favorite_foods
+  has_many :foods,
+    :through => :favorite_foods
 
   attr_accessible :date_of_birth, :family_account_id, :gender, :username
 end

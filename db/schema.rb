@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606125358) do
+ActiveRecord::Schema.define(:version => 20130609005149) do
 
   create_table "child_accounts", :force => true do |t|
     t.string   "username",          :null => false
@@ -31,6 +31,39 @@ ActiveRecord::Schema.define(:version => 20130606125358) do
     t.string   "zip_code",      :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "favorite_foods", :force => true do |t|
+    t.string   "name"
+    t.integer  "child_account_id",                     :null => false
+    t.string   "food_category"
+    t.integer  "food_id",                              :null => false
+    t.string   "food_type"
+    t.text     "note"
+    t.integer  "rating"
+    t.boolean  "share_with_others", :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  create_table "food_categories", :force => true do |t|
+    t.string   "food_category", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "food_types", :force => true do |t|
+    t.string   "food_type",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "foods", :force => true do |t|
+    t.string   "name",             :null => false
+    t.integer  "food_category_id", :null => false
+    t.integer  "food_type_id",     :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end
