@@ -34,7 +34,7 @@ end
 
 gem 'bourbon'
 gem 'neat'
-
+gem 'devise'
 
 
 

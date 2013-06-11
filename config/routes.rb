@@ -1,4 +1,6 @@
 Bt3::Application.routes.draw do
+  devise_for :family_accounts
+
   resources :family_accounts do
     resources :child_accounts
   end

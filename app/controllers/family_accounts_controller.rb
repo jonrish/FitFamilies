@@ -1,4 +1,6 @@
 class FamilyAccountsController < ApplicationController
+  before_filter :authenticate_family_account!, :except => [:index]
+
   def index
   end
 
