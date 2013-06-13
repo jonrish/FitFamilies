@@ -5,8 +5,6 @@ require 'spec_helper'
 
 describe 'a user creates a family account' do
 
-  let(:family_account) { FactoryGirl.create(:family_account) }
-
   it 'allows user to sign up' do
     visit family_accounts_path
     click_link 'Sign Up Today!'
@@ -23,6 +21,16 @@ describe 'a user creates a family account' do
 
     click_button "Create/Update Family Account"
     expect(page).to have_content 'Welcome! You have signed up successfully.'
+  end
+
+  it 'allows a user to sign in' do
+    FactoryGirl.create(:family_account)
+    visit family_accounts_path
+    click_link 'Log In'
+    fill_in 'Email', with: 'test@test.com'
+    fill_in 'Password', with: 'testtest'
+    click_button 'Sign in'
+    expect(page).to have_content 'Signed in successfully'
   end
 
   # it 'allows a user to view their account information' do
