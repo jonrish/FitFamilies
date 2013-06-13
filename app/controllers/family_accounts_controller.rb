@@ -11,11 +11,11 @@ class FamilyAccountsController < ApplicationController
   def create
     @family_account = FamilyAccount.new(params[:family_account])
 
-    if @family_account.save
-      redirect_to @family_account, notice: 'Welcome to the Family!'
-    else
-      render action: "new"
-    end
+    # if @family_account.save
+    #   redirect_to family_account_path, notice: 'Welcome to the Family!'
+    # else
+    #   render action: "new"
+    # end
   end
 
   def edit
@@ -26,7 +26,7 @@ class FamilyAccountsController < ApplicationController
     @family_account = FamilyAccount.find(params[:id])
 
     if @family_account.update_attributes(params[:family_account])
-      redirect_to @family_account, notice: 'Your account has been updated'
+      redirect_to family_account_path, notice: 'Your account has been updated'
     else
       render action: 'edit'
     end

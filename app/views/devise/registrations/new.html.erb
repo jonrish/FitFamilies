@@ -1,4 +1,5 @@
-<h2>Sign up</h2>
+<div class='middle-display'>
+  <h2>Let's get started!<br />Here is where you can create the main account for your family.</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <div class='basic-form'>
@@ -21,5 +22,3 @@
     <%= f.submit "Create/Update Family Account", class: 'create-button' %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

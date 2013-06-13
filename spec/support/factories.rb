@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :family_account do
-    email 'testtest@test.com'
+    email 'test@test.com'
     password 'testtest'
     first_name 'test'
     last_name 'test'

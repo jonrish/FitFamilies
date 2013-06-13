@@ -15,19 +15,6 @@ describe FamilyAccount do
   it { should_not allow_value("foo").for(:email) }
   it { should allow_value("foo@foo.com").for(:email) }
 
-  describe 'validates uniqueness of' do
-    before(:each) do
-      FamilyAccount.create({
-          email: 'test@example.com',
-          password: "testtest",
-          first_name: "test",
-          last_name: "test",
-          zip_code: "11111",
-          date_of_birth: Date.today
-        })
-    end
-    it { should validate_uniqueness_of(:email).with_message(/That email is already in use. Please select another email address./) }
-  end
-
   it { should have_many(:child_accounts) }
+  
 end
