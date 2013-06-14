@@ -63,6 +63,12 @@ feature 'a user creates a family account' do
     expect(current_path).to eql root_path
   end
 
+  scenario 'a user views their account info' do
+    sign_in
+    click_link 'My Account'
+    expect(page).to have_content 'Here is all of your account information:' 
+  end
+
   # it 'allows a user to view their account information' do
   #   visit family_account_path(family_account.id)
   #   expect(page).to have_content 'test@test.com'
