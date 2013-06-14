@@ -1,5 +1,5 @@
 Bt3::Application.routes.draw do
-  devise_for :family_accounts
+  devise_for :family_accounts, :controllers => { :registrations => :registrations }
 
   resources :family_accounts do
     resources :child_accounts

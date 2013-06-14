@@ -49,6 +49,11 @@ describe 'a user creates a family account' do
     click_link 'My Account'
     click_link 'Edit My Family Account'
     expect(page).to have_content 'You can make changes to your account here.'
+    fill_in 'Email', with: 'test1@test.com'
+    fill_in 'Current password', with: 'testtest'
+    click_button 'Create/Update Family Account'
+    save_and_open_page
+    expect(page).to have_content 'You updated your account successfully.'
   end
 
   # it 'allows a user to view their account information' do
