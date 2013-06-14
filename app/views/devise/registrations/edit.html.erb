@@ -1,29 +1,42 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class='middle-display'>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <h2>You can make changes to your account here.</h2>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class='basic-form'>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true %><br />
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        Currently waiting confirmation for: <%= resource unconfirmed_email %>
+      <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, :autocomplete => "off" %><br />
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %><br />
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password %><br />
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
+      <%= f.label :first_name, 'First Name' %><br />
+      <%= f.text_field :first_name %><br />
+      <%= f.label :last_name, 'Last Name' %><br />
+      <%= f.text_field :last_name %><br />
+      <%= f.label :date_of_birth, 'Date of Birth' %><br />
+      <%= f.date_select :date_of_birth, start_year: 1900, order: [:month, :day, :year] %><br />
+      <%= f.label :zip_code, 'Zip Code' %><br />
+      <%= f.text_field :zip_code %><br />
 
-<h3>Cancel my account</h3>
+      <%= f.submit "Create/Update Family Account", class: 'create-button' %><br />
+    <% end %>
+  </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+  <%= link_to "No thanks. We're good.", family_account_path(current_family_account), class: 'submit-button' %>
 
-<%= link_to "Back", :back %>
+  <div class='bottom-links'>
+    <%= link_to 'Delete My Account', registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+  </div>
+</div>

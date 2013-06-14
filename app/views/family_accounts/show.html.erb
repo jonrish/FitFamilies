@@ -1,5 +1,3 @@
-<h1 id="notice"><%= notice %></h1>
-
 <div class='middle-display'>
   <h2>Here is all of your account information:</h2>
   <ul>
@@ -24,7 +22,7 @@
 
   <%= link_to 'Add a child', new_family_account_child_account_path(@family_account), class: 'submit-button' %><br />
   <div class='bottom-links'>
-    <%= link_to 'Edit My Family Account', edit_family_account_path(@family_account) %>
+    <%= link_to 'Edit My Family Account', edit_family_account_registration_path %>
     <%= link_to 'Delete My Family Account', @family_account, method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %>
   </div>
 </div>

@@ -23,7 +23,7 @@ describe 'a user creates a family account' do
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
-  it 'allows a user to sign in' do
+  it 'allows a user to sign in and sign out' do
     FactoryGirl.create(:family_account)
     visit family_accounts_path
     click_link 'Log In'
@@ -31,6 +31,24 @@ describe 'a user creates a family account' do
     fill_in 'Password', with: 'testtest'
     click_button 'Sign in'
     expect(page).to have_content 'Signed in successfully'
+    click_link 'Log Out'
+    expect(page).to have_content 'Signed out successfully'
+  end
+
+  def sign_in
+    FactoryGirl.create(:family_account)
+    visit new_family_account_session_path
+    click_link 'Log In'
+    fill_in 'Email', with: 'test@test.com'
+    fill_in 'Password', with: 'testtest'
+    click_button 'Sign in'
+  end
+
+  it 'allows a user to edit account information' do
+    sign_in
+    click_link 'My Account'
+    click_link 'Edit My Family Account'
+    expect(page).to have_content 'You can make changes to your account here.'
   end
 
   # it 'allows a user to view their account information' do

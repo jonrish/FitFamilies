@@ -11,7 +11,6 @@ describe FamilyAccount do
   it { should allow_value('12345').for(:zip_code) }
   it { should_not allow_value('1234').for(:zip_code)}
 
-
   it { should_not allow_value("foo").for(:email) }
   it { should allow_value("foo@foo.com").for(:email) }
 
