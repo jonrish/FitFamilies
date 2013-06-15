@@ -68,30 +68,6 @@ feature 'a user creates a family account' do
     click_link 'My Account'
     expect(page).to have_content 'Here is all of your account information:' 
   end
-
-  # it 'allows a user to view their account information' do
-  #   visit family_account_path(family_account.id)
-  #   expect(page).to have_content 'test@test.com'
-  # end
-
-  # it 'tells user if information is entered incorrectly' do
-  #   visit new_family_account_path
-  #   click_button 'Create/Update Family Account'
-  #   expect(page).to have_content 'Let\'s get started!'
-  # end
-
-  # it 'allows a user to edit their account information' do
-  #   visit edit_family_account_path(family_account.id)
-  #   fill_in 'First Name', with: 'testy'
-  #   click_button 'Create/Update Family Account'
-  #   expect(page).to have_content 'testy'
-  # end
-
-  # it 'allows a user to delete their account' do
-  #   visit edit_family_account_path(family_account.id)
-  #   click_link 'Delete My Account'
-  #   expect(page).to have_content 'Your account has been deleted'
-  # end
 end
 
 

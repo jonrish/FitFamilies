@@ -10,12 +10,6 @@ class FamilyAccountsController < ApplicationController
 
   def create
     @family_account = FamilyAccount.new(params[:family_account])
-
-    # if @family_account.save
-    #   redirect_to family_account_path, notice: 'Welcome to the Family!'
-    # else
-    #   render action: "new"
-    # end
   end
 
   def edit
