@@ -28,7 +28,6 @@ feature 'parent creates a child account' do
     visit new_family_account_child_account_path(@fa.id)
     fill_in 'Username', with: ''
     click_button 'Create/Update Child Account'
-    save_and_open_page
     expect(page).to have_content 'Username can\'t be blank'
   end
 end
