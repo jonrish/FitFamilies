@@ -1,5 +1,3 @@
-<h1 id="notice"><%= notice %></h1>
-
 <div class='middle-display'>
   <h2>Here is all of your account information:</h2>
   <ul>
@@ -11,20 +9,20 @@
 
   <% if @family_account.child_accounts.count != 0 %>
     <h2>Below are the children you've registered:</h2>
-    <ul>
-      <% @family_account.child_accounts.each do |ca| %>
-        <h3><%= ca.username %></h3>
-        <li><%= link_to "#{ca.username}'s Stuff", family_account_child_account_path(@family_account, ca) %></li><br >
-        <li><%= link_to "Edit #{ca.username}'s info", edit_family_account_child_account_path(@family_account, ca) %></li>
-      <% end %>
-    </ul>
+    <% @family_account.child_accounts.each do |ca| %>
+      <ul>
+        <li class='child-info'><%= ca.username %></li>
+        <li class='child-info'><%= link_to "#{ca.username}'s Stuff", family_account_child_account_path(@family_account, ca) %></li>
+        <br />
+      </ul>
+    <% end %>
   <% end %>
 
   <h2>Would you like to add a child to your account?</h2>
 
-  <%= link_to 'Add a child', new_family_account_child_account_path(@family_account), class: 'submit-button' %><br />
+  <%= link_to 'Add a Child', new_family_account_child_account_path(@family_account), class: 'submit-button' %><br />
   <div class='bottom-links'>
-    <%= link_to 'Edit My Family Account', edit_family_account_path(@family_account) %>
+    <%= link_to 'Edit My Family Account', edit_family_account_registration_path %>
     <%= link_to 'Delete My Family Account', @family_account, method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :family_account do
-    email 'testtest@test.com'
+    email 'test@test.com'
     password 'testtest'
     first_name 'test'
     last_name 'test'
@@ -15,14 +15,14 @@ FactoryGirl.define do
   end
 
   factory :food do
-    name 'peanut butter'
+    name 'Yogurt'
   end
 
   factory :food_category do
-    food_category 'Lunch'
+    food_category 'Breakfast'
   end
 
   factory :food_type do
-    food_type 'Carbs (like Bread & Pasta)'
+    food_type 'Milk & Dairy'
   end
 end

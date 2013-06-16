@@ -12,17 +12,25 @@
   <div class='very-top'>
     <%= link_to 'Fit Families', family_accounts_path, class: 'logo' %>
     <div class='signer'>
-      <%= link_to 'Log In' %>
-      <%= link_to 'My Account' %>
+      <% if family_account_signed_in? %>
+        <%= link_to('Log Out', destroy_family_account_session_path, :method => :delete) %>
+        <%= link_to 'My Account', family_account_path(current_family_account) %>
+      <% else %>
+        <%= link_to('Log In', new_family_account_session_path)  %>
+      <% end %>
     </div>
   </div>
   <div class='navbar'>
     <%= link_to 'Nutrition', foods_path %>
     <%= link_to 'Activity' %>
+    <% if family_account_signed_in? %>
+      <b>You are signed in as: <%= current_family_account.email %></b>
+    <% end %>
   </div>
 </header>
 
 <h3 id="notice"><%= notice %></h3>
+<h3 class="alert"><%= alert %></h3>
 
 <%= yield %>
 

@@ -3,7 +3,7 @@
     <% if @child_account.errors.any? %>
       <div id='error explanation'>
         <h2><% pluralize(@child_account.errors.count, 'error') %><br> 
-          Sorry. That didn't work.</h2>
+          Sorry. That didn't work. Please try again.</h2>
         <ul>
           <% @child_account.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -18,6 +18,6 @@
     <%= f.select(:gender, [['male', 0],['female', 1]]) %><br />
     <%= f.label :date_of_birth, 'Date of Birth' %><br />
     <%= f.date_select :date_of_birth, start_year: 1990, order: [:month, :day, :year] %><br />
-    <%= f.submit 'Register/Update Child Account', class: 'create-button' %><br />
+    <%= f.submit 'Submit', class: 'create-button' %><br />
   <% end %>
 </div>

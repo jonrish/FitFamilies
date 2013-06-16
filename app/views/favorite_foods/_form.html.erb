@@ -18,6 +18,24 @@
       <%= f.select(:food_type, options_from_collection_for_select(FoodType.all, :id, :food_type)) %><br />
       <%= f.label :food_category, 'When would you like to eat it?' %><br />
       <%= f.select(:food_category, options_from_collection_for_select(FoodCategory.all, :id, :food_category)) %><br />
-      <%= f.submit 'Add to My Favorites', class: 'create-button' %><br />
+      <%= 'Would you like to share your new food with others?' %><br />
+      <%= f.radio_button :share_with_others, true %>
+      <%= f.label :share_with_others, 'Yes, Share Please' %>
+      <%= f.radio_button :share_with_others, false %>
+      <%= f.label :share_with_others, 'No Thanks' %><br />
+      <%= 'Give your new food a rating. (5 is the best!)' %><br />
+      <%= f.radio_button :rating, 1 %>
+      <%= f.label :rating, '1' %>
+      <%= f.radio_button :rating, 2 %>
+      <%= f.label :rating, '2' %>
+      <%= f.radio_button :rating, 3 %>
+      <%= f.label :rating, '3' %>
+      <%= f.radio_button :rating, 4 %>
+      <%= f.label :rating, '4' %>
+      <%= f.radio_button :rating, 5 %>
+      <%= f.label :rating, '5' %><br />
+      <%= f.label :note, 'Here\'s a spot for any notes' %><br /> 
+      <%= text_area_tag(:note, '', :size => "24x6") %><br />
+      <%= f.submit 'Submit', class: 'create-button' %><br />
     <% end %>
   </div>

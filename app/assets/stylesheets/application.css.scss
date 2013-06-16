@@ -17,7 +17,7 @@
 
 body {
   @include outer-container;
-  min-width: 740px;
+  min-width: 840px;
   font-family: $verdana;
 }
 
@@ -62,10 +62,15 @@ header {
     @include span-columns(12);
     padding: 5px 40px;
     a {
+      @include span-columns(2 of 12);
       @include button;
       height: 3em;
       padding: 10px 40px;
       font-size: .8em;
+    }
+    b {
+      @include span-columns(4);
+      @include shift(3);
     }
   }
 }

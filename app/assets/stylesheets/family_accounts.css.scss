@@ -12,3 +12,8 @@
   }
 }
 
+.child-info {
+  @include span-columns(4);
+  display: inline-block;
+}
+

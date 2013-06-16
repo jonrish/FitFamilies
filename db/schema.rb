@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609005149) do
+ActiveRecord::Schema.define(:version => 20130611195131) do
 
   create_table "child_accounts", :force => true do |t|
     t.string   "username",          :null => false
@@ -23,15 +23,26 @@ ActiveRecord::Schema.define(:version => 20130609005149) do
   end
 
   create_table "family_accounts", :force => true do |t|
-    t.string   "email",         :null => false
-    t.string   "password",      :null => false
-    t.string   "first_name",    :null => false
-    t.string   "last_name",     :null => false
-    t.date     "date_of_birth", :null => false
-    t.string   "zip_code",      :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "email",                                  :null => false
+    t.string   "first_name",                             :null => false
+    t.string   "last_name",                              :null => false
+    t.date     "date_of_birth",                          :null => false
+    t.string   "zip_code",                               :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "family_accounts", ["email"], :name => "index_family_accounts_on_email", :unique => true
+  add_index "family_accounts", ["reset_password_token"], :name => "index_family_accounts_on_reset_password_token", :unique => true
 
   create_table "favorite_foods", :force => true do |t|
     t.string   "name"
