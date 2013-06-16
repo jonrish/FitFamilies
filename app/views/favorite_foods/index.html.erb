@@ -1,5 +1,3 @@
-<h3 id="notice"><%= notice %></h3>
-
 <div class='middle-display'>
   <h2>Here are all of your favorites!</h2>
   <% if @child_account.favorite_foods.count == 0 %>
@@ -20,4 +18,6 @@
       <% end %>
     </table>
   <% end %>
+
+  <%= link_to 'Add Your Own Favorite', new_child_account_favorite_food_path(@child_account), class: 'submit-button' %>
 </div>

@@ -6,6 +6,7 @@ require 'spec_helper'
 feature 'a user creates a family account' do
 
   scenario 'a user signs up' do
+    count = FamilyAccount.count
     visit family_accounts_path
     click_link 'Sign Up Today!'
     expect(page).to have_content 'Let\'s get started!'
@@ -20,6 +21,7 @@ feature 'a user creates a family account' do
     select '2000', from: 'family_account_date_of_birth_1i'
 
     click_button "Create Family Account"
+    expect(FamilyAccount.count).to eql(count + 1)
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
@@ -58,9 +60,11 @@ feature 'a user creates a family account' do
   scenario 'a user deletes their account' do
     sign_in
     visit edit_family_account_registration_path
+    count = FamilyAccount.count
     click_link 'Delete My Account'
     expect(page).to have_content 'Your account has been successfully deleted.'
     expect(current_path).to eql root_path
+    expect(FamilyAccount.count).to eql(count - 1)
   end
 
   scenario 'a user views their account info' do
@@ -69,13 +73,3 @@ feature 'a user creates a family account' do
     expect(page).to have_content 'Here is all of your account information:' 
   end
 end
-
-
-
-
-
-
-
-
-
-
