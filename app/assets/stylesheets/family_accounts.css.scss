@@ -13,7 +13,7 @@
 }
 
 .child-info {
-  @include span-columns(3);
+  @include span-columns(4);
   display: inline-block;
 }
 
