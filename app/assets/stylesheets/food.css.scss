@@ -5,20 +5,20 @@
 @import "bourbon";
 @import "neat";
 
-table {
-  @include span-columns(10);
-  @include shift(2);
-  text-align: left;
-  th {
-    border: 1px solid black;
-    padding: 3px 5px;
-  }
-  td {
-    padding: 3px 5px;
-    border: 1px solid black;
-  }
-  .submit-button {
-    font-size: .8em;
-  }
-}
+// table {
+//   @include span-columns(10);
+//   @include shift(2);
+//   text-align: left;
+//   th {
+//     border: 1px solid black;
+//     padding: 3px 5px;
+//   }
+//   td {
+//     padding: 3px 5px;
+//     border: 1px solid black;
+//   }
+//   .submit-button {
+//     font-size: .8em;
+//   }
+// }
 

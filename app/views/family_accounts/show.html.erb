@@ -9,13 +9,13 @@
 
   <% if @family_account.child_accounts.count != 0 %>
     <h2>Below are the children you've registered:</h2>
-    <ul>
-      <% @family_account.child_accounts.each do |ca| %>
-        <h3><%= ca.username %></h3>
-        <li><%= link_to "#{ca.username}'s Stuff", family_account_child_account_path(@family_account, ca) %></li><br >
-        <li><%= link_to "Edit #{ca.username}'s info", edit_family_account_child_account_path(@family_account, ca) %></li>
-      <% end %>
-    </ul>
+    <% @family_account.child_accounts.each do |ca| %>
+      <ul>
+        <li class='child-info'><%= ca.username %></li>
+        <li class='child-info'><%= link_to "#{ca.username}'s Stuff", family_account_child_account_path(@family_account, ca) %></li>
+        <li class='child-info'><%= link_to "Edit #{ca.username}'s info", edit_family_account_child_account_path(@family_account, ca) %></li><br />
+      </ul>
+    <% end %>
   <% end %>
 
   <h2>Would you like to add a child to your account?</h2>
