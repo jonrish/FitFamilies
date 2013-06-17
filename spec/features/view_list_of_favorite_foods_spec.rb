@@ -29,7 +29,6 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
 
   scenario 'must sign in to view favorite foods' do
     visit child_account_favorite_foods_path(child_account)
-    save_and_open_page
     expect(current_path).to eql family_account_session_path
   end
 
