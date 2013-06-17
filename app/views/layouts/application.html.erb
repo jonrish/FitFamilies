@@ -14,20 +14,25 @@
     <div class='signer'>
       <% if family_account_signed_in? %>
         <%= link_to('Log Out', destroy_family_account_session_path, :method => :delete) %>
-        <%= link_to 'My Account', family_account_path(current_family_account) %>
+        <%= link_to 'My Account', family_account_path(current_family_account) %><br />
+        <b>You are signed in as: <%= current_family_account.email %></b>
       <% else %>
         <%= link_to('Log In', new_family_account_session_path)  %>
       <% end %>
     </div>
   </div>
-  <div class='navbar'>
-    <%= link_to 'Nutrition', foods_path %>
-    <%= link_to 'Activity' %>
-    <% if family_account_signed_in? %>
-      <b>You are signed in as: <%= current_family_account.email %></b>
-    <% end %>
-  </div>
 </header>
+
+<div class='navbar'>
+  <%= link_to 'Nutrition', foods_path %>
+  <%= link_to 'Activity' %>
+  <p></p>
+  <% if family_account_signed_in? %>
+    <% current_family_account.child_accounts.each do |f| %>
+      <%= link_to f.username, family_account_child_account_path(current_family_account, f), class: 'kid-button' %>
+      <% end %>
+  <% end %>
+</div>
 
 <h3 id="notice"><%= notice %></h3>
 <h3 class="alert"><%= alert %></h3>
