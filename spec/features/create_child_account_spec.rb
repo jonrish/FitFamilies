@@ -14,31 +14,24 @@ require 'spec_helper'
 
 feature 'parent creates a child account' do
 
-  def sign_in
-    @fa = FactoryGirl.create(:family_account)
-    visit new_family_account_session_path
-    click_link 'Log In'
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'testtest'
-    click_button 'Sign in'
-  end
+  let(:family_account) { FactoryGirl.create(:family_account) }
 
   scenario 'parent adds a child account to the family account' do
     count = ChildAccount.count
-    sign_in
+    sign_in_as(family_account)
     click_link 'My Account'
     click_link 'Add a Child'
     fill_in 'Username', with: 'test'
     click_button 'Submit'
     expect(page).to have_content 'Alright, you\'re in!'
     expect(ChildAccount.count).to eql(count + 1)
-    expect(current_path).to eql(family_account_child_account_path(@fa, ChildAccount.last))
+    expect(current_path).to eql(family_account_child_account_path(family_account, ChildAccount.last))
   end
   
   scenario 'parent must enter valid attributes' do
     count = ChildAccount.count
-    sign_in
-    visit new_family_account_child_account_path(@fa)
+    sign_in_as(family_account)
+    visit new_family_account_child_account_path(family_account)
     fill_in 'Username', with: ''
     click_button 'Submit'
     expect(page).to have_content 'Username can\'t be blank'

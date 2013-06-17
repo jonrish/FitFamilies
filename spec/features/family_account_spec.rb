@@ -5,6 +5,8 @@ require 'spec_helper'
 
 feature 'a user creates a family account' do
 
+  let(:family_account) { FactoryGirl.create(:family_account) }
+
   scenario 'a user signs up' do
     count = FamilyAccount.count
     visit family_accounts_path
@@ -26,7 +28,7 @@ feature 'a user creates a family account' do
   end
 
   scenario 'a user signs in and signs out' do
-    FactoryGirl.create(:family_account)
+    family_account
     visit family_accounts_path
     click_link 'Log In'
     fill_in 'Email', with: 'test@test.com'
@@ -37,17 +39,8 @@ feature 'a user creates a family account' do
     expect(page).to have_content 'Signed out successfully'
   end
 
-  def sign_in
-    FactoryGirl.create(:family_account)
-    visit new_family_account_session_path
-    click_link 'Log In'
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'testtest'
-    click_button 'Sign in'
-  end
-
   scenario 'a user edits their account information' do
-    sign_in
+    sign_in_as(family_account)
     click_link 'My Account'
     click_link 'Edit My Family Account'
     expect(page).to have_content 'You can make changes to your account here.'
@@ -58,7 +51,7 @@ feature 'a user creates a family account' do
   end
 
   scenario 'a user deletes their account' do
-    sign_in
+    sign_in_as(family_account)
     visit edit_family_account_registration_path
     count = FamilyAccount.count
     click_link 'Delete My Account'
@@ -68,7 +61,7 @@ feature 'a user creates a family account' do
   end
 
   scenario 'a user views their account info' do
-    sign_in
+    sign_in_as(family_account)
     click_link 'My Account'
     expect(page).to have_content 'Here is all of your account information:' 
   end

@@ -11,14 +11,16 @@ feature 'modify child account', %q{ as a parent
   # 2) if account is updated or deleted redirect to family account 
   # show page / notify user
 
-  def sign_in
-    @fa = FactoryGirl.create(:family_account)
-    visit new_family_account_session_path
-    click_link 'Log In'
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'testtest'
-    click_button 'Sign in'
-  end
+  # def sign_in
+  #   @fa = FactoryGirl.create(:family_account)
+  #   visit new_family_account_session_path
+  #   click_link 'Log In'
+  #   fill_in 'Email', with: 'test@test.com'
+  #   fill_in 'Password', with: 'testtest'
+  #   click_button 'Sign in'
+  # end
+
+  let(:family_account) { FactoryGirl.create(:family_account) }
 
   def create_child_account
     click_link 'My Account'
@@ -28,10 +30,9 @@ feature 'modify child account', %q{ as a parent
   end
 
   scenario 'parent makes changes to child account' do
-    sign_in
+    sign_in_as(family_account)
     create_child_account
-    click_link 'My Account'
-    click_link 'Edit test\'s info'
+    click_link 'Edit My Child\'s Info'
     fill_in 'Username', with: 'Joe'
     click_button 'Submit'
     expect(page).to have_content 'Your info has been updated'
@@ -39,11 +40,10 @@ feature 'modify child account', %q{ as a parent
   end
 
   scenario 'parent deletes a child account' do
-    sign_in
+    sign_in_as(family_account)
     create_child_account
     count = ChildAccount.count
-    click_link 'My Account'
-    click_link 'Edit test\'s info'
+    click_link 'Edit My Child\'s Info'
     click_link 'Remove My Child From Our Account'
     expect(page).to have_content 'our child\'s information has been deleted.'
     expect(ChildAccount.count).to eql(count - 1)
