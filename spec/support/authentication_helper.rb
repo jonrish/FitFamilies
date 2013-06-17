@@ -5,4 +5,10 @@ module AuthenticationHelper
     fill_in 'Password', with: user.password
     click_button 'Sign in'
   end
+
+  def create_child_account(user,child)
+    visit new_family_account_child_account_path(user)
+    fill_in 'Username', with: child.username
+    click_button 'Submit'
+  end
 end

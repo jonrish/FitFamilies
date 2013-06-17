@@ -21,17 +21,11 @@ feature 'modify child account', %q{ as a parent
   # end
 
   let(:family_account) { FactoryGirl.create(:family_account) }
-
-  def create_child_account
-    click_link 'My Account'
-    click_link 'Add a Child'
-    fill_in 'Username', with: 'test'
-    click_button 'Submit'
-  end
+  let(:child_account) { FactoryGirl.create(:child_account, family_account: family_account) }
 
   scenario 'parent makes changes to child account' do
     sign_in_as(family_account)
-    create_child_account
+    create_child_account(family_account,child_account)
     click_link 'Edit My Child\'s Info'
     fill_in 'Username', with: 'Joe'
     click_button 'Submit'
@@ -41,7 +35,7 @@ feature 'modify child account', %q{ as a parent
 
   scenario 'parent deletes a child account' do
     sign_in_as(family_account)
-    create_child_account
+    create_child_account(family_account,child_account)
     count = ChildAccount.count
     click_link 'Edit My Child\'s Info'
     click_link 'Remove My Child From Our Account'
