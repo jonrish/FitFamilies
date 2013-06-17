@@ -7,12 +7,13 @@
       <th>Food</th>
       <th>Food Category</th>
       <th>Food Type</th>
-      <th></th>
+      <th>Rating</th>
       <% @favorite_foods.each do |ff| %>
         <tr>
           <td><%= link_to ff.name, child_account_favorite_food_path(@child_account, ff) %></td>
           <td><%= FoodCategory.find(ff.food_category).food_category %></td>
           <td><%= FoodType.find(ff.food_type).food_type %></td>
+          <td class='rating'><%= ff.rating %></td>
           <td><%= link_to 'Edit My Food', edit_child_account_favorite_food_path(@child_account, ff) %></td>
         </tr>
       <% end %>

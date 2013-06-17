@@ -1,4 +1,6 @@
 class ChildAccountsController < ApplicationController
+  before_filter :authenticate_family_account!
+
   def index
     @family_account = FamilyAccount.find(params[:family_account_id])
     @child_account = ChildAccount.find(params[:id])
