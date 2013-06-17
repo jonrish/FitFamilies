@@ -1,13 +1,11 @@
 <div class='middle-display'>
-  <h2>Here is your child's information:</h2>
-  <ul>
-    <li>Username: <%= @child_account.username %></li>
-    <li>Birthday: <%= @child_account.date_of_birth %></li>
-  </ul>
-  <%= link_to "Looks Good. / Go Back.", family_account_path(@family_account), class: 'submit-button' %><br />
-  <%= link_to 'Let\'s check out your favorite foods', child_account_favorite_foods_path(@child_account) %>
+  <h1><%= @child_account.username %></h1>
+  
+  <%= link_to 'Your Favorite Foods', child_account_favorite_foods_path(@child_account), class: 'submit-button' %><br /><br />
+  <%= link_to 'Your Favorite Activities', root_path, class: 'submit-button' %><br /><br />
+  <%= link_to 'Your Activity Log', root_path, class: 'submit-button' %><br /><br />
+
   <div class='bottom-links'>
     <%= link_to 'Edit My Child\'s Info', edit_family_account_child_account_path(@family_account, @child_account) %>
-    <%= link_to 'Remove My Child From Our Account', [@family_account, @child_account], method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %>
   </div>
 </div>
