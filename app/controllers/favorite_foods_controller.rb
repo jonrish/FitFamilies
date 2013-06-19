@@ -23,8 +23,19 @@ class FavoriteFoodsController < ApplicationController
   end
 
   def edit
-    @child_account = ChildAccount.find(params[:child_account_id])
     @favorite_food = FavoriteFood.find(params[:id])
+  end
+
+  def update
+    # @child_account = ChildAccount.find(params[:child_account_id])
+    @favorite_food = FavoriteFood.find(params[:id])
+
+    if @favorite_food.update_attributes(params[:favorite_food])
+      redirect_to child_account_favorite_food_path(@favorite_food.child_account, @favorite_food), notice: 'Your favorite has been updated'
+    else
+      render action: 'edit'
+    end
+
   end
 
   def show
