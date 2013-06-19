@@ -4,5 +4,12 @@
     <li><%= @favorite_food.name %></li>
     <li><%= FoodCategory.find(@favorite_food.food_category).food_category %></li>
     <li><%= FoodType.find(@favorite_food.food_type).food_type %></li>
+    <li><%= @favorite_food.rating %></li>
+    <li><%= @favorite_food.note %></li>
+    <% if @favorite_food.share_with_others == true %>
+      <li>You chose to share this favorite with others</li>
+    <% else %>
+      <li>You chose not to share this food with others</li>  
+    <% end %>
   </ul>
 </div>

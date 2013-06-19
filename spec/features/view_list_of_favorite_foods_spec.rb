@@ -25,6 +25,7 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
     visit child_account_favorite_foods_path(child_account)
     expect(page).to have_content favorite_food.name
     expect(page).to have_content favorite_food.rating
+    expect(page).to_not have_content favorite_food.note
   end
 
   scenario 'must sign in to view favorite foods' do
