@@ -6,7 +6,7 @@
     <li><%= FoodType.find(@favorite_food.food_type).food_type %></li>
     <li><%= @favorite_food.rating %></li>
     <li><%= @favorite_food.note %></li>
-    <% if @favorite_food.share_with_others == true %>
+    <% if @favorite_food.share_with_others %>
       <li>You chose to share this favorite with others</li>
     <% else %>
       <li>You chose not to share this food with others</li>  

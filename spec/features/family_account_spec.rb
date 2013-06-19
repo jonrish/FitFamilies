@@ -28,11 +28,10 @@ feature 'a user creates a family account' do
   end
 
   scenario 'a user signs in and signs out' do
-    family_account
     visit family_accounts_path
     click_link 'Log In'
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'testtest'
+    fill_in 'Email', with: family_account.email
+    fill_in 'Password', with: family_account.password
     click_button 'Sign in'
     expect(page).to have_content 'Signed in successfully'
     click_link 'Log Out'
@@ -48,6 +47,7 @@ feature 'a user creates a family account' do
     fill_in 'Current password', with: 'testtest'
     click_button 'Update Family Account'
     expect(page).to have_content 'You updated your account successfully.'
+    expect(page).to have_content 'test1@test.com'
   end
 
   scenario 'a user deletes their account' do
@@ -64,5 +64,6 @@ feature 'a user creates a family account' do
     sign_in_as(family_account)
     click_link 'My Account'
     expect(page).to have_content 'Here is all of your account information:' 
+    expect(page).to have_content family_account.email
   end
 end
