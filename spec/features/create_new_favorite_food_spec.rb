@@ -7,20 +7,22 @@ feature 'create new favorite food', %q{as a parent or child
 
 # AC
 # 1) i can specify a name, type, category, note and rating for my new favorite food
-# 2) i can specify whether or not I want to share my food with other users - if i do name, category & type are required
+# 2) i can specify whether or not I want to share my food with other users
 # 3) link to create new food from the favorite food index page.
 # 4) favorite food is created from the new page.
 # 5) redirect to favorite food index page is successful
 # 6) user is notified whether or not successfully created
+# 7) name, category, type are all required fields
 
-  let(:fa) { FactoryGirl.create(:family_account) }
-  let(:ca) { FactoryGirl.create(:child_account, family_account: fa) }
+  let(:family_account) { FactoryGirl.create(:family_account) }
+  let(:child_account) { FactoryGirl.create(:child_account, family_account: family_account) }
   let!(:ft) { FactoryGirl.create(:food_type, food_type: 'Carbs (like Bread & Pasta)') }
   let!(:fc) { FactoryGirl.create(:food_category, food_category: 'Lunch') }
 
   scenario 'a user can create a new favorite food' do
+    sign_in_as(family_account)
     count = FavoriteFood.count
-    visit child_account_favorite_foods_path(ca)
+    visit child_account_favorite_foods_path(child_account)
     click_link 'Add Your Own Favorite'
     fill_in 'What is your food called?', with: 'peanut butter & banana sandwich'
     select 'Carbs (like Bread & Pasta)', from: 'What kind of food is it?'
@@ -31,13 +33,13 @@ feature 'create new favorite food', %q{as a parent or child
     click_button 'Submit'
     expect(FavoriteFood.count).to eql(count + 1)
     expect(page).to have_content 'Your new food is now a favorite'
-    expect(current_path).to eql(child_account_favorite_foods_path(ca))
+    expect(current_path).to eql(child_account_favorite_foods_path(child_account))
   end
 
   scenario 'a user chooses to share new food' do
+    sign_in_as(family_account)
     count = FavoriteFood.count
-    visit new_child_account_favorite_food_path(ca)
-    choose 'favorite_food_share_with_others_true'
+    visit new_child_account_favorite_food_path(child_account)
     click_button 'Submit'
     expect(page).to have_content 'Sorry. That didn\'t work'
     expect(FavoriteFood.count).to eql(count)

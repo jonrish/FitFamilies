@@ -25,4 +25,11 @@ FactoryGirl.define do
   factory :food_type do
     food_type 'Milk & Dairy'
   end
+
+  factory :favorite_food do
+    name 'Peanut Butter'
+    note 'The best food ever!!!'
+    rating '5'
+    share_with_others 'true'
+  end
 end

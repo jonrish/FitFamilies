@@ -1,4 +1,6 @@
 class FavoriteFoodsController < ApplicationController
+  before_filter :authenticate_family_account!
+
   def index
     @child_account = ChildAccount.find(params[:child_account_id])
     @favorite_foods = @child_account.favorite_foods

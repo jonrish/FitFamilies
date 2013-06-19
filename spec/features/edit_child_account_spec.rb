@@ -11,21 +11,12 @@ feature 'modify child account', %q{ as a parent
   # 2) if account is updated or deleted redirect to family account 
   # show page / notify user
 
-  # def sign_in
-  #   @fa = FactoryGirl.create(:family_account)
-  #   visit new_family_account_session_path
-  #   click_link 'Log In'
-  #   fill_in 'Email', with: 'test@test.com'
-  #   fill_in 'Password', with: 'testtest'
-  #   click_button 'Sign in'
-  # end
-
   let(:family_account) { FactoryGirl.create(:family_account) }
   let(:child_account) { FactoryGirl.create(:child_account, family_account: family_account) }
 
   scenario 'parent makes changes to child account' do
     sign_in_as(family_account)
-    create_child_account(family_account,child_account)
+    visit family_account_child_account_path(family_account, child_account) 
     click_link 'Edit My Child\'s Info'
     fill_in 'Username', with: 'Joe'
     click_button 'Submit'
@@ -35,7 +26,7 @@ feature 'modify child account', %q{ as a parent
 
   scenario 'parent deletes a child account' do
     sign_in_as(family_account)
-    create_child_account(family_account,child_account)
+    visit family_account_child_account_path(family_account, child_account)
     count = ChildAccount.count
     click_link 'Edit My Child\'s Info'
     click_link 'Remove My Child From Our Account'
