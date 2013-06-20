@@ -5,7 +5,19 @@
     <li><%= @food_category.food_category %></li>
     <li><%= @food_type.food_type %></li>
   </ul>
-  <%= link_to 'Add to My Favorites', food_path(@food), class: 'submit-button' %>
+  <% if family_account_signed_in? %>
+    <% current_family_account.child_accounts.each do |account| %>
+      <%= form_for [account, account.favorite_foods.build] do |f| %>
+        <%= f.hidden_field :name, value: @food.name %>
+        <%= f.hidden_field :food_category, value: @food.food_category_id %>
+        <%= f.hidden_field :food_type, value: @food.food_type_id %>
+        <%= f.submit "Add to #{account.username}'s Favorites", class: 'submit-button' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Add to Favorites', new_family_account_session_path, class: 'submit-button' %>
+  <% end %>
+
   <div class='bottom-links'>
     <%= link_to 'Back to the list of food choices', foods_path %>
   </div>  

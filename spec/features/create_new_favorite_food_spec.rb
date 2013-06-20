@@ -31,7 +31,7 @@ feature 'create new favorite food', %q{as a parent or child
     fill_in 'note', with: 'PBB is the greatest!'
     click_button 'Submit'
     expect(FavoriteFood.count).to eql(count + 1)
-    expect(page).to have_content 'Your new food is now a favorite'
+    expect(page).to have_content 'Your food is now a favorite'
     expect(current_path).to eql(child_account_favorite_foods_path(child_account))
   end
 

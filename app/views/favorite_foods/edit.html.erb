@@ -3,6 +3,8 @@
 
   <%= render 'form' %>
 
-  <%= link_to 'Remove', child_account_favorite_food_path(@child_account, @favorite_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'submit-button' %>
+  <%= link_to 'Remove', child_account_favorite_food_path(@favorite_food.child_account, @favorite_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'submit-button' %>
+
+  <%= link_to 'Cancel / Back to My Favorite Foods', child_account_favorite_foods_path(@favorite_food.child_account), class: 'submit-button' %>
 
 </div>

@@ -11,5 +11,6 @@
     <% else %>
       <li>You chose not to share this food with others</li>  
     <% end %>
+    <li><%= link_to 'Edit My Favorite Food', edit_child_account_favorite_food_path(@favorite_food.child_account, @favorite_food) %></li>
   </ul>
 </div>
