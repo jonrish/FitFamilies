@@ -5,7 +5,7 @@
     <th>Food Category</th>
     <th>Food Type</th>
     <% @foods.each do |food| %>
-      <tr class="<%= food.name %>">
+      <tr id="food_id_<%= food.id %>">
         <td><%= link_to food.name, food_path(food) %></td>
         <td><%= FoodCategory.find(food.food_category_id).food_category %></td>
         <td><%= FoodType.find(food.food_type_id).food_type %></td>

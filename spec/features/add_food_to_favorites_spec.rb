@@ -25,7 +25,9 @@ feature 'add food to list of favorites', %q{
     visit foods_path
     expect(page).to have_content food1.name
     expect(page).to have_content food2.name
-    find(food1.name).click("Add to #{child_account.username}'s Favorites")
+    within("#food_id_#{food1.id}") do
+      click_on "Add to #{child_account.username}'s Favorites"
+    end
     expect(child_account.favorite_foods.count).to eql(counter + 1)
     expect(current_path).to eql(child_account_favorite_foods_path(child_account))
     expect(page).to have_content 'Your food is now a favorite'
@@ -44,7 +46,9 @@ feature 'add food to list of favorites', %q{
 
   scenario 'non signed-in user clicks at to favorites from food index page' do
     visit foods_path
-    click_on 'Add to Favorites'
+    within("#food_id_#{food1.id}") do
+      click_on 'Add to Favorites'
+    end
     expect(page).to have_content 'Sign in'
     expect(current_path).to eql(new_family_account_session_path)
   end
