@@ -12,14 +12,12 @@ feature 'user views a list of foods', %q{as a child or parent
 # 4) user can sort food list by category and/or type
 # 5) user can limit number of food list items displayed
   
-  let(:category) { FactoryGirl.create(:food_category) }
-  let(:type) { FactoryGirl.create(:food_type) }
-  let!(:food) { FactoryGirl.create(:food, food_category: category, food_type: type) }
+  let!(:food) { FactoryGirl.create(:food) }
 
   scenario 'user explores list of foods' do
     visit foods_path
     expect(page).to have_content food.name
-    expect(page).to have_content category.food_category
-    expect(page).to have_content type.food_type
+    expect(page).to have_content food.food_category.food_category
+    expect(page).to have_content food.food_type.food_type
   end
 end

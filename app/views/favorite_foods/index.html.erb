@@ -15,6 +15,7 @@
           <td><%= FoodType.find(ff.food_type).food_type %></td>
           <td class='rating'><%= ff.rating %></td>
           <td><%= link_to 'Edit My Food', edit_child_account_favorite_food_path(@child_account, ff) %></td>
+          <td><%= link_to 'Remove', child_account_favorite_food_path(@child_account, ff), method: :delete, data: { confirm: 'Are you sure?' } %>
         </tr>
       <% end %>
     </table>

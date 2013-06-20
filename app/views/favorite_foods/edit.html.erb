@@ -3,4 +3,6 @@
 
   <%= render 'form' %>
 
+  <%= link_to 'Remove', child_account_favorite_food_path(@child_account, @favorite_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'submit-button' %>
+
 </div>

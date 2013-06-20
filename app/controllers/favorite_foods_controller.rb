@@ -30,4 +30,13 @@ class FavoriteFoodsController < ApplicationController
   def show
     @favorite_food = FavoriteFood.find(params[:id])
   end
+
+  def destroy
+    @child_account = ChildAccount.find(params[:child_account_id])
+    @favorite_food = FavoriteFood.find(params[:id])
+    @favorite_food.destroy
+
+    redirect_to child_account_favorite_foods_path(@child_account), notice: 'Your food has been removed from your list of favorites.'
+  end
+
 end

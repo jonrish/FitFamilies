@@ -14,13 +14,12 @@ feature 'create new favorite food', %q{as a parent or child
 # 6) user is notified whether or not successfully created
 # 7) name, category, type are all required fields
 
-  let(:family_account) { FactoryGirl.create(:family_account) }
-  let(:child_account) { FactoryGirl.create(:child_account, family_account: family_account) }
-  let!(:ft) { FactoryGirl.create(:food_type, food_type: 'Carbs (like Bread & Pasta)') }
-  let!(:fc) { FactoryGirl.create(:food_category, food_category: 'Lunch') }
+  let(:child_account) { FactoryGirl.create(:child_account) }
+  let!(:food_type) { FactoryGirl.create(:food_type, food_type: 'Carbs (like Bread & Pasta)') }
+  let!(:food_category) { FactoryGirl.create(:food_category, food_category: 'Lunch') }
 
   scenario 'a user can create a new favorite food' do
-    sign_in_as(family_account)
+    sign_in_as(child_account.family_account)
     count = FavoriteFood.count
     visit child_account_favorite_foods_path(child_account)
     click_link 'Add Your Own Favorite'
@@ -37,7 +36,7 @@ feature 'create new favorite food', %q{as a parent or child
   end
 
   scenario 'a user chooses to share new food' do
-    sign_in_as(family_account)
+    sign_in_as(child_account.family_account)
     count = FavoriteFood.count
     visit new_child_account_favorite_food_path(child_account)
     click_button 'Submit'

@@ -7,9 +7,5 @@ class FavoriteFood < ActiveRecord::Base
   validates_presence_of :food_type
   validates_presence_of :food_category
 
-  # def sharing?
-  #   share_with_others == true
-  # end
-
   attr_accessible :child_account_id, :food_category, :food_id, :food_type, :name, :note, :rating, :share_with_others
 end
