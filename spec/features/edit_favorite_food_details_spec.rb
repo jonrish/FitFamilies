@@ -37,7 +37,7 @@ feature 'edit favorite food details', %q{
     expect(page).to have_content 'What would you like to change?'
   end
 
-  scenario 'user can go backto list without makiung chnages' do
+  scenario 'user can go backto list without making changes' do
     sign_in_as(favorite_food.child_account.family_account)
     visit edit_child_account_favorite_food_path(favorite_food.child_account, favorite_food)
     click_on 'Cancel / Back to My Favorite Foods'

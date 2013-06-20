@@ -27,7 +27,6 @@ class FavoriteFoodsController < ApplicationController
   end
 
   def update
-    # @child_account = ChildAccount.find(params[:child_account_id])
     @favorite_food = FavoriteFood.find(params[:id])
 
     if @favorite_food.update_attributes(params[:favorite_food])

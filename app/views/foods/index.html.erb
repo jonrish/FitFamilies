@@ -10,6 +10,8 @@
         <td><%= link_to f.name, food_path(f) %></td>
         <td><%= FoodCategory.find(f.food_category_id).food_category %></td>
         <td><%= FoodType.find(f.food_type_id).food_type %></td>
+        
+
         <td><%= link_to 'Add to My Favorites', foods_path, class: 'submit-button' %></td>
       </tr>
     <% end %>

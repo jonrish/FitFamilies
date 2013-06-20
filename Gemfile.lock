@@ -137,6 +137,9 @@ GEM
       rails (>= 3.2)
     shoulda-matchers (2.1.0)
       activesupport (>= 3.0.0)
+    simple_form (2.1.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     slop (3.4.5)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -176,4 +179,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sextant
   shoulda-matchers
+  simple_form
   uglifier (>= 1.0.3)
