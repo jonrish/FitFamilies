@@ -42,7 +42,7 @@ FactoryGirl.define do
 
   factory :activity do
     sequence(:name) { |n| "Soccer#{n}" }
-    description 'Fun to play with friends'
+    sequence(:description) { |n| "Fun to play with friends#{n}" }
     activity_category
   end
 
