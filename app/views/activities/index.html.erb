@@ -1,0 +1,30 @@
+<div class='middle-display'>
+  <h2>Here are some activities to choose from</h2>
+
+  <%= search_form_for @search do |activity| %>
+    <ul>
+      <li><%= activity.label :name_cont, "Search by Name" %>
+        <%= activity.text_field :name_cont %></li>
+      <li><%= activity.label :descitpion_cont, "Search by Description" %>
+        <%= activity.text_field :description_cont %></li>
+      <li><%= activity.label :activity_category_id_eq, "Filter by Category" %>
+        <%= activity.select :activity_category_id_eq, options_from_collection_for_select(Activity.all, :id, :activity_category), 
+        :include_blank => 'Please Select' %></li>
+      <li><%= activity.submit "Submit" %></li>
+      <li><%= link_to 'Clear Search', activities_path %>
+    </ul>
+  <% end %>
+
+  <table id="activity_table">
+    <th>Activity</th>
+    <th>Category</th>
+    <th>Description</th>
+    <% @activities.each do |activity| %>
+      <tr id="activity_id_<%= activity.id %>">
+        <td><%= link_to activity.name, activity_path(activity) %></td>
+        <td><%= activity.activity_category.activity_category %></td>
+        <td><%= activity.description %></td>
+      </tr>
+    <%end %>
+  </table>
+</div>

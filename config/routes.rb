@@ -11,6 +11,8 @@ Bt3::Application.routes.draw do
 
   resources :foods
 
+  resources :activities, :only => [:index, :show]
+
   root :to => 'family_accounts#index'
 
   # The priority is based upon order of creation:
