@@ -30,7 +30,7 @@ FactoryGirl.define do
   end
 
   factory :favorite_food do
-    name 'Peanut Butter'
+    sequence(:name) { |n| "Peanut Butter#{n}" }
     note 'The best food ever!!!'
     rating '5'
     share_with_others 'true'

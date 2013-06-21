@@ -13,8 +13,8 @@
           <% current_family_account.child_accounts.each do |account| %>
             <%= form_for [account, account.favorite_foods.build] do |f| %>
               <%= f.hidden_field :name, value: food.name %>
-              <%= f.hidden_field :food_category, value: food.food_category_id %>
-              <%= f.hidden_field :food_type, value: food.food_type_id %>
+              <%= f.hidden_field :food_category_id, value: food.food_category_id %>
+              <%= f.hidden_field :food_type_id, value: food.food_type_id %>
               <td><%= f.submit "Add to #{account.username}'s Favorites" %></td>
             <% end %>
           <% end %>

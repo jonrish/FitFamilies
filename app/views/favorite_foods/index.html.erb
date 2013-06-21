@@ -3,16 +3,32 @@
   <% if @child_account.favorite_foods.count == 0 %>
     <h2>You haven't added any favorites yet.</h2>
   <% else %>
+  <%= search_form_for [:child_account, @search] do |f| %>
+    <ul>
+      <li><%= f.label :name_cont, "Search by Name" %>
+        <%= f.text_field :name_cont %></li>  
+      <li><%= f.label :food_category_id_eq, "Filter by Food Category" %>
+        <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), :include_blank => 'Please Select' %></li>
+      <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
+        <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), :include_blank => 'Please Select' %></li>
+      <li><%= f.label :rating_gteq, "Filter by Rating" %>
+        <%= f.predicate_select %>
+      <%= f.select :rating_gteq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+      <li><%= f.submit "Submit" %></li>
+      <li><%= link_to 'Clear Search', child_account_favorite_foods_path(@child_account) %>
+  </ul>
+  
+<% end %>
     <table>
-      <th>Food</th>
+      <th><%= sort_link(@search, :name, 'Food') %></th>
       <th>Food Category</th>
       <th>Food Type</th>
-      <th>Rating</th>
+      <th><%= sort_link(@search, :rating, 'Rating') %></th>
       <% @favorite_foods.each do |ff| %>
         <tr>
           <td><%= link_to ff.name, child_account_favorite_food_path(@child_account, ff) %></td>
-          <td><%= FoodCategory.find(ff.food_category).food_category %></td>
-          <td><%= FoodType.find(ff.food_type).food_type %></td>
+          <td><%= ff.food_category.food_category %></td>
+          <td><%= ff.food_type.food_type %></td>
           <td class='rating'><%= ff.rating %></td>
           <td><%= link_to 'Edit My Food', edit_child_account_favorite_food_path(ff.child_account, ff) %></td>
           <td><%= link_to 'Remove', child_account_favorite_food_path(ff.child_account, ff), method: :delete, data: { confirm: 'Are you sure?' } %>

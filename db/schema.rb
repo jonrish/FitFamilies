@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611195131) do
+ActiveRecord::Schema.define(:version => 20130620191117) do
 
   create_table "child_accounts", :force => true do |t|
     t.string   "username",          :null => false
@@ -47,14 +47,13 @@ ActiveRecord::Schema.define(:version => 20130611195131) do
   create_table "favorite_foods", :force => true do |t|
     t.string   "name"
     t.integer  "child_account_id",                     :null => false
-    t.string   "food_category"
-    t.integer  "food_id"
-    t.string   "food_type"
     t.text     "note"
     t.integer  "rating"
     t.boolean  "share_with_others", :default => false
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.integer  "food_type_id",                         :null => false
+    t.integer  "food_category_id",                     :null => false
   end
 
   create_table "food_categories", :force => true do |t|
