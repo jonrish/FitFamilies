@@ -11,9 +11,8 @@
         <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), :include_blank => 'Please Select' %></li>
       <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
         <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), :include_blank => 'Please Select' %></li>
-      <li><%= f.label :rating_gteq, "Filter by Rating" %>
-        <%= f.predicate_select %>
-      <%= f.select :rating_gteq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+      <li><%= f.label :rating_eq, "Filter by Rating" %>
+        <%= f.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
       <li><%= f.submit "Submit" %></li>
       <li><%= link_to 'Clear Search', child_account_favorite_foods_path(@child_account) %>
   </ul>
@@ -25,7 +24,7 @@
       <th>Food Type</th>
       <th><%= sort_link(@search, :rating, 'Rating') %></th>
       <% @favorite_foods.each do |ff| %>
-        <tr>
+        <tr id="ff_table">
           <td><%= link_to ff.name, child_account_favorite_food_path(@child_account, ff) %></td>
           <td><%= ff.food_category.food_category %></td>
           <td><%= ff.food_type.food_type %></td>

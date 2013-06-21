@@ -48,7 +48,8 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
 
   scenario 'user can sort by rating' do
     sign_in_as(favorite_food.child_account.family_account)
-    favorite_food2 = FactoryGirl.create(:favorite_food, rating: '1', child_account_id: favorite_food.child_account.id)
+    favorite_food2 = FactoryGirl.create(:favorite_food, rating: '1', 
+      child_account_id: favorite_food.child_account.id)
     visit child_account_favorite_foods_path(favorite_food.child_account)
     click_on 'Rating'
     (favorite_food2.name).should appear_before(favorite_food.name)
@@ -57,6 +58,26 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
   end
 
   scenario 'user can filter list by category, rating and type' do
-    
+    sign_in_as(favorite_food.child_account.family_account)
+    food_type2 = FactoryGirl.create(:food_type, food_type: 'Milk & Dairy')
+    food_category2 = FactoryGirl.create(:food_category, food_category: 'Dinner')
+    favorite_food2 = FactoryGirl.create(:favorite_food, rating: '1', 
+      child_account_id: favorite_food.child_account.id, food_type_id: food_type2.id, 
+      food_category_id: food_category2.id)
+    visit child_account_favorite_foods_path(favorite_food.child_account)
+    select favorite_food2.food_type.food_type, from: 'Filter by Food Type'
+    select favorite_food2.food_category.food_category, from: 'Filter by Food Category'
+    select favorite_food2.rating, from: 'Filter by Rating'
+    click_on 'Submit'
+    within("#ff_table") do 
+      expect(page).to have_content favorite_food2.name
+      expect(page).to have_content favorite_food2.food_type.food_type
+      expect(page).to have_content favorite_food2.food_category.food_category
+      expect(page).to have_content favorite_food2.rating
+      expect(page).to_not have_content favorite_food.name
+      expect(page).to_not have_content favorite_food.food_category.food_category
+      expect(page).to_not have_content favorite_food.food_type.food_type
+      expect(page).to_not have_content favorite_food.rating
+    end
   end
 end

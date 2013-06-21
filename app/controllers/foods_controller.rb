@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
   def index
-    @foods = Food.all
+    @search = Food.search(params[:q])
+    @foods = @search.result
   end
 
   def new
