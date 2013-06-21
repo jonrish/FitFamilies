@@ -25,7 +25,7 @@
 
 <div class='navbar'>
   <%= link_to 'Nutrition', foods_path %>
-  <%= link_to 'Activity' %>
+  <%= link_to 'Activity', activities_path %>
   <p></p>
   <% if family_account_signed_in? %>
     <% current_family_account.child_accounts.each do |f| %>
