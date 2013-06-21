@@ -23,8 +23,8 @@
     <% @foods.each do |food| %>
       <tr id="food_id_<%= food.id %>">
         <td><%= link_to food.name, food_path(food) %></td>
-        <td><%= FoodCategory.find(food.food_category_id).food_category %></td>
-        <td><%= FoodType.find(food.food_type_id).food_type %></td>
+        <td><%= food.food_category.food_category %></td>
+        <td><%= food.food_type.food_type %></td>
         <% if family_account_signed_in? %>
           <% current_family_account.child_accounts.each do |account| %>
             <%= form_for [account, account.favorite_foods.build] do |f| %>

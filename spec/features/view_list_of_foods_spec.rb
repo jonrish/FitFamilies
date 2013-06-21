@@ -13,12 +13,8 @@ feature 'user views a list of foods', %q{as a child or parent
 # 5) user can limit number of food list items displayed
   
   let!(:food1) { FactoryGirl.create(:food) }
-  let!(:food_type2) { FactoryGirl.create(:food_type, food_type: 'Milk & Dairy') }
-  let!(:food_category2) { FactoryGirl.create(:food_category, food_category: 'Treat') }
-  let!(:food2) { FactoryGirl.create(:food, food_category: food_category2, food_type: food_type2) }
-  let!(:food_type3) { FactoryGirl.create(:food_type, food_type: 'Fruits & Vegetables') }
-  let!(:food_category3) { FactoryGirl.create(:food_category, food_category: 'Snack') }
-  let!(:food3) { FactoryGirl.create(:food, food_type: food_type3, food_category: food_category3) }
+  let!(:food2) { FactoryGirl.create(:food) }
+  let!(:food3) { FactoryGirl.create(:food) }
 
   scenario 'user explores list of foods' do
     visit foods_path

@@ -1,7 +1,10 @@
 class FavoriteFood < ActiveRecord::Base
-  belongs_to :child_account, :inverse_of => :favorite_foods
-  belongs_to :food_category, :inverse_of => :favorite_foods
-  belongs_to :food_type, :inverse_of => :favorite_foods
+  belongs_to :child_account, 
+    :inverse_of => :favorite_foods
+  belongs_to :food_category, 
+    :inverse_of => :favorite_foods
+  belongs_to :food_type, 
+    :inverse_of => :favorite_foods
 
   validates_presence_of :child_account_id
   validates_presence_of :name

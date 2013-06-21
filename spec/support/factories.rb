@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :family_account do
     sequence(:email) {|n| "test#{n}@test.com" }
     password 'testtest'
@@ -16,17 +17,17 @@ FactoryGirl.define do
   end
 
   factory :food do
-    name 'Peanut Butter'
+    sequence(:name) { |n| "Peanut Butter#{n}" }
     food_type
     food_category
   end
 
   factory :food_category do
-    food_category 'Breakfast'
+    sequence(:food_category) { |n| "Breakfast#{n}" }
   end
 
   factory :food_type do
-    food_type 'Protein (like Meat, Fish & Beans)'
+    sequence(:food_type) { |n| "Protein (like Meat, Fish & Beans)#{n}" }
   end
 
   factory :favorite_food do
@@ -38,4 +39,16 @@ FactoryGirl.define do
     food_category
     child_account
   end
+
+  factory :activity do
+    sequence(:name) { |n| "Soccer#{n}" }
+    description 'Fun to play with friends'
+    activity_category
+  end
+
+  factory :activity_category do
+    sequence(:activity_category) { |n| "Team Sport#{n}" }
+  end
 end
+
+
