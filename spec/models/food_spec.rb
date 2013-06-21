@@ -7,5 +7,4 @@ describe Food do
 
   it { should belong_to(:food_type) }
   it { should belong_to(:food_category) }
-  it { should have_many(:child_accounts).through(:favorite_foods) }
 end
