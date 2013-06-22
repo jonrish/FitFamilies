@@ -4,6 +4,8 @@ class ActivityCategory < ActiveRecord::Base
 
   has_many :activities, 
     :inverse_of => :activity_category
+  has_many :favorite_activities,
+    :inverse_of => :activity_category
 
   attr_accessible :activity_category
 end
