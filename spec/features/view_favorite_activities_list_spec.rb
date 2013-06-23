@@ -84,11 +84,11 @@ so i can view and edit the activities i've chosen
     sign_in_as(favorite_activity_1.child_account.family_account)
     visit child_account_favorite_activities_path(favorite_activity_1.child_account)
     within("#favorite_activities_table") do
-      click_on 'Activity'
+      click_on 'Activity Name'
       (favorite_activity_1.name).should appear_before(favorite_activity_2.name) 
     end
     within("#favorite_activities_table") do 
-      click_on 'Activity'
+      click_on 'Activity Name'
       (favorite_activity_2.name).should appear_before(favorite_activity_1.name) 
     end
   end

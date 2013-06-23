@@ -8,10 +8,9 @@ feature 'view list of activities', %q{
 
 # AC
 # 1) view list from activity index page
-# 2) be able to search list by name
-# 3) be able to sort list by category
-# 4) user is able to limit number of activities displayed
-# 5) any user may view activity list
+# 2) be able to search list by name and description
+# 3) user is able to limit number of activities displayed
+# 4) any user may view activity list
 
   let!(:activity_1) { FactoryGirl.create(:activity) }
   let!(:activity_2) { FactoryGirl.create(:activity) }

@@ -20,7 +20,7 @@ feature 'view favorite activity details', %q{
 		visit child_account_favorite_activities_path(favorite_activity.child_account)
 		click_on favorite_activity.name
 		expect(current_path).to eql(child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity))
-		click_on 'Back to My Favorite Activities'
+		click_on "Back to #{favorite_activity.child_account.username}'s Favorite Activities"
 		expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity.child_account))
 	end
 

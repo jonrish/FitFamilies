@@ -7,6 +7,6 @@
 		<li><%= @favorite_activity.rating %></li>
 		<li><%= @favorite_activity.note %></li>
 	</ul>
-
-	<%= link_to 'Back to My Favorite Activities', child_account_favorite_activities_path(@child_account) %>
+	<%= link_to 'Edit My Activity', edit_child_account_favorite_activity_path(@child_account, @favorite_activity, class: 'submit-button') %>
+	<%= link_to "Back to #{@favorite_activity.child_account.username}'s Favorite Activities", child_account_favorite_activities_path(@child_account), class: 'submit-button' %>
 </div>

@@ -29,7 +29,7 @@ feature 'user creates a new favorite activity', %q{
     fill_in 'Description', with: 'Slow, but fun'
     fill_in 'Note', with: 'Pitching & defense wins games'
     choose 'favorite_activity_rating_5'
-    click_on 'Create Favorite Activity'
+    click_on 'Submit'
     expect(current_path).to eql(child_account_favorite_activities_path(child_account))
     expect(child_account.favorite_activities.count).to eql(counter + 1)
     expect(page).to have_content 'The activity has been added to your favorites'
@@ -40,8 +40,7 @@ feature 'user creates a new favorite activity', %q{
     counter = child_account.favorite_activities.count
     visit new_child_account_favorite_activity_path(child_account)
     select activity_category.activity_category, from: 'Category'
-    click_on 'Create Favorite Activity'
+    click_on 'Submit'
     expect(child_account.favorite_activities.count).to eql(counter)
   end
-
 end
