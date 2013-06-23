@@ -23,4 +23,9 @@ class FavoriteActivitiesController < ApplicationController
       render action: 'new'
     end
   end
+
+  def show
+    @child_account = ChildAccount.find(params[:child_account_id])
+    @favorite_activity = FavoriteActivity.find(params[:id])
+  end
 end

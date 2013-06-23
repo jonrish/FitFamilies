@@ -10,7 +10,7 @@ so i can view and edit the activities i've chosen
 # 1) view list from favorite activity index page
 # 2) user can search list by name
 # 3) user can filter list by activity and rating
-# 4) user sac sort list by name or rating
+# 4) user can sort list by name or rating
 # 5) user can limit numer of activities displayed
 # 6) user must be signed in 
 # 7) user may click from child show page
@@ -81,8 +81,28 @@ so i can view and edit the activities i've chosen
   end 
 
   scenario 'user sorts list by name' do
+    sign_in_as(favorite_activity_1.child_account.family_account)
+    visit child_account_favorite_activities_path(favorite_activity_1.child_account)
+    within("#favorite_activities_table") do
+      click_on 'Activity'
+      (favorite_activity_1.name).should appear_before(favorite_activity_2.name) 
+    end
+    within("#favorite_activities_table") do 
+      click_on 'Activity'
+      (favorite_activity_2.name).should appear_before(favorite_activity_1.name) 
+    end
   end
 
   scenario 'user sorts list by rating' do
+    sign_in_as(favorite_activity_1.child_account.family_account)
+    visit child_account_favorite_activities_path(favorite_activity_1.child_account)
+    within("#favorite_activities_table") do
+      click_on 'Rating'
+      (favorite_activity_1.name).should appear_before(favorite_activity_2.name)
+    end
+    within("#favorite_activities_table") do
+      click_on 'Rating'
+      (favorite_activity_2.name).should appear_before(favorite_activity_1.name)
+    end
   end
 end

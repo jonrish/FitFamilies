@@ -1,0 +1,12 @@
+<div class='middle-display'>
+	<h2>Here are the details for your favorite activity</h2>
+	<ul>
+		<li><%= @favorite_activity.name %></li>
+		<li><%= @favorite_activity.activity_category.activity_category %></li>
+		<li><%= @favorite_activity.description %></li>
+		<li><%= @favorite_activity.rating %></li>
+		<li><%= @favorite_activity.note %></li>
+	</ul>
+
+	<%= link_to 'Back to My Favorite Activities', child_account_favorite_activities_path(@child_account) %>
+</div>
