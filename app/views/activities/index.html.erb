@@ -27,4 +27,11 @@
       </tr>
     <%end %>
   </table>
+
+  <% if family_account_signed_in? %>
+    <% current_family_account.child_accounts.each do |child_account| %>
+      <%= link_to "Check Out #{child_account.username}'s Favorites", 
+        child_account_favorite_activities_path(child_account), class: 'submit-button' %>
+    <% end %>
+  <% end %>
 </div>

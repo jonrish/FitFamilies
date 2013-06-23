@@ -32,6 +32,16 @@ feature 'user creates a new favorite activity', %q{
     click_on 'Create Favorite Activity'
     expect(current_path).to eql(child_account_favorite_activities_path(child_account))
     expect(child_account.favorite_activities.count).to eql(counter + 1)
+    expect(page).to have_content 'The activity has been added to your favorites'
+  end
+
+  scenario 'a user does not enter required information' do
+    sign_in_as(child_account.family_account)
+    counter = child_account.favorite_activities.count
+    visit new_child_account_favorite_activity_path(child_account)
+    select activity_category.activity_category, from: 'Category'
+    click_on 'Create Favorite Activity'
+    expect(child_account.favorite_activities.count).to eql(counter)
   end
 
 end

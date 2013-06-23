@@ -1,0 +1,64 @@
+<div class='middle-display'>
+  <% if @child_account.favorite_activities.count == 0 %>
+    <h2>You haven't added any favorite activities yet.</h2>
+  <% else %>
+    <h2>Here are all of your favorite activities!</h2>
+    <%= search_form_for [:child_account, @search] do |activity| %>
+      <ul>
+        <li><%= activity.label :name_cont, 'Search by Name' %>
+          <%= activity.text_field :name_cont %></li>
+        <li><%= activity.label :activity_category_id_eq, 'Filter by Category' %>
+          <%= activity.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
+        <li><%= activity.label :rating_eq, 'Filter by Rating' %>
+          <%= activity.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+        <li><%= activity.submit 'Submit' %></li>
+        <li><%= link_to 'Clear Search', child_account_favorite_activities_path(@child_account) %></li>
+      </ul>
+      <%- end -%>
+
+
+
+
+
+
+      <%- if false -%>
+    <%= search_form_for [:child_account, @search] do |f| %>
+      <ul>
+        <li><%= f.label :name_cont, "Search by Name" %>
+          <%= f.text_field :name_cont %></li>  
+        <li><%= f.label :food_category_id_eq, "Filter by Food Category" %>
+          <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), :include_blank => 'Please Select' %></li>
+        <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
+          <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), :include_blank => 'Please Select' %></li>
+        <li><%= f.label :rating_eq, "Filter by Rating" %>
+          <%= f.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+        <li><%= f.submit "Submit" %></li>
+        <li><%= link_to 'Clear Search', child_account_favorite_foods_path(@child_account) %>
+      </ul>
+    <% end %>
+    <%- end -%>
+
+
+
+
+
+
+
+
+
+
+
+    <table>
+      <th>Activity</th>
+      <th>Category</th>
+      <th>Rating</th>
+      <% @favorite_activities.each do |activity| %>
+        <tr>
+          <td><%= activity.name %></td>
+          <td><%= activity.activity_category.activity_category %></td>
+          <td><%= activity.rating %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  

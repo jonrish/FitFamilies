@@ -3,8 +3,6 @@ class FavoriteFoodsController < ApplicationController
 
   def index
     @child_account = ChildAccount.find(params[:child_account_id])
-    # @favorite_foods = @child_account.favorite_foods
-
     @search = @child_account.favorite_foods.search(params[:q])
     @favorite_foods = @search.result    
   end
