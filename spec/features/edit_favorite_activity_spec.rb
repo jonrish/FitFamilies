@@ -47,7 +47,6 @@ feature 'edit favorite activity', %q{
     fill_in 'Note', with: 'don\'t fall in love with the 3-pointer'
     choose 'favorite_activity_rating_4'
     click_on 'Submit'
-    save_and_open_page
     expect(page).to have_content 'Your activity has been updated'
     expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity.child_account))
     expect(counter).to eql(favorite_activity.child_account.favorite_activities.count)

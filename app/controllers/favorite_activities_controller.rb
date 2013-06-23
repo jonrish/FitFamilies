@@ -43,4 +43,14 @@ class FavoriteActivitiesController < ApplicationController
       render action: 'edit'
     end
   end
+
+  def destroy
+    @child_account = ChildAccount.find(params[:child_account_id])
+    @favorite_activity = FavoriteActivity.find(params[:id])
+    @favorite_activity.destroy
+
+    redirect_to child_account_favorite_activities_path(@child_account)
+    flash[:notice] = 'The activity has been removed from your favorites'
+  end
+
 end
