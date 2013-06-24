@@ -3,7 +3,7 @@
   
   <%= link_to 'Your Favorite Foods', child_account_favorite_foods_path(@child_account), class: 'submit-button' %><br /><br />
   <%= link_to 'Your Favorite Activities', child_account_favorite_activities_path(@child_account), class: 'submit-button' %><br /><br />
-  <%= link_to 'Your Activity Log', root_path, class: 'submit-button' %><br /><br />
+  <%= link_to 'Your Activity Log', child_account_activity_logs_path(@child_account), class: 'submit-button' %><br /><br />
 
   <div class='bottom-links'>
     <%= link_to 'Edit My Child\'s Info', edit_family_account_child_account_path(@family_account, @child_account) %>

@@ -1,5 +1,5 @@
 <div class='middle-display'>
-<h2>Here is what you've done</h2>
+	<h2>Here is what you've done</h2>
 	<table id='activity_log_table'>
 			<th>Activity Name</th>
 			<th>Category</th>
@@ -12,4 +12,6 @@
 				<td><%= log.description %></td>
 			<%- end -%>
 	</table>
+	<%= link_to 'Back to Your Favorite Activities', child_account_favorite_activities_path(@child_account) %>
+	<%= link_to 'Back to the Activity List', activities_path %>
 </div>
