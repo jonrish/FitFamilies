@@ -21,7 +21,4 @@ feature 'user views activity details', %q{
     expect(page).to have_content activity.activity_category.activity_category
     expect(current_path).to eql(activity_path(activity))
   end
-
 end
-
-

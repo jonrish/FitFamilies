@@ -40,26 +40,6 @@
     <%end %>
   </table>
 
-<%- if false -%>
-<% if family_account_signed_in? %>
-          <% current_family_account.child_accounts.each do |account| %>
-            <%= form_for [account, account.favorite_foods.build] do |f| %>
-              <%= f.hidden_field :name, value: food.name %>
-              <%= f.hidden_field :food_category_id, value: food.food_category_id %>
-              <%= f.hidden_field :food_type_id, value: food.food_type_id %>
-              <td><%= f.submit "Add to #{account.username}'s Favorites" %></td>
-            <% end %>
-          <% end %>
-        <% else %>
-        <td><%= link_to 'Add to Favorites', new_family_account_session_path, class: 'submit-button' %></td>
-        <% end %>
-<%- end -%>
-
-
-
-
-
-
   <% if family_account_signed_in? %>
     <% current_family_account.child_accounts.each do |child_account| %>
       <%= link_to "Check Out #{child_account.username}'s Favorites", 

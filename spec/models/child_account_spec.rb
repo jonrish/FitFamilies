@@ -10,4 +10,3 @@ describe ChildAccount do
   it { should have_many(:favorite_foods) }
   it { should have_many(:favorite_activities) }
 end
-

@@ -58,8 +58,4 @@ FactoryGirl.define do
     activity_category
     child_account
   end
-
 end
-
-
-
