@@ -1,17 +1,53 @@
 <div class='middle-display'>
-	<h2>Here is what you've done</h2>
-	<table id='activity_log_table'>
-			<th>Activity Name</th>
-			<th>Category</th>
-			<th>Description</th>
-			<th>Date Added</th>
-			<%- @activity_logs.each do |log| -%>
-				<td><%= log.name %></td>
-				<td><%= log.date %></td>
-				<td><%= log.activity_category.activity_category %></td>
-				<td><%= log.description %></td>
-			<%- end -%>
-	</table>
+	<%- if @child_account.activity_logs.count == 0 -%>
+		<h2>You haven't logged any activities yet</h2>
+	<%- else -%>
+		<h2>Here is what you've done</h2>
+		<%= search_form_for	[:child_account, @search] do |log| %>
+			<ul>
+				<li><%= log.label :name_cont, 'Search by Name' %>
+					<%= log.text_field :name_cont %></li>
+				<li><%= log.label :description_cont, 'Search by Description' %>
+					<%= log.text_field :description_cont %></li>
+				<li><%= log.label :activity_category_id_eq, 'Filter by Category' %>
+					<%= log.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
+				<li><%= log.submit 'Submit' %></li>
+			</ul>
+		<%- end -%>
+		<table id='activity_log_table'>
+				<th>Activity Name</th>
+				<th>Category</th>
+				<th>Description</th>
+				<th>Date Added</th>
+				<%- @activity_logs.each do |log| -%>
+					<td><%= log.name %></td>
+					<td><%= log.date %></td>
+					<td><%= log.activity_category.activity_category %></td>
+					<td><%= log.description %></td>
+				<%- end -%>
+		</table>
+	<%- end -%>
 	<%= link_to 'Back to Your Favorite Activities', child_account_favorite_activities_path(@child_account) %>
 	<%= link_to 'Back to the Activity List', activities_path %>
 </div>
+
+
+
+
+
+
+<%- if false -%>
+<%= search_form_for [:child_account, @search] do |activity| %>
+      <ul>
+        <li><%= activity.label :name_cont, 'Search by Name' %>
+          <%= activity.text_field :name_cont %></li>
+        <li><%= activity.label :activity_category_id_eq, 'Filter by Category' %>
+          <%= activity.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
+        <li><%= activity.label :rating_eq, 'Filter by Rating' %>
+          <%= activity.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+        <li><%= activity.submit 'Submit' %></li>
+        <li><%= link_to 'Clear Search', child_account_favorite_activities_path(@child_account) %></li>
+      </ul>
+    <%- end -%>
+
+<%- end -%>

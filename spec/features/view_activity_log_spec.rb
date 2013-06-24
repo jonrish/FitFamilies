@@ -17,7 +17,16 @@ feature 'view activity log', %q{
 	# page & child show page
 # 8) user can navigate to activities index or favorite activites index
 
+	let(:child_account) {FactoryGirl.create(:child_account) }
+
+	scenario 'user notified if no items exist in their log' do
+		sign_in_as(child_account.family_account)
+		visit child_account_activity_logs_path(child_account)
+		expect(page).to have_content 'You haven\'t logged any activities yet'
+	end
+
 	let(:activity_log) { FactoryGirl.create(:activity_log) }
+	let!(:activity_log_2) { FactoryGirl.create(:activity_log, child_account: activity_log.child_account) }
 
 	scenario 'user visits their activity log' do
 		sign_in_as(activity_log.child_account.family_account)
@@ -51,4 +60,48 @@ feature 'view activity log', %q{
 		click_on 'Back to the Activity List'
 		expect(current_path).to eql(activities_path)
 	end
+
+	scenario 'user searches activity log by name' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit child_account_activity_logs_path(activity_log.child_account)
+		fill_in 'Search by Name', with: activity_log.name
+		click_on 'Submit'
+		expect(page).to have_content activity_log.name
+		expect(page).to_not have_content activity_log_2.name
+		fill_in 'Search by Name', with: activity_log_2.name
+		click_on 'Submit'
+		expect(page).to have_content activity_log_2.name
+		expect(page).to_not have_content activity_log.name
+	end
+
+	scenario 'user searches activity log by description' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit child_account_activity_logs_path(activity_log.child_account)
+		fill_in 'Search by Description', with: activity_log.description
+		click_on 'Submit'
+		expect(page).to have_content activity_log.description
+		expect(page).to_not have_content activity_log_2.description
+		fill_in 'Search by Description', with: activity_log_2.description
+		click_on 'Submit'
+		expect(page).to have_content activity_log_2.description
+		expect(page).to_not have_content activity_log.description
+	end
+
+	scenario 'user filters by category' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit child_account_activity_logs_path(activity_log.child_account)
+		select activity_log.activity_category.activity_category, from: 'Filter by Category'
+		click_on 'Submit'
+		within("#activity_log_table") do
+			expect(page).to have_content activity_log.activity_category.activity_category
+			expect(page).to_not have_content activity_log_2.activity_category.activity_category
+		end
+		select activity_log_2.activity_category.activity_category, from: 'Filter by Category'
+		click_on 'Submit'
+		within("#activity_log_table") do
+			expect(page).to_not have_content activity_log.activity_category.activity_category
+			expect(page).to have_content activity_log_2.activity_category.activity_category
+		end
+	end
+
 end

@@ -17,6 +17,8 @@ so i can view and edit the activities i've chosen
 # 8) user may click from activity index page
 # 9) displays name, category & rating
 
+  #TODO test user notified if not food added 
+
   let!(:favorite_activity_1) { FactoryGirl.create(:favorite_activity, rating: '1') }
   let!(:favorite_activity_2) { FactoryGirl.create(:favorite_activity, 
     child_account: favorite_activity_1.child_account) }
