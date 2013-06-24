@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 feature 'user views favorite food details', %q{
-  As a parent or child 
-  I want to be able to see the details of foods I've added to 
-  my list of favorites so that I can keep track of all my 
+  As a parent or child
+  I want to be able to see the details of foods I've added to
+  my list of favorites so that I can keep track of all my
   favorite food info.
 } do
 
