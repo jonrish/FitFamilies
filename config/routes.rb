@@ -13,6 +13,9 @@ Bt3::Application.routes.draw do
     resources :favorite_activities
   end
 
+  resources :child_accounts, :only => [] do
+    resources :activity_logs
+  end
 
   resources :foods
 

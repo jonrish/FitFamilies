@@ -9,4 +9,5 @@ describe ChildAccount do
   it { should belong_to(:family_account) }
   it { should have_many(:favorite_foods) }
   it { should have_many(:favorite_activities) }
+  it { should have_many(:activity_logs) }
 end

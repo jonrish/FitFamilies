@@ -1,0 +1,15 @@
+<div class='middle-display'>
+<h2>Here is what you've done</h2>
+	<table id='activity_log_table'>
+			<th>Activity Name</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th>Date Added</th>
+			<%- @activity_logs.each do |log| -%>
+				<td><%= log.name %></td>
+				<td><%= log.date %></td>
+				<td><%= log.activity_category.activity_category %></td>
+				<td><%= log.description %></td>
+			<%- end -%>
+	</table>
+</div>
