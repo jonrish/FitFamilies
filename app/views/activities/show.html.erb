@@ -7,6 +7,18 @@
   </ul>
   
   <div class='bottom-links'>
+  	<%- if family_account_signed_in? -%>
+      <%- current_family_account.child_accounts.each do |account| -%>
+        <%= simple_form_for [account, account.favorite_activities.build] do |fav_activity| %>
+          <%= fav_activity.hidden_field :name, value: @activity.name %>
+            <%= fav_activity.hidden_field :activity_category_id, value: @activity.activity_category_id %>
+            <%= fav_activity.hidden_field :description, value: @activity.description %>
+            <%= fav_activity.submit "Add to #{account.username}'s Favorites" %>
+        <%- end -%>
+      <%- end -%>
+    <%- else -%>
+    	<%= link_to 'Add to Favorites', new_family_account_session_path %>
+    <%- end -%>
     <%= link_to 'Back to the list of activities', activities_path %>
   </div>  
 </div>
