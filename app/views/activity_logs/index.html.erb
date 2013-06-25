@@ -27,6 +27,7 @@
 						<td><%= log.activity_category.activity_category %></td>
 						<td><%= log.description %></td>
 						<td><%= log.date %></td>
+						<td><%= link_to 'Edit', edit_child_account_activity_log_path(@child_account, log) %></td>
 					</tr>
 				<%- end -%>
 		</table>

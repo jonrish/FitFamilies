@@ -21,6 +21,19 @@ class ActivityLogsController < ApplicationController
 			flash[:notice] = 'Something went wrong, the activity was not added to your log'
 		end
 	end
+
+	def edit
+		@activity_log = ActivityLog.find(params[:id])
+	end
+
+	def update
+		@activity_log = ActivityLog.find(params[:id])
+
+		if @activity_log.update_attributes(params[:activity_log])
+			redirect_to child_account_activity_logs_path(@activity_log.child_account)
+			flash[:notice] = 'Your activity log entry has been updated'
+		else
+			render action: 'edit'
+		end
+	end
 end
-
-
