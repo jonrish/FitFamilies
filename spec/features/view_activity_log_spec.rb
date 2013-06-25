@@ -25,7 +25,7 @@ feature 'view activity log', %q{
 		expect(page).to have_content 'You haven\'t logged any activities yet'
 	end
 
-	let(:activity_log) { FactoryGirl.create(:activity_log) }
+	let(:activity_log) { FactoryGirl.create(:activity_log, date: Date.tomorrow) }
 	let!(:activity_log_2) { FactoryGirl.create(:activity_log, child_account: activity_log.child_account) }
 
 	scenario 'user visits their activity log' do
@@ -104,4 +104,26 @@ feature 'view activity log', %q{
 		end
 	end
 
+	scenario 'user clears search & filter form' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit child_account_activity_logs_path(activity_log.child_account)
+		fill_in 'Search by Description', with: activity_log.description
+		click_on 'Submit'
+		click_on 'Clear Search'
+		expect(page).to have_content activity_log.name
+		expect(page).to have_content activity_log_2.name
+	end
+
+	scenario 'users sorts date' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit child_account_activity_logs_path(activity_log.child_account)
+		click_on 'Date Added'
+		within("#activity_log_table") do
+			(activity_log_2.name).should appear_before(activity_log.name)
+		end
+		click_on 'Date Added'
+		within("#activity_log_table") do
+			(activity_log.name).should appear_before(activity_log_2.name)
+		end
+	end
 end

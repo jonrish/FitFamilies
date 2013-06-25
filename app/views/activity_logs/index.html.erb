@@ -11,6 +11,8 @@
 					<%= log.text_field :description_cont %></li>
 				<li><%= log.label :activity_category_id_eq, 'Filter by Category' %>
 					<%= log.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
+				</li>
+				<li><%= link_to 'Clear Search', child_account_activity_logs_path(@child_account) %></li>
 				<li><%= log.submit 'Submit' %></li>
 			</ul>
 		<%- end -%>
@@ -18,9 +20,9 @@
 				<th>Activity Name</th>
 				<th>Category</th>
 				<th>Description</th>
-				<th>Date Added</th>
+				<th><%= sort_link(@search, :date, 'Date Added') %></th>
 				<%- @activity_logs.each do |log| -%>
-					<td><%= log.name %></td>
+					<td><%= link_to log.name, child_account_activity_log_path(@child_account, log) %></td>
 					<td><%= log.date %></td>
 					<td><%= log.activity_category.activity_category %></td>
 					<td><%= log.description %></td>
