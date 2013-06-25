@@ -36,4 +36,16 @@ class ActivityLogsController < ApplicationController
 			render action: 'edit'
 		end
 	end
+
+	def destroy
+		@child_account = ChildAccount.find(params[:child_account_id])
+		@activity_log = ActivityLog.find(params[:id])
+		@activity_log.destroy
+
+		redirect_to child_account_activity_logs_path(@child_account)
+		flash[:notice] = 'The log entry has been removed'
+	end
+
 end
+
+

@@ -12,4 +12,5 @@
 		<li>Repitions: <%= @activity_log.repetitions %></li>
 	</ul>
 	<%= link_to 'Back to My Activity Log', child_account_activity_logs_path(@activity_log.child_account) %>
+	<%= link_to 'Remove from Log', child_account_activity_log_path(@activity_log.child_account, @activity_log), method: :delete, data: { confirm: 'Are You Sure' } %>
 </div>

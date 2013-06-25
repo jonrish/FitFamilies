@@ -28,6 +28,7 @@
 						<td><%= log.description %></td>
 						<td><%= log.date %></td>
 						<td><%= link_to 'Edit', edit_child_account_activity_log_path(@child_account, log) %></td>
+						<td><%= link_to 'Remove from Log', child_account_activity_log_path(log.child_account, log), method: :delete, data: { confirm: 'Are You Sure' } %></td>
 					</tr>
 				<%- end -%>
 		</table>
@@ -35,24 +36,3 @@
 	<%= link_to 'Back to Your Favorite Activities', child_account_favorite_activities_path(@child_account) %>
 	<%= link_to 'Back to the Activity List', activities_path %>
 </div>
-
-
-
-
-
-
-<%- if false -%>
-<%= search_form_for [:child_account, @search] do |activity| %>
-      <ul>
-        <li><%= activity.label :name_cont, 'Search by Name' %>
-          <%= activity.text_field :name_cont %></li>
-        <li><%= activity.label :activity_category_id_eq, 'Filter by Category' %>
-          <%= activity.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
-        <li><%= activity.label :rating_eq, 'Filter by Rating' %>
-          <%= activity.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
-        <li><%= activity.submit 'Submit' %></li>
-        <li><%= link_to 'Clear Search', child_account_favorite_activities_path(@child_account) %></li>
-      </ul>
-    <%- end -%>
-
-<%- end -%>
