@@ -126,4 +126,25 @@ feature 'view activity log', %q{
 			(activity_log.name).should appear_before(activity_log_2.name)
 		end
 	end
+
+	scenario 'user filters activity log by date' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit child_account_activity_logs_path(activity_log.child_account)
+		select activity_log.date.year, from: 'q[date_eq(1i)]'
+		select I18n.t("date.month_names")[activity_log_2.date.month], from: 'q[date_eq(2i)]'
+		select activity_log.date.day, from: 'q[date_eq(3i)]' 
+		click_on 'Submit'
+		within("#activity_log_table") do
+			expect(page).to have_content activity_log.name
+			expect(page).to_not have_content activity_log_2.name
+		end
+		select activity_log_2.date.year, from: 'q[date_eq(1i)]'
+		select I18n.t("date.month_names")[activity_log_2.date.month], from: 'q[date_eq(2i)]'
+		select activity_log_2.date.day, from: 'q[date_eq(3i)]' 
+		click_on 'Submit'
+		within("#activity_log_table") do
+			expect(page).to_not have_content activity_log.name
+			expect(page).to have_content activity_log_2.name
+		end
+	end
 end
