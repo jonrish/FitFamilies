@@ -3,8 +3,6 @@ class FavoriteFoodsController < ApplicationController
 
   def index
     @child_account = ChildAccount.find(params[:child_account_id])
-    # @favorite_foods = @child_account.favorite_foods
-
     @search = @child_account.favorite_foods.search(params[:q])
     @favorite_foods = @search.result    
   end
@@ -34,7 +32,8 @@ class FavoriteFoodsController < ApplicationController
     @favorite_food = FavoriteFood.find(params[:id])
 
     if @favorite_food.update_attributes(params[:favorite_food])
-      redirect_to child_account_favorite_foods_path(@favorite_food.child_account), notice: 'Your favorite has been updated'
+      redirect_to child_account_favorite_foods_path(@favorite_food.child_account)
+      flash[:notice] = 'Your favorite has been updated'
     else
       render action: 'edit'
     end
@@ -50,7 +49,8 @@ class FavoriteFoodsController < ApplicationController
     @favorite_food = FavoriteFood.find(params[:id])
     @favorite_food.destroy
 
-    redirect_to child_account_favorite_foods_path(@child_account), notice: 'Your food has been removed from your list of favorites.'
+    redirect_to child_account_favorite_foods_path(@child_account)
+    flash[:notice] = 'Your food has been removed from your list of favorites.'
   end
 
 end

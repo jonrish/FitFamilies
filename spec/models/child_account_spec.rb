@@ -7,5 +7,6 @@ describe ChildAccount do
   it { should validate_presence_of(:family_account_id) }
 
   it { should belong_to(:family_account) }
+  it { should have_many(:favorite_foods) }
+  it { should have_many(:favorite_activities) }
 end
-

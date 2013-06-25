@@ -8,22 +8,60 @@ feature 'view list of activities', %q{
 
 # AC
 # 1) view list from activity index page
-# 2) be able to search list by name
-# 3) be able to sort list by category
-# 4) user is able to limit number of activities displayed
-# 5) any user may view activity list
+# 2) be able to search list by name and description
+# 3) user is able to limit number of activities displayed
+# 4) any user may view activity list
 
-  let!(:activity) { FactoryGirl.create(:activity) }
+  let!(:activity_1) { FactoryGirl.create(:activity) }
+  let!(:activity_2) { FactoryGirl.create(:activity) }
+  let!(:activity_3) { FactoryGirl.create(:activity) }
 
   scenario 'user views a list of activities' do
     visit activities_path
-    expect(page).to have_content activity.name
-    expect(page).to have_content activity.activity_category.activity_category
-    expect(page).to have_content activity.description
+    expect(page).to have_content activity_1.name
+    expect(page).to have_content activity_1.activity_category.activity_category
+    expect(page).to have_content activity_1.description
   end
 
   scenario 'user searches list by name' do
+    visit activities_path
+    fill_in 'Search by Name', with: activity_1.name
+    click_on 'Submit'
+    within('#activity_table') do
+      expect(page).to have_content activity_1.name
+      expect(page).to have_content activity_1.activity_category.activity_category
+      expect(page).to have_content activity_1.description
+      expect(page).to_not have_content activity_2.name
+      expect(page).to_not have_content activity_2.activity_category.activity_category
+      expect(page).to_not have_content activity_2.description
+    end
   end
 
-end
+  scenario 'user searches list by description' do
+    visit activities_path
+    fill_in 'Search by Description', with: activity_2.description
+    click_on 'Submit'
+    within('#activity_table') do
+      expect(page).to have_content activity_2.name
+      expect(page).to have_content activity_2.activity_category.activity_category
+      expect(page).to have_content activity_2.description
+      expect(page).to_not have_content activity_1.name
+      expect(page).to_not have_content activity_1.activity_category.activity_category
+      expect(page).to_not have_content activity_1.description
+    end 
+  end
 
+  scenario 'user filters list by category' do
+    visit activities_path
+    select activity_2.activity_category.activity_category, from: 'Filter by Category'
+    click_on 'Submit'
+    within('#activity_table') do
+      expect(page).to have_content activity_2.name
+      expect(page).to have_content activity_2.activity_category.activity_category
+      expect(page).to have_content activity_2.description
+      expect(page).to_not have_content activity_1.name
+      expect(page).to_not have_content activity_1.activity_category.activity_category
+      expect(page).to_not have_content activity_1.description
+    end
+  end
+end

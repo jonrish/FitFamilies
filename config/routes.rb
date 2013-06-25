@@ -9,6 +9,11 @@ Bt3::Application.routes.draw do
     resources :favorite_foods
   end
 
+  resources :child_accounts, :only => [] do
+    resources :favorite_activities
+  end
+
+
   resources :foods
 
   resources :activities, :only => [:index, :show]

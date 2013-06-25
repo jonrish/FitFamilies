@@ -1,0 +1,13 @@
+<div class='basic-form'>
+    <%= simple_form_for [@favorite_activity.child_account, @favorite_activity] do |new| %>
+      <%= new.input :name %>
+      <%= new.association :activity_category, label: 'Category', label_method: :activity_category, value_method: :id, include_blank: 'Please Select' %>
+      <%= new.input :description %>
+      <%= new.label :note, label: "Notes" %>
+      <%= new.input :note, as: :text, label: false, input_html: { col: 50, rows: 7 } %>
+      <%= new.label :rating %>
+      <%= new.input :rating, as: :radio_buttons, collection: 1..5, label: false %>
+      <%= new.submit 'Submit' %>
+    <% end %>
+  </div>
+  

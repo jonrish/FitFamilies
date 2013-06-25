@@ -1,0 +1,13 @@
+<div class='middle-display'>
+	<h2>Here are the details for your favorite activity</h2>
+	<ul>
+		<li><%= @favorite_activity.name %></li>
+		<li><%= @favorite_activity.activity_category.activity_category %></li>
+		<li><%= @favorite_activity.description %></li>
+		<li><%= @favorite_activity.rating %></li>
+		<li><%= @favorite_activity.note %></li>
+	</ul>
+	<%= link_to 'Edit My Activity', edit_child_account_favorite_activity_path(@child_account, @favorite_activity, class: 'submit-button') %>
+	<%= link_to 'Remove from My Favorites', child_account_favorite_activity_path(@favorite_activity.child_account, @favorite_activity), method: :delete, data: { confirm: 'Are You Sure?' } %>
+	<%= link_to "Back to #{@favorite_activity.child_account.username}'s Favorite Activities", child_account_favorite_activities_path(@child_account), class: 'submit-button' %>
+</div>

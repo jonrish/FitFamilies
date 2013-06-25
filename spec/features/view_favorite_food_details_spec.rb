@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 feature 'user views favorite food details', %q{
-  As a parent or child 
-  I want to be able to see the details of foods I've added to 
-  my list of favorites so that I can keep track of all my 
+  As a parent or child
+  I want to be able to see the details of foods I've added to
+  my list of favorites so that I can keep track of all my
   favorite food info.
 } do
 
@@ -23,7 +23,7 @@ feature 'user views favorite food details', %q{
   scenario 'a signed in user views favorite food details' do
     sign_in_as(favorite_food.child_account.family_account)
     visit child_account_favorite_food_path(favorite_food.child_account, favorite_food)
-    expect(page).to have_content 'Here are the details for this favorite.'
+    expect(page).to have_content 'Here are the details for your favorite food.'
     expect(page).to have_content favorite_food.name
     expect(page).to have_content favorite_food.food_type.food_type
     expect(page).to have_content favorite_food.food_category.food_category

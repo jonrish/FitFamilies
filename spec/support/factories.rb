@@ -42,13 +42,20 @@ FactoryGirl.define do
 
   factory :activity do
     sequence(:name) { |n| "Soccer#{n}" }
-    description 'Fun to play with friends'
+    sequence(:description) { |n| "Fun to play with friends#{n}" }
     activity_category
   end
 
   factory :activity_category do
     sequence(:activity_category) { |n| "Team Sport#{n}" }
   end
+
+  factory :favorite_activity do
+    sequence(:name) { |n| "Soccer#{n}" }
+    sequence(:description) { |n| "Fun to play with friends#{n}" }
+    rating '5'
+    note 'You need to be in good shape to play well'
+    activity_category
+    child_account
+  end
 end
-
-

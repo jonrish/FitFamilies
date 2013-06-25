@@ -4,4 +4,5 @@ describe ActivityCategory do
   it { should validate_presence_of(:activity_category) }
 
   it { should have_many(:activities) }
+  it { should have_many(:favorite_activities) }
 end

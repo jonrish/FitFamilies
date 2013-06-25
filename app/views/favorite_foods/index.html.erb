@@ -1,23 +1,23 @@
 <div class='middle-display'>
-  <h2>Here are all of your favorites!</h2>
   <% if @child_account.favorite_foods.count == 0 %>
-    <h2>You haven't added any favorites yet.</h2>
+    <h2>You haven't added any favorite foods yet.</h2>
   <% else %>
-  <%= search_form_for [:child_account, @search] do |f| %>
-    <ul>
-      <li><%= f.label :name_cont, "Search by Name" %>
-        <%= f.text_field :name_cont %></li>  
-      <li><%= f.label :food_category_id_eq, "Filter by Food Category" %>
-        <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), :include_blank => 'Please Select' %></li>
-      <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
-        <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), :include_blank => 'Please Select' %></li>
-      <li><%= f.label :rating_eq, "Filter by Rating" %>
-        <%= f.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
-      <li><%= f.submit "Submit" %></li>
-      <li><%= link_to 'Clear Search', child_account_favorite_foods_path(@child_account) %>
-  </ul>
+    <h2>Here are all of your favorite foods!</h2>
+    <%= search_form_for [:child_account, @search] do |f| %>
+      <ul>
+        <li><%= f.label :name_cont, "Search by Name" %>
+          <%= f.text_field :name_cont %></li>  
+        <li><%= f.label :food_category_id_eq, "Filter by Food Category" %>
+          <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), :include_blank => 'Please Select' %></li>
+        <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
+          <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), :include_blank => 'Please Select' %></li>
+        <li><%= f.label :rating_eq, "Filter by Rating" %>
+          <%= f.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+        <li><%= f.submit "Submit" %></li>
+        <li><%= link_to 'Clear Search', child_account_favorite_foods_path(@child_account) %>
+      </ul>
+    <% end %>
   
-<% end %>
     <table>
       <th><%= sort_link(@search, :name, 'Food') %></th>
       <th>Food Category</th>
@@ -36,5 +36,5 @@
     </table>
   <% end %>
 
-  <%= link_to 'Add Your Own Favorite', new_child_account_favorite_food_path(@child_account), class: 'submit-button' %>
+  <%= link_to 'Add Your Own Favorite Food', new_child_account_favorite_food_path(@child_account), class: 'submit-button' %>
 </div>

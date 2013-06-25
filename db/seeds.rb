@@ -23,3 +23,5 @@ Food.create(name: 'Bacon', food_category_id: 1, food_type_id: 4)
 Food.create(name: 'Grapefruit', food_category_id: 1, food_type_id: 1)
 Food.create(name: 'Cream Cheese', food_category_id: 1, food_type_id: 5)
 Food.create(name: 'Yogurt', food_category_id: 1, food_type_id: 2)
+
+ActivityCategory.create(activity_category: 'Team Sport')
