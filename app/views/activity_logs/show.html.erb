@@ -1,0 +1,16 @@
+<div class='middle-display'>
+	<h2>Here are the details of your log entry</h2>
+	<ul>
+		<li>Activity Name: <%= @activity_log.name %></li>
+		<li>Catgeory: <%= @activity_log.activity_category.activity_category %></li>
+		<li>Date Added: <%= @activity_log.date %></li>
+		<li>Description: <%= @activity_log.description %></li>
+		<li>Note: <%= @activity_log.note %></li>
+		<li>Time: <%= @activity_log.time %></li>
+		<li>Weight: <%= @activity_log.weight %></li>
+		<li>Sets: <%= @activity_log.sets %></li>
+		<li>Repitions: <%= @activity_log.repetitions %></li>
+	</ul>
+	<%= link_to 'Back to My Activity Log', child_account_activity_logs_path(@activity_log.child_account) %>
+	<%= link_to 'Remove from Log', child_account_activity_log_path(@activity_log.child_account, @activity_log), method: :delete, data: { confirm: 'Are You Sure' } %>
+</div>

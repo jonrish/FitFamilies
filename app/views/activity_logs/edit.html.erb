@@ -1,0 +1,19 @@
+<div class='middle-display'>
+	<h2>Make any changes you wish</h2>
+	<div class='basic-form'>
+		<%= simple_form_for [@activity_log.child_account, @activity_log] do |f| %>
+			<%= f.input :name %>
+			<%= f.input :date, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year] %>
+			<%= f.association :activity_category, label: 'Category', label_method: :activity_category, value_method: :id, include_blank: 'Please Select' %>
+			<%= f.input :description %>
+			<%= f.label :note, label: 'Note' %>
+			<%= f.input :note, as: :text, label: false, input_html: { col: 40, rows: 4 } %>
+			<%= f.input :time, collection: 1..180, label: 'Duration in minutes', include_blank: true %>
+			<%= f.input :weight, collection: 0..200 %>
+			<%= f.input :sets, collection: 1..10 %>
+			<%= f.input :repetitions, collection: 1..100 %>
+			<%= f.submit 'Submit' %>
+		<%- end -%>
+	</div>
+	<%= link_to 'Cancel / Back to My Activity Log', child_account_activity_logs_path(@activity_log.child_account) %>
+</div>

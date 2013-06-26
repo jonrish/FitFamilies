@@ -5,4 +5,5 @@ describe ActivityCategory do
 
   it { should have_many(:activities) }
   it { should have_many(:favorite_activities) }
+  it { should have_many(:activity_logs) }
 end

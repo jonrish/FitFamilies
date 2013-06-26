@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 FoodCategory.create(food_category: 'Breakfast')
 FoodCategory.create(food_category: 'Lunch')
 FoodCategory.create(food_category: 'Dinner')
@@ -25,3 +17,13 @@ Food.create(name: 'Cream Cheese', food_category_id: 1, food_type_id: 5)
 Food.create(name: 'Yogurt', food_category_id: 1, food_type_id: 2)
 
 ActivityCategory.create(activity_category: 'Team Sport')
+ActivityCategory.create(activity_category: 'Cardio')
+ActivityCategory.create(activity_category: 'Upper Body')
+ActivityCategory.create(activity_category: 'Core')
+ActivityCategory.create(activity_category: 'Legs')
+
+Activity.create(name: 'Hockey', activity_category_id: 1, description: 'fast-paced on ice')
+Activity.create(name: 'Walking', activity_category_id: 2, description: 'easy to do & good for you too')
+Activity.create(name: 'Chest Press', activity_category_id: 3, description: 'works major muscles')
+Activity.create(name: 'Crunches', activity_category_id: 4, description: 'good form is important')
+Activity.create(name: 'Leg Extensions', activity_category_id: 5, description: 'works the quads')

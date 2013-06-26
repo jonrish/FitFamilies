@@ -12,6 +12,9 @@ class ChildAccount < ActiveRecord::Base
   has_many :favorite_activities,
     :inverse_of => :child_account,
     :dependent => :destroy
+  has_many :activity_logs, 
+    :inverse_of => :child_account,
+    :dependent => :destroy
 
   attr_accessible :date_of_birth, :family_account_id, :gender, :username
 end

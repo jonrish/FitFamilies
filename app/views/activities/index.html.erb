@@ -26,11 +26,11 @@
         <td><%= activity.description %></td>
         <%- if family_account_signed_in? -%>
           <%- current_family_account.child_accounts.each do |account| -%>
-            <%= simple_form_for [account, account.favorite_activities.build] do |fav_activity| %>
-              <%= fav_activity.hidden_field :name, value: activity.name %>
-              <%= fav_activity.hidden_field :activity_category_id, value: activity.activity_category_id %>
-              <%= fav_activity.hidden_field :description, value: activity.description %>
-              <td><%= fav_activity.submit "Add to #{account.username}'s Favorites" %></td>
+            <%= simple_form_for [account, account.favorite_activities.build] do |f| %>
+              <%= f.hidden_field :name, value: activity.name %>
+              <%= f.hidden_field :activity_category_id, value: activity.activity_category_id %>
+              <%= f.hidden_field :description, value: activity.description %>
+              <td><%= f.submit "Add to #{account.username}'s Favorites" %></td>
             <%- end -%>
           <%- end -%>
         <%- else -%>  
@@ -44,6 +44,7 @@
     <% current_family_account.child_accounts.each do |child_account| %>
       <%= link_to "Check Out #{child_account.username}'s Favorites", 
         child_account_favorite_activities_path(child_account), class: 'submit-button' %>
+      <%= link_to "Check Out #{child_account.username}'s Activity Log", child_account_activity_logs_path(child_account), class: 'submit-button' %>
     <% end %>
   <% end %>
 </div>

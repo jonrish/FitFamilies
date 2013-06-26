@@ -14,6 +14,9 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
 # 6) must be signed in to view favorite food list
 # 7) I can filter the list by rating, type and category
 
+  #TODO test user notified if no foods on list yet added 
+  #TODO implement user limit of displayed items
+
   let(:favorite_food) { FactoryGirl.create(:favorite_food) }
   let(:other_child_fav_food) { FactoryGirl.create(:favorite_food, name: 'Jelly') }
 

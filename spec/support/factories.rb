@@ -58,4 +58,19 @@ FactoryGirl.define do
     activity_category
     child_account
   end
+
+  factory :activity_log do
+    sequence(:name) { |n| "Walking#{n}" }
+    sequence(:description) { |n| "Easy to do & good for you too#{n}"}
+    rating '5'
+    note 'more fun to do with friends'
+    time '15:00'
+    weight '10'
+    sets '3'
+    repetitions '20'
+    date Date.today
+    activity_category
+    child_account
+  end
+
 end
