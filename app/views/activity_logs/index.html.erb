@@ -3,18 +3,18 @@
 		<h2>You haven't logged any activities yet</h2>
 	<%- else -%>
 		<h2>Here is what you've done</h2>
-		<%= search_form_for	[:child_account, @search] do |log| %>
+		<%= search_form_for	[:child_account, @search] do |f| %>
 			<ul>
-				<li><%= log.label :name_cont, 'Search by Name' %>
-					<%= log.text_field :name_cont %></li>
-				<li><%= log.label :description_cont, 'Search by Description' %>
-					<%= log.text_field :description_cont %></li>
-				<li><%= log.label :activity_category_id_eq, 'Filter by Category' %>
-					<%= log.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
-				<li><%= log.label :date_eq, 'Filter by Date' %>
-					<%= log.date_select :date_eq, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year], include_blank: true %></li>	
+				<li><%= f.label :name_cont, 'Search by Name' %>
+					<%= f.text_field :name_cont %></li>
+				<li><%= f.label :description_cont, 'Search by Description' %>
+					<%= f.text_field :description_cont %></li>
+				<li><%= f.label :activity_category_id_eq, 'Filter by Category' %>
+					<%= f.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
+				<li><%= f.label :date_eq, 'Filter by Date' %>
+					<%= f.date_select :date_eq, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year], include_blank: true %></li>	
 				<li><%= link_to 'Clear Search', child_account_activity_logs_path(@child_account) %></li>
-				<li><%= log.submit 'Submit' %></li>
+				<li><%= f.submit 'Submit' %></li>
 			</ul>
 		<%- end -%>
 		<table id='activity_log_table'>
