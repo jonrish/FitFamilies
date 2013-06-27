@@ -6,12 +6,11 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'sextant'
 gem 'simple_form'
 gem "ransack"
-gem 'orderly'
 
-# Gems used only for assets and not required
+
+# Gems used git only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -28,11 +27,13 @@ group :test, :development do
   gem 'capybara'
   gem 'launchy'
   gem 'pry-rails'
+  gem 'sextant'
 end
 
 group :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'orderly'
 end
 
 gem 'bourbon'
