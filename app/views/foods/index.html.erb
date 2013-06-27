@@ -11,15 +11,19 @@
       <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
         <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), 
         :include_blank => 'Please Select' %></li>
+      <li><%= label_tag(:limit, "Items to Display") %>
+        <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
+        include_blank: true %></li>
       <li><%= f.submit "Submit" %></li>
       <li><%= link_to 'Clear Search', foods_path %>
     </ul>
   <% end %>
 
+  <h3><%= paginate @foods %></h3>
   <table id="food_table">
     <th>Food</th>
     <th>Food Category</th>
-    <th>Food Type</th>
+    <th>Food Type</th>  
     <% @foods.each do |food| %>
       <tr id="food_id_<%= food.id %>">
         <td><%= link_to food.name, food_path(food) %></td>
@@ -40,4 +44,5 @@
       </tr>
     <% end %>
   </table>
+  <h3><%= paginate @foods %></h3>
 </div>
