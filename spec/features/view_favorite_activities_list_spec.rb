@@ -11,7 +11,7 @@ so i can view and edit the activities i've chosen
 # 2) user can search list by name
 # 3) user can filter list by activity and rating
 # 4) user can sort list by name or rating
-# 5) user can limit numer of activities displayed
+# 5) user can limit number of activities displayed
 # 6) user must be signed in 
 # 7) user may click from child show page
 # 8) user may click from activity index page
@@ -108,4 +108,33 @@ so i can view and edit the activities i've chosen
       (favorite_activity_2.name).should appear_before(favorite_activity_1.name)
     end
   end
+
+  scenario 'user is notified if no activities have been added' do
+    child_account = FactoryGirl.create(:child_account)
+    sign_in_as(child_account.family_account)
+    visit child_account_favorite_activities_path(child_account)
+    expect(page).to have_content 'You haven\'t added any favorite activities yet'
+  end
+
+  scenario 'user limits number of items displayed per page' do
+    sign_in_as(favorite_activity_1.child_account.family_account)
+    50.times do
+      FactoryGirl.create(:favorite_activity, child_account: favorite_activity_1.child_account)
+    end
+    visit child_account_favorite_activities_path(favorite_activity_1.child_account)
+    select '5', from: 'Items to Display'
+    click_on 'Submit'
+    within("#favorite_activities_table") do
+      expect(page).to have_selector('tr', count: 5)
+      expect(page).to_not have_selector('tr', count: 50)
+    end
+    select '50', from: 'Items to Display'
+    click_on 'Submit'
+    within("#favorite_activities_table") do
+      expect(page).to have_selector('tr', count: 50)
+      expect(page).to_not have_selector('tr', count: 5)
+    end
+  end
+
+  scenario 'user limits the number of items displayed'
 end

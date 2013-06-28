@@ -11,11 +11,15 @@
           <%= f.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
         <li><%= f.label :rating_eq, 'Filter by Rating' %>
           <%= f.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+        <li><%= label_tag(:limit, "Items to Display") %>
+        <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
+        include_blank: true %></li>
         <li><%= f.submit 'Submit' %></li>
         <li><%= link_to 'Clear Search', child_account_favorite_activities_path(@child_account) %></li>
       </ul>
     <%- end -%>
 
+    <h3><%= paginate @favorite_activities %></h3>
     <table id="favorite_activities_table">
       <th><%= sort_link(@search, :name, 'Activity Name') %></th>
       <th>Category</th>
@@ -38,5 +42,6 @@
       <% end %>
     </table>
   <% end %>
+  <h3><%= paginate @favorite_activities %></h3>
   <%= link_to 'My Activity Log', child_account_activity_logs_path(@child_account) %>
 </div>

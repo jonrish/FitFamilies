@@ -18,6 +18,7 @@
     </ul>
   <% end %>
 
+  <h3><%= paginate @activities %></h3>
   <table id="activity_table">
     <th>Activity Name</th>
     <th>Category</th>
@@ -42,6 +43,7 @@
       </tr>
     <%end %>
   </table>
+  <h3><%= paginate @activities %></h3>
 
   <% if family_account_signed_in? %>
     <% current_family_account.child_accounts.each do |child_account| %>
