@@ -6,17 +6,15 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
 } do
 
 # AC
-# 1) I can view a list of all the foods I've favorited. (favorite food index page)
-# 2) I can search the list by name
-# 3) I can sort the list by rating
+# 1) user can view a list of all the foods I've favorited. (favorite food index page)
+# 2) user can search the list by name
+# 3) user can sort the list by rating
 # 4) views rating along with other info
 # 5) note field is not visible on the index page
 # 6) must be signed in to view favorite food list
-# 7) I can filter the list by rating, type and category
-
-  #TODO test user notified if no foods on list yet added 
-  #TODO implement user limit of displayed items
-
+# 7) user can filter the list by rating, type and category
+# 8) user can limit the number of items displayed per page
+  
   let(:favorite_food) { FactoryGirl.create(:favorite_food) }
   let(:other_child_fav_food) { FactoryGirl.create(:favorite_food, name: 'Jelly') }
 

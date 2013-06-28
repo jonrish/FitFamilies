@@ -64,4 +64,23 @@ feature 'view list of activities', %q{
       expect(page).to_not have_content activity_1.description
     end
   end
+
+  scenario 'user may limit the number of items displayed per page' do
+    visit activities_path
+    50.times do
+      FactoryGirl.create(:activity)
+    end
+    select '5', from: 'Items to Display'
+    click_on 'Submit'
+    within('#activity_table') do
+      expect(page).to have_selector('tr', count: 5)
+      expect(page).to_not have_selector('tr', count: 50)
+    end
+    select '50', from: 'Items to Display'
+    click_on 'Submit'
+    within('#activity_table') do
+      expect(page).to have_selector('tr', count: 50)
+      expect(page).to_not have_selector('tr', count: 5)
+    end
+  end
 end
