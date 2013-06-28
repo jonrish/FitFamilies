@@ -4,7 +4,7 @@ class FavoriteFoodsController < ApplicationController
   def index
     @child_account = ChildAccount.find(params[:child_account_id])
     @search = @child_account.favorite_foods.search(params[:q])
-    @favorite_foods = @search.result    
+    @favorite_foods = @search.result.page(params[:page]).per(params[:limit] || 15)    
   end
 
   def new

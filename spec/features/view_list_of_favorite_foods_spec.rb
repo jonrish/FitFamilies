@@ -76,11 +76,40 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
       expect(page).to have_content favorite_food2.name
       expect(page).to have_content favorite_food2.food_type.food_type
       expect(page).to have_content favorite_food2.food_category.food_category
-      expect(page).to have_content favorite_food2.rating
       expect(page).to_not have_content favorite_food.name
       expect(page).to_not have_content favorite_food.food_category.food_category
       expect(page).to_not have_content favorite_food.food_type.food_type
+    end
+    within("#rating") do
+      expect(page).to have_content favorite_food2.rating
       expect(page).to_not have_content favorite_food.rating
+    end
+  end
+
+  scenario 'user is notified if no food has been added' do
+    child_account = FactoryGirl.create(:child_account)
+    sign_in_as(child_account.family_account)
+    visit child_account_favorite_foods_path(child_account)
+    expect(page).to have_content 'You haven\'t added any favorite foods yet' 
+  end
+
+  scenario 'user can limit number of items displayed' do
+    sign_in_as(favorite_food.child_account.family_account)
+    50.times do
+      FactoryGirl.create(:favorite_food, child_account: favorite_food.child_account)
+    end
+    visit child_account_favorite_foods_path(favorite_food.child_account)
+    select '5', from: 'Items to Display'
+    click_on 'Submit'
+    within("#fav_food_table") do
+      expect(page).to have_selector('tr', count: 5)
+      expect(page).to_not have_selector('tr', count: 50)
+    end
+    select '50', from: 'Items to Display'
+    click_on 'Submit'
+    within("#fav_food_table") do
+      expect(page).to have_selector('tr', count: 50)
+      expect(page).to_not have_selector('tr', count: 5)
     end
   end
 end
