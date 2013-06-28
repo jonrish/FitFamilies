@@ -135,6 +135,4 @@ so i can view and edit the activities i've chosen
       expect(page).to_not have_selector('tr', count: 5)
     end
   end
-
-  scenario 'user limits the number of items displayed'
 end

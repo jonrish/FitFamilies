@@ -147,4 +147,24 @@ feature 'view activity log', %q{
 			expect(page).to have_content activity_log_2.name
 		end
 	end
+
+	scenario 'user limits the number of items displayed per page' do
+		sign_in_as(activity_log.child_account.family_account)
+		50.times do
+			FactoryGirl.create(:activity_log, child_account: activity_log.child_account)
+		end
+		visit child_account_activity_logs_path(activity_log.child_account)
+		select '5', from: 'Items to Display'
+		click_on 'Submit'
+		within("#activity_log_table") do
+			expect(page).to have_selector('tr', count: 5)
+			expect(page).to_not have_selector('tr', count: 50)
+		end
+		select '50', from: 'Items to Display'
+		click_on 'Submit'
+		within("#activity_log_table") do
+			expect(page).to have_selector('tr', count: 50)
+			expect(page).to_not have_selector('tr', count: 5)
+		end
+	end
 end
