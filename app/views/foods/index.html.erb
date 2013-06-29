@@ -6,8 +6,7 @@
       <li><%= f.label :name_cont, "Search by Name" %>
         <%= f.text_field :name_cont %></li>
       <li><%= f.label :food_category_id_eq, "Filter by Food Category" %>
-        <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), 
-        :include_blank => 'Please Select' %></li>
+        <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), include_blank: 'Please Select' %></li>
       <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
         <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), 
         :include_blank => 'Please Select' %></li>
