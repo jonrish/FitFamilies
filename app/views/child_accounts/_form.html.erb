@@ -18,6 +18,6 @@
     <%= f.select(:gender, [['male', 0],['female', 1]]) %><br />
     <%= f.label :date_of_birth, 'Date of Birth' %><br />
     <%= f.date_select :date_of_birth, start_year: 1990, order: [:month, :day, :year] %><br />
-    <%= f.submit 'Submit', class: 'create-button' %><br />
+    <%= f.submit 'Submit' %><br />
   <% end %>
 </div>

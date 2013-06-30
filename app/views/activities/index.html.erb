@@ -1,19 +1,21 @@
-<div class='middle-display'>
-  <h2>Here are some activities to choose from</h2>
+<div class='acivities'>
+  <h2>Activity Ideas</h2>
 
-  <%= search_form_for @search do |activity| %>
-    <ul>
-      <li><%= activity.label :name_cont, "Search by Name" %>
-        <%= activity.text_field :name_cont %></li>
-      <li><%= activity.label :description_cont, "Search by Description" %>
-        <%= activity.text_field :description_cont %></li>
-      <li><%= activity.label :activity_category_id_eq, "Filter by Category" %>
-        <%= activity.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), 
-        :include_blank => 'Please Select' %></li>
-      <li><%= activity.submit "Submit" %></li>
-      <li><%= link_to 'Clear Search', activities_path %>
-    </ul>
-  <% end %>
+  <div class='search-filter'>
+    <%= search_form_for @search do |activity| %>
+      <ul>
+        <li><%= activity.label :name_cont, "Search by Name" %>
+          <%= activity.text_field :name_cont %></li>
+        <li><%= activity.label :description_cont, "Search by Description" %>
+          <%= activity.text_field :description_cont %></li>
+        <li><%= activity.label :activity_category_id_eq, "Filter by Category" %>
+          <%= activity.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), 
+          :include_blank => 'Please Select' %></li>
+        <li><%= activity.submit "Submit" %></li>
+        <li><%= link_to 'Clear Search', activities_path %>
+      </ul>
+    <% end %>
+  </div>
 
   <table id="activity_table">
     <th>Activity Name</th>
@@ -39,12 +41,4 @@
       </tr>
     <%end %>
   </table>
-
-  <% if family_account_signed_in? %>
-    <% current_family_account.child_accounts.each do |child_account| %>
-      <%= link_to "Check Out #{child_account.username}'s Favorites", 
-        child_account_favorite_activities_path(child_account), class: 'submit-button' %>
-      <%= link_to "Check Out #{child_account.username}'s Activity Log", child_account_activity_logs_path(child_account), class: 'submit-button' %>
-    <% end %>
-  <% end %>
 </div>

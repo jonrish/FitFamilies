@@ -1,6 +1,6 @@
 <div class='middle-display'>
 
-  <h2>You can make changes to your account here.</h2>
+  <h2>Make changes here.</h2>
 
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>
@@ -30,13 +30,12 @@
       <%= f.label :zip_code, 'Zip Code' %><br />
       <%= f.text_field :zip_code %><br />
 
-      <%= f.submit "Update Family Account", class: 'create-button' %><br />
+      <%= f.submit "Update Family Account" %><br />
     <% end %>
   </div>
 
-  <%= link_to "No thanks. We're good.", family_account_path(current_family_account), class: 'submit-button' %>
-
   <div class='bottom-links'>
+    <%= link_to "Cancel / Back", family_account_path(current_family_account) %>
     <%= link_to 'Delete My Account', registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
   </div>
 </div>

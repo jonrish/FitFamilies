@@ -125,8 +125,7 @@ header {
     @include shift(2);
   }
   .bottom-links {
-    @include span-columns(6 of 12);
-    @include shift(6);
+    @include span-columns(12);
     padding: 15px 0;
     a {
       padding: 0 15px;

@@ -1,5 +1,5 @@
 <div class='middle-display'>
-  <h2>Let's get started!<br />Here is where you can create the main account for your family.</h2>
+  <h2>Let's get started!</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <div class='basic-form'>
@@ -19,6 +19,6 @@
     <%= f.date_select :date_of_birth, start_year: 1900, order: [:month, :day, :year] %><br />
     <%= f.label :zip_code, 'Zip Code' %><br />
     <%= f.text_field :zip_code %><br />
-    <%= f.submit "Create Family Account", class: 'create-button' %>
+    <%= f.submit "Create Family Account" %>
   </div>
 <% end %>
