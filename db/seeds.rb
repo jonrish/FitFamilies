@@ -10,11 +10,13 @@ FoodType.create(food_type: 'Carbs (like Bread & Pasta)')
 FoodType.create(food_type: 'Protein (like Meat, Fish & Beans)')
 FoodType.create(food_type: 'Fat (like Butter, Oil & Cheese)')
 
-Food.create(name: 'Cheerios', food_category_id: 1, food_type_id: 3)
-Food.create(name: 'Bacon', food_category_id: 1, food_type_id: 4)
-Food.create(name: 'Grapefruit', food_category_id: 1, food_type_id: 1)
-Food.create(name: 'Cream Cheese', food_category_id: 1, food_type_id: 5)
-Food.create(name: 'Yogurt', food_category_id: 1, food_type_id: 2)
+50.times do
+	Food.create(name: 'Cheerios', food_category_id: 1, food_type_id: 3)
+	Food.create(name: 'Bacon', food_category_id: 1, food_type_id: 4)
+	Food.create(name: 'Grapefruit', food_category_id: 1, food_type_id: 1)
+	Food.create(name: 'Cream Cheese', food_category_id: 1, food_type_id: 5)
+	Food.create(name: 'Yogurt', food_category_id: 1, food_type_id: 2)
+end
 
 ActivityCategory.create(activity_category: 'Team Sport')
 ActivityCategory.create(activity_category: 'Cardio')

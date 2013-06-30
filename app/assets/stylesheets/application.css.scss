@@ -121,6 +121,9 @@ header {
   h2 {
     @include shift(1);
   }
+  h3 {
+    @include shift(6);
+  }
   ul {
     @include shift(2);
   }

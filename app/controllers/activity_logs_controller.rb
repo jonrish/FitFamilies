@@ -2,7 +2,7 @@ class ActivityLogsController < ApplicationController
 	def index
 		@child_account = ChildAccount.find(params[:child_account_id])
 		@search = @child_account.activity_logs.search(params[:q])
-		@activity_logs = @search.result
+		@activity_logs = @search.result.page(params[:page]).per(params[:limit] || 15)
 	end
 
 	def show

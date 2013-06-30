@@ -11,12 +11,16 @@
         <li><%= activity.label :activity_category_id_eq, "Filter by Category" %>
           <%= activity.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), 
           :include_blank => 'Please Select' %></li>
+        <li><%= label_tag(:limit, "Items to Display") %>
+          <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
+          include_blank: true %></li>
         <li><%= activity.submit "Submit" %></li>
         <li><%= link_to 'Clear Search', activities_path %>
       </ul>
     <% end %>
   </div>
 
+  <h3><%= paginate @activities %></h3>
   <table id="activity_table">
     <th>Activity Name</th>
     <th>Category</th>
@@ -41,4 +45,5 @@
       </tr>
     <%end %>
   </table>
+  <h3><%= paginate @activities %></h3>
 </div>

@@ -6,17 +6,15 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
 } do
 
 # AC
-# 1) I can view a list of all the foods I've favorited. (favorite food index page)
-# 2) I can search the list by name
-# 3) I can sort the list by rating
+# 1) user can view a list of all the foods I've favorited. (favorite food index page)
+# 2) user can search the list by name
+# 3) user can sort the list by rating
 # 4) views rating along with other info
 # 5) note field is not visible on the index page
 # 6) must be signed in to view favorite food list
-# 7) I can filter the list by rating, type and category
-
-  #TODO test user notified if no foods on list yet added 
-  #TODO implement user limit of displayed items
-
+# 7) user can filter the list by rating, type and category
+# 8) user can limit the number of items displayed per page
+  
   let(:favorite_food) { FactoryGirl.create(:favorite_food) }
   let(:other_child_fav_food) { FactoryGirl.create(:favorite_food, name: 'Jelly') }
 
@@ -76,11 +74,40 @@ feature 'view list of favorite foods', %q{as a signed in parent or child
       expect(page).to have_content favorite_food2.name
       expect(page).to have_content favorite_food2.food_type.food_type
       expect(page).to have_content favorite_food2.food_category.food_category
-      expect(page).to have_content favorite_food2.rating
       expect(page).to_not have_content favorite_food.name
       expect(page).to_not have_content favorite_food.food_category.food_category
       expect(page).to_not have_content favorite_food.food_type.food_type
+    end
+    within("#rating") do
+      expect(page).to have_content favorite_food2.rating
       expect(page).to_not have_content favorite_food.rating
+    end
+  end
+
+  scenario 'user is notified if no food has been added' do
+    child_account = FactoryGirl.create(:child_account)
+    sign_in_as(child_account.family_account)
+    visit child_account_favorite_foods_path(child_account)
+    expect(page).to have_content 'You haven\'t added any favorite foods yet' 
+  end
+
+  scenario 'user can limit number of items displayed' do
+    sign_in_as(favorite_food.child_account.family_account)
+    50.times do
+      FactoryGirl.create(:favorite_food, child_account: favorite_food.child_account)
+    end
+    visit child_account_favorite_foods_path(favorite_food.child_account)
+    select '5', from: 'Items to Display'
+    click_on 'Submit'
+    within("#fav_food_table") do
+      expect(page).to have_selector('tr', count: 5)
+      expect(page).to_not have_selector('tr', count: 50)
+    end
+    select '50', from: 'Items to Display'
+    click_on 'Submit'
+    within("#fav_food_table") do
+      expect(page).to have_selector('tr', count: 50)
+      expect(page).to_not have_selector('tr', count: 5)
     end
   end
 end

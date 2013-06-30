@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'simple_form'
 gem "ransack"
+gem 'kaminari'
 
 
 # Gems used git only for assets and not required

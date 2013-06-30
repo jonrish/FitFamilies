@@ -12,12 +12,17 @@
 				<li><%= f.label :activity_category_id_eq, 'Filter by Category' %>
 					<%= f.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
 				<li><%= f.label :date_eq, 'Filter by Date' %>
-					<%= f.date_select :date_eq, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year], include_blank: true %></li>	
-				<li><%= link_to 'Clear Search', child_account_activity_logs_path(@child_account) %></li>
+					<%= f.date_select :date_eq, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year], include_blank: true %></li>
+				<li><%= label_tag(:limit, "Items to Display") %>
+        <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
+        include_blank: true %></li>	
 				<li><%= f.submit 'Submit' %></li>
+				<li><%= link_to 'Clear Search', child_account_activity_logs_path(@child_account) %></li>
 			</ul>
 		<%- end -%>
-		<table id='activity_log_table'>
+
+		<h3><%= paginate @activity_logs %></h3>
+		<table id="activity_log_table">
 				<th>Activity Name</th>
 				<th>Category</th>
 				<th>Description</th>
@@ -34,6 +39,8 @@
 				<%- end -%>
 		</table>
 	<%- end -%>
+	<h3><%= paginate @activity_logs %></h3>
+
 	<%= link_to 'Back to Your Favorite Activities', child_account_favorite_activities_path(@child_account) %>
 	<%= link_to 'Back to the Activity List', activities_path %>
 </div>
