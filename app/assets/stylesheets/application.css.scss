@@ -15,20 +15,30 @@
 @import "bourbon";
 @import "neat";
 
-html {
-  @include background(linear-gradient(#D8E1F2, #4A83ED));
-  height: 100%;
+.home-page {
+  background: url("family_picture.png") top center no-repeat;
+  background-size: cover;
+  min-width: 800px;
+  max-height: 680px;
 }
 
-body {
+.basic-background {
+  background: url('skyline.png') top center no-repeat;
+  background-size: cover;
+  min-width: 800px;
+  max-height: 680px;
+}
+
+.container {
   @include outer-container;
   min-width: 800px;
+  min-height: 680px;
   font-family: $verdana;
 }
 
 a {
   text-decoration: none;
-  color: darkblue;
+  color: #2351EB;
 }
 
 a:visited {
@@ -36,56 +46,75 @@ a:visited {
 }
 
 a:hover {
-  color: #FFFF00;
+  color: #FAE642;
+}
+
+#flash {
+  padding: 1em 0 0 0;
 }
 
 header {
-  @include background(linear-gradient(#3F92F2, #6E7985));
   @include span-columns(12);
-  height: 6em;
-  border: 4px solid #FFFF00;
-  border-radius: 7px;
+  height: 4em;
   .very-top {
     @include span-columns(12);
-    .logo {
-      @include span-columns(7 of 12);
-      @include shift(1);
+    margin: 30px 0;
+    #logo-image img {
+      @include span-columns(2 of 12);
+      height: 8em;
+      width: 8em;
+      border-radius: 3em;
+    }
+    #logo-word {
+      @include span-columns(2 of 12);
       font-weight: bold;
-      font-size: 3em;
-      padding: 5px 0;
+      font-size: 2em;
+      padding: 1.6em 0;
     }
     .signer {
       @include span-columns(4 of 12);
+      @include shift(4);
       padding: 10px 0;
       a {
         padding: 0 10px;
-        @include button(shiny, darkblue);
+        @include button(shiny, #284EE3);
       }
     }
   }
 }
 
-.navbar {
-  @include span-columns(12);
-  padding: 0 1em;
+.kids {
+  @include span-columns(5 of 12);
+  @include shift(7);
+  padding: 4em 0 0 0;
   a {
-    @include span-columns(2);
-    @include button(shiny);
+    font-size: 1.8em;
+    font-family: 'Coming Soon', cursive;
+    padding: 0 0.5em;
   }
-  p {
-    @include span-columns(1);
-  }
-  .kid-button {
-    @include span-columns(2);
-  }
-
 }
 
+.nav {
+  @include span-columns(12);
+  #food {
+    @include span-columns(2 of 12);
+    @include shift(7);
+    img {
+      height: 7em;
+      width: 7em;
+    }
+  }
+  #fitness {
+    @include span-columns(2 of 12);
+    img {
+      height: 7em;
+      width: 7em;
+    }
+  }
+}
 
 .middle-display {
   @include span-columns(12);
-  @include background(linear-gradient(#FFFFFF, #AFC4C0));
-  border-radius: 7px;
   h1 {
     @include shift(1);
   }
@@ -106,19 +135,15 @@ header {
 }
 
 footer {
-  @include span-columns(12);
-  @include background(linear-gradient(#6E7985, #3F92F2));
-  height: 3em;
-  padding: 15px 0;
-  border: 4px solid #FFFF00;
-  border-radius: 7px;
-  a {
-    @include span-columns(3 of 12);
-    @include shift(1);
-    padding: 0 25px;
-
-    }
+  @include span-columns(5 of 12);
+  @include shift(7);
+  margin-top: -6em;
+  ul li {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 0.5em;
   }
+}
 
 .basic-form {
     @include span-columns(12);

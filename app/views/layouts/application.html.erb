@@ -1,51 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html 
+  <%- if request.fullpath == family_accounts_path -%>
+    class="home-page"
+  <%- elsif request.fullpath == root_path -%>
+    class="home-page"
+  <%- else -%>
+    class="basic-background"
+  <%- end -%>>
+
 <head>
   <title>Bt3</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-<header>
-  <div class='very-top'>
-    <%= link_to 'Fit Families', family_accounts_path, class: 'logo' %>
-    <div class='signer'>
-      <% if family_account_signed_in? %>
-        <%= link_to('Log Out', destroy_family_account_session_path, :method => :delete) %>
-        <%= link_to 'My Account', family_account_path(current_family_account) %><br />
-        <b>You are signed in as: <%= current_family_account.email %></b>
-      <% else %>
-        <%= link_to('Log In', new_family_account_session_path)  %>
+
+<div class="container">
+
+  
+
+  <header>
+    <div class='very-top'>
+
+        <%= link_to image_tag('FF.png'), family_accounts_path, id: 'logo-image' %>
+        <%= link_to 'Fit Families', family_accounts_path, id: 'logo-word'  %>
+      <div class='signer'>
+        <% if family_account_signed_in? %>
+          <%= link_to('Log Out', destroy_family_account_session_path, :method => :delete) %>
+          <%= link_to 'My Account', family_account_path(current_family_account) %><br />
+          <b>You are signed in as: <%= current_family_account.email %></b>
+        <% else %>
+          <%= link_to('Log In', new_family_account_session_path)  %>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+
+
+  <div class='kids'>
+    <% if family_account_signed_in? %>
+      <% current_family_account.child_accounts.each do |child| %>
+        <%= link_to child.username, family_account_child_account_path(current_family_account, child), class: 'kid-button' %>
       <% end %>
+    <% end %>
+  </div>  
+
+  <div class='nav'>
+    <div id="food">
+      <%= link_to image_tag('fruit.png'), foods_path%>
+    </div>
+    <div id="fitness">
+      <%= link_to image_tag('balls.png'), activities_path %>
     </div>
   </div>
-</header>
 
-<div class='navbar'>
-  <%= link_to 'Nutrition', foods_path %>
-  <%= link_to 'Activity', activities_path %>
-  <p></p>
-  <% if family_account_signed_in? %>
-    <% current_family_account.child_accounts.each do |f| %>
-      <%= link_to f.username, family_account_child_account_path(current_family_account, f), class: 'kid-button' %>
-      <% end %>
-  <% end %>
+
+  <%= yield %>
+
+
 </div>
-
-<h3 id="notice"><%= notice %></h3>
-<h3 class="alert"><%= alert %></h3>
-
-<%= yield %>
-
 <footer>
-  <%= link_to 'Contact Us' %>
-  <%= link_to 'FAQ' %>
-  <%= link_to 'About Us' %>
+  <ul>
+    <li id='flash'><%= notice %><%= alert %></li><br />
+    <li><%= link_to 'Contact Us' %></li>
+    <li><%= link_to 'FAQ' %></li>
+    <li><%= link_to 'About Us' %></li>
+  </ul>
 </footer>
-
-
 </body>
 </html>
 

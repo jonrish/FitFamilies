@@ -1,3 +1,12 @@
-<div class='middle-display'>
-  <%= link_to 'Sign Up Today!', new_family_account_registration_path, class: 'sign-up' %>
+
+<div class='FFF'>
+	<h2>Food, Fitness & Fun for the Whole Family</h2>
+	<%- if family_account_signed_in? -%>
+		<div class='signed-in'>
+		</div>
+	<%- else -%>
+		<div class='sign-up'>
+	  	<%= link_to 'Sign Up Today!', new_family_account_registration_path %>
+		</div>
+	<%- end -%>
 </div>

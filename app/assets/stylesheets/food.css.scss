@@ -5,6 +5,10 @@
 @import "bourbon";
 @import "neat";
 
+.background-image {
+  background: white;
+}
+
 table {
   @include span-columns(10);
   @include shift(2);

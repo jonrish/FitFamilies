@@ -1,19 +1,14 @@
 @import "bourbon";
 @import "neat";
 
-
-.sign-up {
-  @include span-columns(4);
-  @include shift(4);
-  @include button(shiny);
-  text-align: center;
-  h1 {
-    padding: 10px 10px 10px 10px;
-  }
+.FFF {
+	@include span-columns(5);
+  @include shift(7);
+  font-size: 1.5em;
+  height: 10em; 
+	.sign-up {
+		@include shift(2);
+		font-size: 2em;
+		font-family: 'Coming Soon', cursive;
+	}
 }
-
-.child-info {
-  @include span-columns(4);
-  display: inline-block;
-}
-
