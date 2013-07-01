@@ -9,6 +9,9 @@ FoodType.create(food_type: 'Milk & Dairy')
 FoodType.create(food_type: 'Carbs (like Bread & Pasta)')
 FoodType.create(food_type: 'Protein (like Meat, Fish & Beans)')
 FoodType.create(food_type: 'Fat (like Butter, Oil & Cheese)')
+FoodType.create(food_type: 'Sweets & Treats')
+FoodType.create(food_type: 'Meals & Combinations')
+
 
 50.times do
 	Food.create(name: 'Cheerios', food_category_id: 1, food_type_id: 3)

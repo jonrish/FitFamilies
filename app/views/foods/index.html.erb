@@ -1,40 +1,37 @@
-<div class='middle-display'>
-  <h2>Here are some foods to choose from.</h2>
+<div class='foods'>
+  <h2>Food Ideas</h2>
   
+  <div id='food-search'>
   <%= search_form_for @search do |f| %>
     <ul>
       <li><%= f.label :name_cont, "Search by Name" %>
-        <%= f.text_field :name_cont %></li>
-      <li><%= f.label :food_category_id_eq, "Filter by Food Category" %>
-        <%= f.select :food_category_id_eq, options_from_collection_for_select(FoodCategory.all, :id, :food_category), include_blank: 'Please Select' %></li>
+        <%= f.text_field :name_cont %></li><br />
       <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
         <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), 
         :include_blank => 'Please Select' %></li>
       <li><%= label_tag(:limit, "Items to Display") %>
         <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
         include_blank: true %></li>
-      <li><%= f.submit "Submit" %></li>
-      <li><%= link_to 'Clear Search', foods_path %>
+      <li><%= f.submit "Submit", class: 'submit' %></li>
+      <li><%= link_to 'Clear Search', foods_path, class: 'submit' %></li>
     </ul>
   <% end %>
+  </div>
 
-  <h3><%= paginate @foods %></h3>
   <table id="food_table">
     <th>Food</th>
-    <th>Food Category</th>
-    <th>Food Type</th>  
+    <th>Food Type</th> 
+    <th>Add To:</th> 
     <% @foods.each do |food| %>
       <tr id="food_id_<%= food.id %>">
         <td><%= link_to food.name, food_path(food) %></td>
-        <td><%= food.food_category.food_category %></td>
         <td><%= food.food_type.food_type %></td>
         <% if family_account_signed_in? %>
           <% current_family_account.child_accounts.each do |account| %>
             <%= form_for [account, account.favorite_foods.build] do |f| %>
               <%= f.hidden_field :name, value: food.name %>
-              <%= f.hidden_field :food_category_id, value: food.food_category_id %>
               <%= f.hidden_field :food_type_id, value: food.food_type_id %>
-              <td><%= f.submit "Add to #{account.username}'s Favorites" %></td>
+              <td><%= f.submit "#{account.username}'s Favs", class: 'fav-link' %></td>
             <% end %>
           <% end %>
         <% else %>
@@ -43,5 +40,6 @@
       </tr>
     <% end %>
   </table>
-  <h3><%= paginate @foods %></h3>
 </div>
+
+<h3><%= paginate @foods %></h3>

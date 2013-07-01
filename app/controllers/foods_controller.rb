@@ -20,7 +20,6 @@ class FoodsController < ApplicationController
 
   def show
     @food = Food.find(params[:id])
-    @food_category = FoodCategory.find(@food.food_category_id)
     @food_type = FoodType.find(@food.food_type_id)
   end
 end

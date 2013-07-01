@@ -49,8 +49,10 @@ a:hover {
   color: #FAE642;
 }
 
-#flash {
-  padding: 1em 0 0 0;
+.submit {
+  @include button(shiny, #2351EB);
+  font-weight: bold;
+  font-family: $verdana;
 }
 
 header {
@@ -77,7 +79,7 @@ header {
       padding: 10px 0;
       a {
         padding: 0 10px;
-        @include button(shiny, #284EE3);
+        @include button(shiny, #E83D37);
       }
     }
   }
@@ -113,59 +115,35 @@ header {
   }
 }
 
-.middle-display {
-  @include span-columns(12);
-  h1 {
-    @include shift(1);
-  }
-  h2 {
-    @include shift(1);
-  }
-  h3 {
-    @include shift(6);
-  }
-  ul {
-    @include shift(2);
-  }
-  .bottom-links {
-    @include span-columns(12);
-    padding: 15px 0;
-    a {
-      padding: 0 15px;
-    }
-  }
-}
-
-footer {
-  @include span-columns(5 of 12);
-  @include shift(7);
-  margin-top: -6em;
-  ul li {
-    text-decoration: none;
-    display: inline-block;
-    padding: 0 0.5em;
-  }
-}
-
 .basic-form {
-    @include span-columns(12);
-    @include shift(2);
-    padding: 20px 0 25px 0;
-    .create-button {
-      @include button(pill);
-      font-size: 1.2em;
-    }
-  }
-
-.submit-button {
-  @include button(pill);
+  @include span-columns(12);
   @include shift(2);
-  font-size: 1.2em;
+  padding: 20px 0 25px 0;
+  .create-button {
+    @include button(pill);
+    font-size: 1.2em;
   }
+}
 
+table {
+  @include span-columns(10 of 12);
+  @include shift (1);
+  tr td {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #CDCFD1;
+  }
+  th td {
+    @include span-columns(2 of 12);
+  }
+}
 
+.fav-link {
+  @include button(pill);
+  font-family: 'Coming Soon', cursive;
+  font-size: 1.2em;
+}
 
-
-
-
-
+.bottom-links a {
+  padding: 0 3em 0 0;
+}

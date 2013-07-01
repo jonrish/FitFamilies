@@ -1,11 +1,11 @@
-<div class='middle-display'>
+<div id='child-info'>
 
 	<h2><%= "Changes for #{@child_account.username}?"  %></h2>	
 
-  <%= render 'form' %>
+	<%= render 'form' %>
 
-  <div class='bottom-links'>
-  	<%= link_to "Cancel / Back", family_account_child_account_path(@family_account, @child_account) %>
-    <%= link_to 'Remove My Child From Our Account', [@family_account, @child_account], method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %>
-  </div>
+	<div class='bottom-links'>
+	 	<%= link_to "Cancel / Back", family_account_child_account_path(@family_account, @child_account) %>
+	  <%= link_to 'Remove My Child From Our Account', [@family_account, @child_account], method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %>
+	</div>
 </div>
