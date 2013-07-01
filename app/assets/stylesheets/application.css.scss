@@ -116,7 +116,7 @@ header {
 }
 
 .basic-form {
-  @include span-columns(12);
+  @include span-columns(10 of 12);
   @include shift(2);
   padding: 20px 0 25px 0;
   .create-button {

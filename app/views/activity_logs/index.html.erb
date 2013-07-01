@@ -1,46 +1,48 @@
-<div class='middle-display'>
+<div class='activities'>
 	<%- if @child_account.activity_logs.count == 0 -%>
 		<h2>You haven't logged any activities yet</h2>
 	<%- else -%>
-		<h2>Here is what you've done</h2>
-		<%= search_form_for	[:child_account, @search] do |f| %>
-			<ul>
-				<li><%= f.label :name_cont, 'Search by Name' %>
-					<%= f.text_field :name_cont %></li>
-				<li><%= f.label :description_cont, 'Search by Description' %>
-					<%= f.text_field :description_cont %></li>
-				<li><%= f.label :activity_category_id_eq, 'Filter by Category' %>
-					<%= f.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
-				<li><%= f.label :date_eq, 'Filter by Date' %>
-					<%= f.date_select :date_eq, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year], include_blank: true %></li>
-				<li><%= label_tag(:limit, "Items to Display") %>
-        <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
-        include_blank: true %></li>	
-				<li><%= f.submit 'Submit' %></li>
-				<li><%= link_to 'Clear Search', child_account_activity_logs_path(@child_account) %></li>
-			</ul>
-		<%- end -%>
+		<h2><%= "Here's #{@child_account.username}'s Log" %></h2>
+		<div id='activity-search'>
+			<%= search_form_for	[:child_account, @search] do |f| %>
+				<ul>
+					<li><%= f.label :name_cont, 'Search by Name' %>
+						<%= f.text_field :name_cont %></li>
+					<li><%= f.label :description_cont, 'Search by Description' %>
+						<%= f.text_field :description_cont %></li>
+					<li><%= f.label :activity_category_id_eq, 'Filter by Category' %>
+						<%= f.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
+					<li><%= f.label :date_eq, 'Filter by Date' %>
+						<%= f.date_select :date_eq, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year], include_blank: true %></li>
+					<li><%= label_tag(:limit, "Items to Display") %>
+	        	<%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), include_blank: true %></li>	
+					<li><%= f.submit 'Submit', class: 'submit' %></li>
+					<li><%= link_to 'Clear Search', child_account_activity_logs_path(@child_account), class: 'submit' %></li>
+				</ul>
+			<%- end -%>
+		</div>
 
-		<h3><%= paginate @activity_logs %></h3>
 		<table id="activity_log_table">
-				<th>Activity Name</th>
-				<th>Category</th>
-				<th>Description</th>
-				<th><%= sort_link(@search, :date, 'Date Added') %></th>
-				<%- @activity_logs.each do |log| -%>
-					<tr>
-						<td><%= link_to log.name, child_account_activity_log_path(@child_account, log) %></td>
-						<td><%= log.activity_category.activity_category %></td>
-						<td><%= log.description %></td>
-						<td><%= log.date %></td>
-						<td><%= link_to 'Edit', edit_child_account_activity_log_path(@child_account, log) %></td>
-						<td><%= link_to 'Remove from Log', child_account_activity_log_path(log.child_account, log), method: :delete, data: { confirm: 'Are You Sure' } %></td>
-					</tr>
-				<%- end -%>
+			<th>Activity Name</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th><%= sort_link(@search, :date, 'Date Added') %></th>
+			<%- @activity_logs.each do |log| -%>
+				<tr>
+					<td><%= link_to log.name, child_account_activity_log_path(@child_account, log) %></td>
+					<td><%= log.activity_category.activity_category %></td>
+					<td><%= log.description %></td>
+					<td><%= log.date %></td>
+					<td><%= link_to 'Edit', edit_child_account_activity_log_path(@child_account, log) %></td>
+					<td><%= link_to 'Remove', child_account_activity_log_path(log.child_account, log), method: :delete, data: { confirm: 'Are You Sure' } %></td>
+				</tr>
+			<%- end -%>
 		</table>
 	<%- end -%>
-	<h3><%= paginate @activity_logs %></h3>
+</div>
 
-	<%= link_to 'Back to Your Favorite Activities', child_account_favorite_activities_path(@child_account) %>
-	<%= link_to 'Back to the Activity List', activities_path %>
+<h3><%= paginate @activity_logs %></h3>
+
+<div class='bottom-links'>
+	<%= link_to "Back to #{@child_account.username}'s Favs", child_account_favorite_activities_path(@child_account) %>
 </div>

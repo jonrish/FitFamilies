@@ -1,4 +1,6 @@
 class Food < ActiveRecord::Base
+	default_scope order('name ASC')
+
   belongs_to :food_type, 
     :inverse_of => :foods
 

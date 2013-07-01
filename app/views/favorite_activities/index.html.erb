@@ -46,8 +46,10 @@
       <% end %>
     </table>
   <% end %>
-  <h3><%= paginate @favorite_activities %></h3>
 </div>
+
+<h3><%= paginate @favorite_activities %></h3>
+
 <div class='bottom-links'>
   <%= link_to "#{@child_account.username}'s Activity Log", child_account_activity_logs_path(@child_account) %>
 </div>

@@ -1,6 +1,9 @@
-<div class='middle-display'>
-  <h2>What activity would you like to add?</h2>
+<div class='activities'>
+  <h2>Make your own!</h2>
 
   <%= render 'form' %>
 
+</div>
+<div class='bottom-links'>
+	<%= link_to "Cancel / Back to #{@favorite_activity.child_account.username}'s Favs", child_account_favorite_activities_path(@favorite_activity.child_account) %>
 </div>

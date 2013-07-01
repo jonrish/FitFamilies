@@ -1,5 +1,5 @@
-<div class='middle-display'>
-	<h2>Make any changes you wish</h2>
+<div class='activities'>
+	<h2>Changes?</h2>
 	<div class='basic-form'>
 		<%= simple_form_for [@activity_log.child_account, @activity_log] do |f| %>
 			<%= f.input :name %>
@@ -12,8 +12,10 @@
 			<%= f.input :weight, collection: 0..200 %>
 			<%= f.input :sets, collection: 1..10 %>
 			<%= f.input :repetitions, collection: 1..100 %>
-			<%= f.submit 'Submit' %>
+			<%= f.submit 'Submit', class: 'submit' %>
 		<%- end -%>
 	</div>
-	<%= link_to 'Cancel / Back to My Activity Log', child_account_activity_logs_path(@activity_log.child_account) %>
+</div>
+<div class='bottom-links'>
+	<%= link_to "Cancel / Back to #{@activity_log.child_account.username}'s Activity Log", child_account_activity_logs_path(@activity_log.child_account) %>
 </div>
