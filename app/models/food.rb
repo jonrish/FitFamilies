@@ -3,7 +3,7 @@ class Food < ActiveRecord::Base
     :inverse_of => :foods
 
   validates_presence_of :name
-  validates_presence_of :food_type_id
+  validates_presence_of :food_type
 
-  attr_accessible :name, :food_type_id
+  attr_accessible :name, :food_type
 end

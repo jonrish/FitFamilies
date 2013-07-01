@@ -2,20 +2,20 @@
   <h2>Food Ideas</h2>
   
   <div id='food-search'>
-  <%= search_form_for @search do |f| %>
-    <ul>
-      <li><%= f.label :name_cont, "Search by Name" %>
-        <%= f.text_field :name_cont %></li><br />
-      <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
-        <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), 
-        :include_blank => 'Please Select' %></li>
-      <li><%= label_tag(:limit, "Items to Display") %>
-        <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
-        include_blank: true %></li>
-      <li><%= f.submit "Submit", class: 'submit' %></li>
-      <li><%= link_to 'Clear Search', foods_path, class: 'submit' %></li>
-    </ul>
-  <% end %>
+    <%= search_form_for @search do |f| %>
+      <ul>
+        <li><%= f.label :name_cont, "Search by Name" %>
+          <%= f.text_field :name_cont %></li><br />
+        <li><%= f.label :food_type_id_eq, "Filter by Food Type" %>
+          <%= f.select :food_type_id_eq, options_from_collection_for_select(FoodType.all, :id, :food_type), 
+          :include_blank => 'Please Select' %></li>
+        <li><%= label_tag(:limit, "Items to Display") %>
+          <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
+          include_blank: true %></li>
+        <li><%= f.submit "Submit", class: 'submit' %></li>
+        <li><%= link_to 'Clear Search', foods_path, class: 'submit' %></li>
+      </ul>
+    <% end %>
   </div>
 
   <table id="food_table">
@@ -24,7 +24,7 @@
     <th>Add To:</th> 
     <% @foods.each do |food| %>
       <tr id="food_id_<%= food.id %>">
-        <td><%= link_to food.name, food_path(food) %></td>
+        <td><%= food.name %></td>
         <td><%= food.food_type.food_type %></td>
         <% if family_account_signed_in? %>
           <% current_family_account.child_accounts.each do |account| %>
@@ -35,7 +35,7 @@
             <% end %>
           <% end %>
         <% else %>
-        <td><%= link_to 'Add to Favorites', new_family_account_session_path, class: 'submit-button' %></td>
+        <td><%= link_to 'Add to Favorites', new_family_account_session_path, class: 'fav-link' %></td>
         <% end %>
       </tr>
     <% end %>

@@ -1,42 +1,13 @@
 <div class='basic-form'>
-    <%= form_for([@favorite_food.child_account, @favorite_food]) do |f| %>
-      <% if @favorite_food.errors.any? %>
-        <div id='error explanation'>
-          <h2><% pluralize(@favorite_food.errors.count, 'error') %><br> 
-            Sorry. That didn't work.</h2>
-          <ul>
-            <% @favorite_food.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end%>
-          </ul>
-        </div>
-      <% end%>
-
-      <%= f.label :name, 'What is your food called?' %><br />
-      <%= f.text_field :name %><br />
-      <%= f.label :food_type_id, 'What kind of food is it?' %><br />
-      <%= f.select(:food_type_id, options_from_collection_for_select(FoodType.all, :id, :food_type)) %><br />
-      <%= f.label :food_category_id, 'When would you like to eat it?' %><br />
-      <%= f.select(:food_category_id, options_from_collection_for_select(FoodCategory.all, :id, :food_category)) %><br />
-      <%= 'Would you like to share your new food with others?' %><br />
-      <%= f.radio_button :share_with_others, true %>
-      <%= f.label :share_with_others, 'Yes, Share Please' %>
-      <%= f.radio_button :share_with_others, false %>
-      <%= f.label :share_with_others, 'No Thanks' %><br />
-      <%= 'Give your new food a rating. (5 is the best!)' %><br />
-      <%= f.radio_button :rating, 1 %>
-      <%= f.label :rating, '1' %>
-      <%= f.radio_button :rating, 2 %>
-      <%= f.label :rating, '2' %>
-      <%= f.radio_button :rating, 3 %>
-      <%= f.label :rating, '3' %>
-      <%= f.radio_button :rating, 4 %>
-      <%= f.label :rating, '4' %>
-      <%= f.radio_button :rating, 5 %>
-      <%= f.label :rating, '5' %><br />
-      <%= f.label :note, 'Here\'s a spot for any notes' %><br /> 
-      <%= f.text_area(:note, col: 50, rows: 7) %><br />
-      <%= f.submit 'Submit', class: 'create-button' %><br />
-    <% end %>
-  </div>
+  <%= simple_form_for [@favorite_food.child_account, @favorite_food] do |f| %>
+    <%= f.input :name, label: 'What is your food called?' %><br />
+    <%= f.association :food_type, label: 'Type', label_method: :food_type, value_method: :id, include_blank: 'Please Select' %><br />
+    <%= f.association :food_category, label: 'Category', label_method: :food_category, value_method: :id, include_blank: 'Please Select' %><br />
+    <%= f.label :note, 'Notes' %><br /> 
+    <%= f.input :note, as: :text, label: false, input_html: { col: 50, rows: 7 } %><br />
+    <%= 'Give your new food a rating. (5 is the best!)' %><br />
+    <%= f.input :rating, collection: 1..5, as: :radio, label: false %><br />
+    <%= f.submit 'Submit', class: 'submit' %><br />
+  <% end %>
+</div>
   

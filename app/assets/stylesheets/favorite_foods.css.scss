@@ -1,6 +1,11 @@
 @import "bourbon";
 @import "neat";
 
-.rating {
+#rating {
   text-align: center;
+}
+
+.fav-food {
+	@include span-columns(10 of 12);
+	@include shift(1);
 }

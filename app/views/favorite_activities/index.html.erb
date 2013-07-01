@@ -1,47 +1,53 @@
-<div class='middle-display'>
+<div class='activities'>
   <% if @child_account.favorite_activities.count == 0 %>
     <h2>You haven't added any favorite activities yet.</h2>
   <% else %>
-    <h2>Here are all of your favorite activities!</h2>
-    <%= search_form_for [:child_account, @search] do |f| %>
-      <ul>
-        <li><%= f.label :name_cont, 'Search by Name' %>
-          <%= f.text_field :name_cont %></li>
-        <li><%= f.label :activity_category_id_eq, 'Filter by Category' %>
-          <%= f.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
-        <li><%= f.label :rating_eq, 'Filter by Rating' %>
-          <%= f.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
-        <li><%= label_tag(:limit, "Items to Display") %>
-        <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
-        include_blank: true %></li>
-        <li><%= f.submit 'Submit' %></li>
-        <li><%= link_to 'Clear Search', child_account_favorite_activities_path(@child_account) %></li>
-      </ul>
-    <%- end -%>
+    <h2><%= "#{@child_account.username}'s Favorites" %></h2>
+    <div id='activity-search'>
+      <%= search_form_for [:child_account, @search] do |f| %>
+        <ul>
+          <li><%= f.label :name_cont, 'Search by Name' %>
+            <%= f.text_field :name_cont %></li>
+          <li><%= f.label :activity_category_id_eq, 'Filter by Category' %>
+            <%= f.select :activity_category_id_eq, options_from_collection_for_select(ActivityCategory.all, :id, :activity_category), :include_blank => 'Please Select' %></li>
+          <li><%= f.label :rating_eq, 'Filter by Rating' %>
+            <%= f.select :rating_eq, [1,2,3,4,5], :include_blank => 'Please Select' %></li>
+          <li><%= label_tag(:limit, "Items to Display") %>
+          <%= select_tag :limit, options_for_select([5, 10, 15, 20, 50], selected: params[:limit]), 
+          include_blank: true %></li>
+          <li><%= f.submit 'Submit', class: 'submit' %></li>
+          <li><%= link_to 'Clear Search', child_account_favorite_activities_path(@child_account), class: 'submit' %></li>
+        </ul>
+      <%- end -%>
+    </div>
 
-    <h3><%= paginate @favorite_activities %></h3>
+    <%= link_to 'Add Your Own Favorite Activity', new_child_account_favorite_activity_path(@child_account), id: 'add-favorite' %>
+
     <table id="favorite_activities_table">
       <th><%= sort_link(@search, :name, 'Activity Name') %></th>
       <th>Category</th>
       <th><%= sort_link(@search, :rating, 'Rating') %></th>
+      <th>Add To:</th>
       <% @favorite_activities.each do |activity| %>
         <tr>
           <td><%= link_to activity.name, child_account_favorite_activity_path(@child_account, activity) %></td>
           <td><%= activity.activity_category.activity_category %></td>
-          <td><%= activity.rating %></td>
+          <td id='rating'><%= activity.rating %></td>
           <%= simple_form_for [@child_account,@child_account.activity_logs.build] do |f| %>
             <%= f.hidden_field :name, value: activity.name %>
             <%= f.hidden_field :activity_category_id, value: activity.activity_category_id %>
             <%= f.hidden_field :description, value: activity.description %>
             <%= f.hidden_field :date, value: Date.today %>
-            <td><%= f.submit 'Add to My Log' %></td>
+            <td><%= f.submit "#{@child_account.username}'s Log", class: 'fav-link' %></td>
           <%- end %>
-          <td><%= link_to 'Edit My Activity', edit_child_account_favorite_activity_path(@child_account, activity) %></td>
-          <td><%= link_to 'Remove from My Favorites', child_account_favorite_activity_path(activity.child_account, activity), method: :delete, data: { confirm: 'Are You Sure?' } %></td>
+          <td><%= link_to 'Edit', edit_child_account_favorite_activity_path(@child_account, activity) %></td>
+          <td><%= link_to 'Remove', child_account_favorite_activity_path(activity.child_account, activity), method: :delete, data: { confirm: 'Are You Sure?' } %></td>
         </tr>
       <% end %>
     </table>
   <% end %>
   <h3><%= paginate @favorite_activities %></h3>
-  <%= link_to 'My Activity Log', child_account_activity_logs_path(@child_account) %>
+</div>
+<div class='bottom-links'>
+  <%= link_to "#{@child_account.username}'s Activity Log", child_account_activity_logs_path(@child_account) %>
 </div>

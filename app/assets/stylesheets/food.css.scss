@@ -3,6 +3,9 @@
 
 .foods {
 	@include span-columns(12);
+	h2 {
+		color: #AA2A26;
+	}
 	#food-search {
 		ul li {
 			@include span-columns(6 of 12);

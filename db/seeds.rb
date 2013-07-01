@@ -4,23 +4,6 @@ FoodCategory.create(food_category: 'Dinner')
 FoodCategory.create(food_category: 'Snack')
 FoodCategory.create(food_category: 'Treat')
 
-FoodType.create(food_type: 'Fruits & Vegetables')
-FoodType.create(food_type: 'Milk & Dairy')
-FoodType.create(food_type: 'Carbs (like Bread & Pasta)')
-FoodType.create(food_type: 'Protein (like Meat, Fish & Beans)')
-FoodType.create(food_type: 'Fat (like Butter, Oil & Cheese)')
-FoodType.create(food_type: 'Sweets & Treats')
-FoodType.create(food_type: 'Meals & Combinations')
-
-
-50.times do
-	Food.create(name: 'Cheerios', food_category_id: 1, food_type_id: 3)
-	Food.create(name: 'Bacon', food_category_id: 1, food_type_id: 4)
-	Food.create(name: 'Grapefruit', food_category_id: 1, food_type_id: 1)
-	Food.create(name: 'Cream Cheese', food_category_id: 1, food_type_id: 5)
-	Food.create(name: 'Yogurt', food_category_id: 1, food_type_id: 2)
-end
-
 ActivityCategory.create(activity_category: 'Team Sport')
 ActivityCategory.create(activity_category: 'Cardio')
 ActivityCategory.create(activity_category: 'Upper Body')
@@ -32,3 +15,5 @@ Activity.create(name: 'Walking', activity_category_id: 2, description: 'easy to 
 Activity.create(name: 'Chest Press', activity_category_id: 3, description: 'works major muscles')
 Activity.create(name: 'Crunches', activity_category_id: 4, description: 'good form is important')
 Activity.create(name: 'Leg Extensions', activity_category_id: 5, description: 'works the quads')
+
+Seeders::Foods.seed_with(File.join(Rails.root, "db/data_files/food_db.txt"))
