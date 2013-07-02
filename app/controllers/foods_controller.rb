@@ -18,8 +18,4 @@ class FoodsController < ApplicationController
     end
   end
 
-  def show
-    @food = Food.find(params[:id])
-    @food_type = FoodType.find(@food.food_type_id)
-  end
 end

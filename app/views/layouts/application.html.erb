@@ -40,7 +40,7 @@
   <div class='kids'>
     <% if family_account_signed_in? %>
       <% current_family_account.child_accounts.each do |child| %>
-        <%= link_to child.username, family_account_child_account_path(current_family_account, child), class: 'kid-button' %>
+        <%= link_to child.username, family_account_child_account_path(current_family_account, child), class: 'kid-button' unless child.new_record? %>
       <% end %>
     <% end %>
   </div>  
