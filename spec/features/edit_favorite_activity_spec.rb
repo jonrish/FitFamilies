@@ -21,18 +21,18 @@ feature 'edit favorite activity', %q{
 	scenario 'user navigates to and from edit a favorite activity from show page' do
 		sign_in_as(favorite_activity.child_account.family_account)
 		visit child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity)
-		click_on 'Edit My Activity'
+		click_on 'Edit'
 		expect(current_path).to eql(edit_child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity))
-		click_on "Back to #{favorite_activity.child_account.username}'s Activity"
-		expect(current_path).to eql(child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity))
+		click_on "Cancel / Back to #{favorite_activity.child_account.username}'s Favs"
+		expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity.child_account))
 	end
 
 	scenario 'user navigates to and from edit a favorite activity from index page' do
 		sign_in_as(favorite_activity.child_account.family_account)
 		visit child_account_favorite_activities_path(favorite_activity.child_account)
-		click_on 'Edit My Activity'
+		click_on 'Edit'
 		expect(current_path).to eql(edit_child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity))
-		click_on "Back to #{favorite_activity.child_account.username}'s Favorites"
+		click_on "Cancel / Back to #{favorite_activity.child_account.username}'s Favs"
 		expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity.child_account))
 	end
 
@@ -40,7 +40,6 @@ feature 'edit favorite activity', %q{
 		counter = favorite_activity.child_account.favorite_activities.count
 		sign_in_as(favorite_activity.child_account.family_account)
 		visit edit_child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity)
-		expect(page).to have_content 'Here is where you can make changes'
 		fill_in 'Name', with: 'Basketball'
     select activity_category_2.activity_category, from: 'Category'
     fill_in 'Description', with: 'fast-paced'

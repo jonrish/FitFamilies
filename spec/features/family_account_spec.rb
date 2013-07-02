@@ -1,7 +1,17 @@
 require 'spec_helper'
 
-# 1) I want to be able to create an account
-# so I can keep track of activity and interests for me and my kids. 
+# As a parent 
+# I want to be able to create an account
+# so I can keep track of activity and interests for me and my children.
+
+#ACC
+# 1) user signs up for account
+# 2) user must enter email, password, first name, last name, date of birth and zip code
+# 3) user may sign in to account - notified if signed in
+# 4) user may sign out of account - notified if signed out
+# 5) user may view their account information
+# 6) user may edit account information
+# 7) user may delete their account
 
 feature 'a user creates a family account' do
 
@@ -21,7 +31,6 @@ feature 'a user creates a family account' do
     select 'January', from: 'family_account_date_of_birth_2i'
     select '1', from: 'family_account_date_of_birth_3i'
     select '2000', from: 'family_account_date_of_birth_1i'
-
     click_button "Create Family Account"
     expect(FamilyAccount.count).to eql(count + 1)
     expect(page).to have_content 'Welcome! You have signed up successfully.'
@@ -41,8 +50,8 @@ feature 'a user creates a family account' do
   scenario 'a user edits their account information' do
     sign_in_as(family_account)
     click_link 'My Account'
-    click_link 'Edit My Family Account'
-    expect(page).to have_content 'You can make changes to your account here.'
+    click_link 'Edit My Account'
+    expect(page).to have_content 'Make changes here'
     fill_in 'Email', with: 'test1@test.com'
     fill_in 'Current password', with: 'testtest'
     click_button 'Update Family Account'

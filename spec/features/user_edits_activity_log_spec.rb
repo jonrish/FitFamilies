@@ -7,13 +7,13 @@ feature 'user edits activity log entries', %q{
 	} do
 
 # AC
-# 1) from the activity log index page a user can click on the activity 
+# 1) from the activity log index page or show page a user can click on the activity 
 # 	and edit the entry on the activity log edit page
-# 2) user can change or add to note, sets, repetitions, weight and time fields
+# 2) user can change or add to notes, sets, repetitions, weight and time fields
 # 3) user is notified if the entry has been updated or deleted and redirected 
 # 	to the activity log index page
 # 4) user is prompted to try again if not successfully updated
-# 5) user may also navigate back to activity log index without making changes
+# 5) user may also navigate back to activity log index or show page without making changes
 
 	let(:activity_log) { FactoryGirl.create(:activity_log)}
 	let!(:activity_category) { FactoryGirl.create(:activity_category) }
@@ -23,7 +23,6 @@ feature 'user edits activity log entries', %q{
 		visit child_account_activity_logs_path(activity_log.child_account)
 		click_on 'Edit'
 		expect(current_path).to eql(edit_child_account_activity_log_path(activity_log.child_account,activity_log))
-		expect(page).to have_content 'Make any changes you wish'
 		fill_in 'Name', with: 'Jogging'
 		select activity_category.activity_category, from: 'Category'
 		fill_in 'Description', with: 'aim for a nice steady pace'
@@ -34,7 +33,7 @@ feature 'user edits activity log entries', %q{
 		select '1', from: 'Weight'
 		select '1', from: 'Sets'
 		select '1', from: 'Repetitions'
-		fill_in 'Note', with: 'everyone should try this out'
+		fill_in 'Notes', with: 'everyone should try this out'
 		click_on 'Submit'
 		expect(current_path).to eql(child_account_activity_logs_path(activity_log.child_account))
 		expect(page).to have_content 'Your activity log entry has been updated'
@@ -48,10 +47,18 @@ feature 'user edits activity log entries', %q{
 		expect(current_path).to eql(edit_child_account_activity_log_path(activity_log.child_account,activity_log))
 	end
 
-	scenario 'user navigates from edit acitivity log entry page' do
+	scenario 'user navigates from edit acitivity log entry page to index' do
 		sign_in_as(activity_log.child_account.family_account)
 		visit edit_child_account_activity_log_path(activity_log.child_account, activity_log)
-		click_on 'Cancel / Back to My Activity Log'
+		click_on "Cancel / Back to #{activity_log.child_account.username}'s Activity Log"
 		expect(current_path).to eql(child_account_activity_logs_path(activity_log.child_account))
 	end
+
+	scenario 'user navigates from edit activity log to activity log show page' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit edit_child_account_activity_log_path(activity_log.child_account, activity_log)
+		click_on 'Cancel / Back to Activity'
+		expect(current_path).to eql(child_account_activity_log_path(activity_log.child_account, activity_log))
+	end
+
 end

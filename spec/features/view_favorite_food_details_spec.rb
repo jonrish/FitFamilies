@@ -23,12 +23,10 @@ feature 'user views favorite food details', %q{
   scenario 'a signed in user views favorite food details' do
     sign_in_as(favorite_food.child_account.family_account)
     visit child_account_favorite_food_path(favorite_food.child_account, favorite_food)
-    expect(page).to have_content 'Here are the details for your favorite food.'
     expect(page).to have_content favorite_food.name
     expect(page).to have_content favorite_food.food_type.food_type
     expect(page).to have_content favorite_food.food_category.food_category
     expect(page).to have_content favorite_food.rating
     expect(page).to have_content favorite_food.note
-    expect(page).to have_content 'You chose to share this favorite with others'
   end
 end

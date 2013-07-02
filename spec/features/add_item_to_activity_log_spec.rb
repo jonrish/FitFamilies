@@ -18,7 +18,7 @@ feature 'user adds item to activity log', %q{
 		sign_in_as(favorite_activity.child_account.family_account)
 		counter = favorite_activity.child_account.activity_logs.count
 		visit child_account_favorite_activities_path(favorite_activity.child_account)
-		click_on 'Add to My Log'
+		click_on "#{favorite_activity.child_account.username}'s Log"
 		expect(current_path).to eql(child_account_activity_logs_path(favorite_activity.child_account))
 		expect(favorite_activity.child_account.activity_logs.count).to eql(counter + 1)
 		expect(page).to have_content 'The activity has been added to your log'

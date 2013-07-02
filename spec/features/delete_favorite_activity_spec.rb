@@ -17,7 +17,7 @@ feature 'a user is able to delete favorite activities', %q{
 		sign_in_as(favorite_activity.child_account.family_account)
 		counter = favorite_activity.child_account.favorite_activities.count
 		visit child_account_favorite_activities_path(favorite_activity.child_account)
-		click_on 'Remove from My Favorites'
+		click_on 'Remove'
 		expect(page).to have_content 'The activity has been removed from your favorites'
 		expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity.child_account))
 		expect(favorite_activity.child_account.favorite_activities.count).to eql(counter - 1)
@@ -27,7 +27,7 @@ feature 'a user is able to delete favorite activities', %q{
 		sign_in_as(favorite_activity.child_account.family_account)
 		counter = favorite_activity.child_account.favorite_activities.count
 		visit child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity)
-		click_on 'Remove from My Favorites'
+		click_on 'Remove'
 		expect(page).to have_content 'The activity has been removed from your favorites'
 		expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity.child_account))
 		expect(favorite_activity.child_account.favorite_activities.count).to eql(counter - 1)

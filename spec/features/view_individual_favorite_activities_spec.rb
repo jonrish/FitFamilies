@@ -20,14 +20,13 @@ feature 'view favorite activity details', %q{
 		visit child_account_favorite_activities_path(favorite_activity.child_account)
 		click_on favorite_activity.name
 		expect(current_path).to eql(child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity))
-		click_on "Back to #{favorite_activity.child_account.username}'s Favorite Activities"
+		click_on "Back to #{favorite_activity.child_account.username}'s Favs"
 		expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity.child_account))
 	end
 
 	scenario 'user views favorite activity details' do
 		sign_in_as(favorite_activity.child_account.family_account)
 		visit child_account_favorite_activity_path(favorite_activity.child_account, favorite_activity)
-		expect(page).to have_content 'Here are the details for your favorite activity'
 		expect(page).to have_content favorite_activity.name
 		expect(page).to have_content favorite_activity.activity_category.activity_category
 		expect(page).to have_content favorite_activity.rating

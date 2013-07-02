@@ -27,13 +27,20 @@ feature 'view activity log details', %q{
 		expect(page).to have_content activity_log.weight
 		expect(page).to have_content activity_log.sets
 		expect(page).to have_content activity_log.repetitions
-		expect(page).to have_content 'Here are the details of your log entry'
 	end
 
-	scenario 'user navigates off the activity log show page' do
+	scenario 'user navigates to the activity log index page' do
 		sign_in_as(activity_log.child_account.family_account)
 		visit child_account_activity_log_path(activity_log.child_account, activity_log)
-		click_on 'Back to My Activity Log'
+		click_on "Back to #{activity_log.child_account.username}'s Log"
 		expect(current_path).to eql(child_account_activity_logs_path(activity_log.child_account))
 	end
+
+	scenario 'user navigates to the favorite activity index page' do
+		sign_in_as(activity_log.child_account.family_account)
+		visit child_account_activity_log_path(activity_log.child_account, activity_log)
+		click_on "#{activity_log.child_account.username}'s Favs"
+		expect(current_path).to eql(child_account_favorite_activities_path(activity_log.child_account))
+	end
+
 end

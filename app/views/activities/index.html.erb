@@ -47,3 +47,10 @@
   </table>
 </div>
 <h3><%= paginate @activities %></h3>
+<div class='bottom-links'>
+  <%- if family_account_signed_in? -%>
+    <%- current_family_account.child_accounts.each do |child| -%>
+      <%= link_to "#{child.username}'s Favs", child_account_favorite_activities_path(child) %>
+    <%- end -%>
+  <%- end -%>
+</div>

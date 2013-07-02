@@ -16,7 +16,7 @@ so i can correct mistakes & remove unwanted entries
 		sign_in_as(activity_log.child_account.family_account)
 		counter = activity_log.child_account.activity_logs.count
 		visit child_account_activity_logs_path(activity_log.child_account)
-		click_on 'Remove from Log'
+		click_on 'Remove'
 		expect(activity_log.child_account.activity_logs.count).to eql(counter - 1)
 		expect(current_path).to eql(child_account_activity_logs_path(activity_log.child_account))
 		expect(page).to have_content 'The log entry has been removed'

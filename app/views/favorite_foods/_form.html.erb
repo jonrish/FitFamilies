@@ -1,12 +1,12 @@
 <div class='basic-form'>
   <%= simple_form_for [@favorite_food.child_account, @favorite_food] do |f| %>
     <%= f.input :name, label: 'What is your food called?' %><br />
-    <%= f.association :food_type, label: 'Type', label_method: :food_type, value_method: :id, include_blank: 'Please Select' %><br />
-    <%= f.association :food_category, label: 'Category', label_method: :food_category, value_method: :id, include_blank: 'Please Select' %><br />
+    <%= f.association :food_type, label: 'Type of Food?', label_method: :food_type, value_method: :id, include_blank: 'Please Select' %><br />
+    <%= f.association :food_category, label: 'When would you like to eat it?', label_method: :food_category, value_method: :id, include_blank: 'Please Select' %><br />
     <%= f.label :note, 'Notes' %><br /> 
     <%= f.input :note, as: :text, label: false, input_html: { col: 50, rows: 7 } %><br />
     <%= 'Give your new food a rating. (5 is the best!)' %><br />
-    <%= f.input :rating, collection: 1..5, as: :radio, label: false %><br />
+    <%= f.input :rating, collection: 1..5, as: :radio_buttons, label: false %><br />
     <%= f.submit 'Submit', class: 'submit' %><br />
   <% end %>
 </div>

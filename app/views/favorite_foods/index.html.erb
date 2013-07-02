@@ -1,6 +1,7 @@
 <div class='foods'>
   <% if @child_account.favorite_foods.count == 0 %>
     <h2>You haven't added any favorite foods yet.</h2>
+    <%= link_to 'Add Your Own Favorite Food', new_child_account_favorite_food_path(@child_account), id: 'add-favorite' %>
   <% else %>
     <h2><%= "#{@child_account.username}'s Favorites" %></h2>
     <div id='food-search'>
@@ -26,7 +27,7 @@
     <%= link_to 'Add Your Own Favorite Food', new_child_account_favorite_food_path(@child_account), id: 'add-favorite' %>
     
     <table id="fav_food_table">
-      <th><%= sort_link(@search, :name, 'Food') %></th>
+      <th>Food</th>
       <th>Food Category</th>
       <th>Food Type</th>
       <th><%= sort_link(@search, :rating, 'Rating') %></th>

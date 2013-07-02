@@ -7,9 +7,9 @@ feature 'user views a list of foods', %q{as a child or parent
 
 # AC
 # 1) display on food index page
-# 2) food list should display a name, a type, and a category.
+# 2) food list should display a name and type.
 # 3) user can search food list by name
-# 4) user can filter food list by category and/or type
+# 4) user can filter food list by type
 # 5) user can limit number of food list items displayed
   
   let!(:food1) { FactoryGirl.create(:food) }
@@ -19,7 +19,6 @@ feature 'user views a list of foods', %q{as a child or parent
   scenario 'user explores list of foods' do
     visit foods_path
     expect(page).to have_content food1.name
-    expect(page).to have_content food1.food_category.food_category
     expect(page).to have_content food1.food_type.food_type
   end
 
@@ -38,15 +37,12 @@ feature 'user views a list of foods', %q{as a child or parent
     click_on 'Submit'
     within("#food_table") do 
       expect(page).to have_content food2.name
-      expect(page).to have_content food2.food_category.food_category
       expect(page).to have_content food2.food_type.food_type
     end
     within("#food_table") do 
       expect(page).to_not have_content food1.name
-      expect(page).to_not have_content food1.food_category.food_category
       expect(page).to_not have_content food1.food_type.food_type
       expect(page).to_not have_content food3.name
-      expect(page).to_not have_content food3.food_category.food_category
       expect(page).to_not have_content food3.food_type.food_type
     end
   end

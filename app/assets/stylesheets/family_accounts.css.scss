@@ -36,3 +36,11 @@
 		color: white;
 	}
 }
+
+.family-account {
+	@include span-columns(12);
+	h2 {
+		color: #AA2A26;
+	}
+}
+

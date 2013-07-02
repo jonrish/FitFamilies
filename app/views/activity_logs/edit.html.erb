@@ -6,7 +6,7 @@
 			<%= f.input :date, start_year: Date.today.year - 10, end_year: Date.today.year, order: [:month, :day, :year] %>
 			<%= f.association :activity_category, label: 'Category', label_method: :activity_category, value_method: :id, include_blank: 'Please Select' %>
 			<%= f.input :description %>
-			<%= f.label :note, label: 'Note' %>
+			<%= f.label :note, label: 'Notes' %>
 			<%= f.input :note, as: :text, label: false, input_html: { col: 40, rows: 4 } %>
 			<%= f.input :time, collection: 1..180, label: 'Duration in minutes', include_blank: true %>
 			<%= f.input :weight, collection: 0..200 %>
@@ -17,5 +17,6 @@
 	</div>
 </div>
 <div class='bottom-links'>
+	<%= link_to 'Cancel / Back to Activity', child_account_activity_log_path(@activity_log.child_account, @activity_log) %>
 	<%= link_to "Cancel / Back to #{@activity_log.child_account.username}'s Activity Log", child_account_activity_logs_path(@activity_log.child_account) %>
 </div>
