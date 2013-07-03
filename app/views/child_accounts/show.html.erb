@@ -1,14 +1,11 @@
-<div class='middle-display'>
-	
-	<div class='favorites'> 
-		<ul> 
-	  	<li><%= link_to "#{@child_account.username}'s Foods", child_account_favorite_foods_path(@child_account)%></li>
-	  	<li><%= link_to "#{@child_account.username}'s Activities", child_account_favorite_activities_path(@child_account) %></li>
-	  	<li><%= link_to "#{@child_account.username}'s Activity Log", child_account_activity_logs_path(@child_account) %></li>
-  	</ul>
-  </div>
+<div class='favorites'> 
+	<ul>
+  	<li><%= link_to "#{@child_account.username}'s Foods", child_account_favorite_foods_path(@child_account) %></li>
+  	<li><%= link_to "#{@child_account.username}'s Activities", child_account_favorite_activities_path(@child_account) %></li>
+  	<li><%= link_to "#{@child_account.username}'s Activity Log", child_account_activity_logs_path(@child_account) %></li>
+	</ul>
+</div>
 
-  <div class='bottom-links'>
-    <%= link_to 'Edit My Child\'s Info', edit_family_account_child_account_path(@family_account, @child_account) %>
-  </div>
+<div class='bottom-links'>
+  <%= link_to 'Edit My Child\'s Info', edit_family_account_child_account_path(@family_account, @child_account) %>
 </div>

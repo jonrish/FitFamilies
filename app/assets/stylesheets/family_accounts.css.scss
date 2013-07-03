@@ -11,6 +11,9 @@
 		font-size: 2em;
 		font-family: 'Coming Soon', cursive;
 	}
+	h2 {
+		color: #AA2A26;
+	}
 }
 
 #account-info {
@@ -24,3 +27,20 @@
 	font-size: 2em;
 	font-weight: bold;
 }
+
+#add-child {
+	@include button(shiny, #E83D37);
+	text-decoration: none;
+	margin: 0 0 1em 0;
+	a {
+		color: white;
+	}
+}
+
+.family-account {
+	@include span-columns(12);
+	h2 {
+		color: #AA2A26;
+	}
+}
+

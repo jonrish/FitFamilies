@@ -1,11 +1,11 @@
-<div class='middle-display'>
+<div class='family-account'>
   <h2>Here is all of your account information:</h2>
   <ul id='account-info'>
     <li>Name: <%= @family_account.first_name %> <%= @family_account.last_name %></li>
     <li>Email Address: <%= @family_account.email %></li>
     <li>Date of Birth: <%= @family_account.zip_code %></li>
     <li>Zip Code: <%= @family_account.zip_code %></li><br />
-    <li><%= link_to 'Add a Child?', new_family_account_child_account_path(@family_account)%></li><br />
+    <li id='add-child'><%= link_to 'Add a Child?', new_family_account_child_account_path(@family_account) %></li><br />
     <li><%= link_to 'Edit My Account', edit_family_account_registration_path %></li>
     <li><%= link_to 'Delete My Account', @family_account, method: :delete, data: { confirm: 'Are you sure? This cannot be undone!' } %></li>
   </ul>
@@ -14,7 +14,7 @@
     <h2>Below are the children you've registered:</h2>
     <% @family_account.child_accounts.each do |ca| %>
       <ul id='kid-stuff'>
-        <li><%= link_to "#{ca.username}'s Stuff", family_account_child_account_path(@family_account, ca) %></li>
+        <li><%= link_to "#{ca.username}'s Favorites", family_account_child_account_path(@family_account, ca) %></li>
       </ul>
     <% end %>
   <% end %>

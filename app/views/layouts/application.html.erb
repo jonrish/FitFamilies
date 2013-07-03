@@ -17,34 +17,30 @@
 </head>
 <body>
 
-
 <div class="container">
-
-  
 
   <header>
     <div class='very-top'>
-
         <%= link_to image_tag('FF.png'), family_accounts_path, id: 'logo-image' %>
         <%= link_to 'Fit Families', family_accounts_path, id: 'logo-word'  %>
       <div class='signer'>
         <% if family_account_signed_in? %>
           <%= link_to('Log Out', destroy_family_account_session_path, :method => :delete) %>
           <%= link_to 'My Account', family_account_path(current_family_account) %><br />
-          <b>You are signed in as: <%= current_family_account.email %></b>
+          <b>You are signed in as: <%= current_family_account.email %></b><br />
+          
         <% else %>
-          <%= link_to('Log In', new_family_account_session_path)  %>
+          <%= link_to('Log In', new_family_account_session_path)  %><br />
         <% end %>
+        <b><%= notice %><%= alert %></b>
       </div>
     </div>
   </header>
 
-
-
   <div class='kids'>
     <% if family_account_signed_in? %>
       <% current_family_account.child_accounts.each do |child| %>
-        <%= link_to child.username, family_account_child_account_path(current_family_account, child), class: 'kid-button' %>
+        <%= link_to child.username, family_account_child_account_path(current_family_account, child), class: 'kid-button' unless child.new_record? %>
       <% end %>
     <% end %>
   </div>  
@@ -63,19 +59,8 @@
 
 
 </div>
-<footer>
-  <ul>
-    <li id='flash'><%= notice %><%= alert %></li><br />
-    <li><%= link_to 'Contact Us' %></li>
-    <li><%= link_to 'FAQ' %></li>
-    <li><%= link_to 'About Us' %></li>
-  </ul>
-</footer>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<%= javascript_include_tag 'layout' %>
 </body>
 </html>
-
-
-
-
-
-

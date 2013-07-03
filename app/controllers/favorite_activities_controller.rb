@@ -1,19 +1,19 @@
 class FavoriteActivitiesController < ApplicationController
   before_filter :authenticate_family_account!
+  before_filter :find_child
+  before_filter :right_kid?
+  before_filter :right_activity?, :except => [:new, :create, :index]
 
   def index
-    @child_account = ChildAccount.find(params[:child_account_id])
     @search = @child_account.favorite_activities.search(params[:q])
     @favorite_activities = @search.result.page(params[:page]).per(params[:limit] || 15)   
   end
 
   def new
-    @child_account = ChildAccount.find(params[:child_account_id])
     @favorite_activity = @child_account.favorite_activities.build
   end
 
   def create
-    @child_account = ChildAccount.find(params[:child_account_id])
     @favorite_activity = @child_account.favorite_activities.build(params[:favorite_activity])
 
     if @favorite_activity.save
@@ -25,7 +25,6 @@ class FavoriteActivitiesController < ApplicationController
   end
 
   def show
-    @child_account = ChildAccount.find(params[:child_account_id])
     @favorite_activity = FavoriteActivity.find(params[:id])
   end
 
@@ -45,12 +44,29 @@ class FavoriteActivitiesController < ApplicationController
   end
 
   def destroy
-    @child_account = ChildAccount.find(params[:child_account_id])
     @favorite_activity = FavoriteActivity.find(params[:id])
     @favorite_activity.destroy
 
     redirect_to child_account_favorite_activities_path(@child_account)
     flash[:notice] = 'The activity has been removed from your favorites'
   end
+
+  protected
+    def find_child
+      @child_account = ChildAccount.find(params[:child_account_id])
+    end
+
+    def right_kid?
+      if @child_account.family_account != current_family_account
+        redirect_to root_path
+      end
+    end
+
+    def right_activity?
+      @favorite_activity = FavoriteActivity.find(params[:id])
+      if @favorite_activity.child_account != @child_account
+        redirect_to root_path
+      end
+    end
 
 end

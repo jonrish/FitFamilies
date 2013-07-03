@@ -1,8 +1,11 @@
-<div class="middle-display">
-	<h2>Here is where you can make changes</h2>
+<div class="activities">
+	<h2>Changes?</h2>
 
 	<%= render 'form' %>
 
-	<%= link_to "Back to #{@favorite_activity.child_account.username}'s Activity", child_account_favorite_activity_path(@favorite_activity.child_account, @favorite_activity) %>
-	<%= link_to "Back to #{@favorite_activity.child_account.username}'s Favorites", child_account_favorite_activities_path(@favorite_activity.child_account) %>
+</div>
+<div class='bottom-links'>
+	<%= link_to "Cancel / Back to Activity", child_account_favorite_activity_path(@favorite_activity.child_account, @favorite_activity) %>
+	<%= link_to "Remove from #{@favorite_activity.child_account.username}'s Favs", child_account_favorite_activity_path(@favorite_activity.child_account, @favorite_activity), method: :delete, data: { confirm: 'Are You Sure?' } %>
+	<%= link_to "Cancel / Back to #{@favorite_activity.child_account.username}'s Favs", child_account_favorite_activities_path(@favorite_activity.child_account) %>
 </div>

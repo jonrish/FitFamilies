@@ -1,6 +1,9 @@
-<div class='middle-display'>
-  <h2>What would you like to add?</h2>
+<div class='foods'>
+  <h2>Make your own!</h2>
 
   <%= render 'form' %>
 
+  <div class='bottom-links'>
+		<%= link_to "Cancel / #{@favorite_food.child_account.username}'s Favs", child_account_favorite_foods_path(@favorite_food.child_account) %>
+	</div>
 </div>

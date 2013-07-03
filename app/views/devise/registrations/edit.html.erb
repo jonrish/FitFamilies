@@ -1,6 +1,6 @@
-<div class='middle-display'>
+<div class='family-account'>
 
-  <h2>Make changes here.</h2>
+  <h2>Make changes here</h2>
 
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>
@@ -30,7 +30,7 @@
       <%= f.label :zip_code, 'Zip Code' %><br />
       <%= f.text_field :zip_code %><br />
 
-      <%= f.submit "Update Family Account" %><br />
+      <%= f.submit "Update Family Account", class: 'submit' %><br />
     <% end %>
   </div>
 

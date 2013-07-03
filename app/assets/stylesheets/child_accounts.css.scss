@@ -2,7 +2,13 @@
 @import "neat";
 
 .favorites {
+	@include span-columns(12);
 	font-family: 'Coming Soon', cursive;
 	font-size: 2.5em;
 }
 
+#child-info {
+	h2	{
+		color: #AA2A26;
+	}
+}

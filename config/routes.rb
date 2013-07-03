@@ -2,7 +2,7 @@ Bt3::Application.routes.draw do
   devise_for :family_accounts, :controllers => { :registrations => :registrations }
 
   resources :family_accounts do
-    resources :child_accounts
+    resources :child_accounts, :except => [:index]
   end
 
   resources :child_accounts, :only => [] do
@@ -17,7 +17,7 @@ Bt3::Application.routes.draw do
     resources :activity_logs
   end
 
-  resources :foods
+  resources :foods, :only => [:index]
 
   resources :activities, :only => [:index, :show]
 

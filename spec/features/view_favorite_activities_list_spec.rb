@@ -17,8 +17,6 @@ so i can view and edit the activities i've chosen
 # 8) user may click from activity index page
 # 9) displays name, category & rating
 
-  #TODO test user notified if no activities on list yet added 
-  #TODO implement user limit of displayed items
 
   let!(:favorite_activity_1) { FactoryGirl.create(:favorite_activity, rating: '1') }
   let!(:favorite_activity_2) { FactoryGirl.create(:favorite_activity, 
@@ -38,11 +36,11 @@ so i can view and edit the activities i've chosen
   scenario 'user navigates to favorite activity list' do
     sign_in_as(favorite_activity_1.child_account.family_account)
     visit activities_path
-    click_on "Check Out #{favorite_activity_1.child_account.username}'s Favorites"
+    click_on "#{favorite_activity_1.child_account.username}'s Favs"
     expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity_1.child_account))
     visit family_account_child_account_path(favorite_activity_1.child_account.family_account,
       favorite_activity_1.child_account)
-    click_on 'Your Favorite Activities'
+    click_on "#{favorite_activity_1.child_account.username}'s Activities"
     expect(current_path).to eql(child_account_favorite_activities_path(favorite_activity_1.child_account))
   end
 

@@ -19,13 +19,12 @@ so i can personalize and add info
     sign_in_as(child_account.family_account)
     counter = child_account.favorite_foods.count
     visit foods_path
-    click_on "Add to #{child_account.username}'s Favorites"
+    click_button "#{child_account.username}'s Favs"
     expect(child_account.favorite_foods.count).to eql(counter + 1)
-    click_on 'Edit My Food'
+    click_on 'Edit'
     fill_in 'What is your food called?', with: 'Jelly'
-    choose 'favorite_food_share_with_others_true'
     choose 'favorite_food_rating_5'
-    fill_in 'note', with: 'Strawberry is my favorite. But Grape is ok too.'
+    fill_in 'Notes', with: 'Strawberry is my favorite. But Grape is ok too.'
     click_on 'Submit'
     expect(current_path).to eql(child_account_favorite_foods_path(child_account))
     expect(page).to have_content 'Jelly'

@@ -9,7 +9,6 @@ class FavoriteFood < ActiveRecord::Base
   validates_presence_of :child_account_id
   validates_presence_of :name
   validates_presence_of :food_type_id
-  validates_presence_of :food_category_id
 
-  attr_accessible :child_account_id, :food_category_id, :food_type_id, :name, :note, :rating, :share_with_others
+  attr_accessible :child_account_id, :food_category_id, :food_type_id, :name, :note, :rating
 end

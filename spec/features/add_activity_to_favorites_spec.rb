@@ -7,7 +7,7 @@ feature 'user adds activity to favorite activity list', %q{
 } do
 
 # AC
-# 1) user can add activity to favorites list from show or index page
+# 1) user can add activity to favorites list from the index page
 # 2) user should be notified that the activity was successfully added
 # 3) user is redirected to favorite activities index page
 # 4) user must be signed in
@@ -20,17 +20,7 @@ feature 'user adds activity to favorite activity list', %q{
 		sign_in_as(child_account.family_account)
 		counter = child_account.favorite_activities.count
 		visit activities_path
-		click_on "Add to #{child_account.username}'s Favorites"
-		expect(page).to have_content 'The activity has been added to your favorites'
-		expect(current_path).to eql(child_account_favorite_activities_path(child_account))
-		expect(child_account.favorite_activities.count).to eql(counter + 1)
-	end
-
-	scenario 'user adds an activity to favortes from activity show page' do
-		sign_in_as(child_account.family_account)
-		counter = child_account.favorite_activities.count
-		visit activity_path(activity)
-		click_on "Add to #{child_account.username}'s Favorites"
+		click_button "#{child_account.username}'s Favs"
 		expect(page).to have_content 'The activity has been added to your favorites'
 		expect(current_path).to eql(child_account_favorite_activities_path(child_account))
 		expect(child_account.favorite_activities.count).to eql(counter + 1)
@@ -42,10 +32,6 @@ feature 'user adds activity to favorite activity list', %q{
 		click_on 'Add to Favorites'
 		expect(current_path).to eql(new_family_account_session_path)
 		expect(child_account.favorite_activities.count).to eql(counter)
-		visit activity_path(activity)
-		click_on 'Add to Favorites'
-		expect(child_account.favorite_activities.count).to eql(counter)
-		expect(current_path).to eql(new_family_account_session_path)
 	end
 
 end

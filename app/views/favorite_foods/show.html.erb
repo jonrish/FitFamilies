@@ -1,16 +1,14 @@
-<div class='middle-display'>
-  <h2>Here are the details for your favorite food.</h2>
+<div class='fav-food'>
+  <h2><%= @favorite_food.name %></h2>
   <ul>
-    <li><%= @favorite_food.name %></li>
-    <li><%= @favorite_food.food_category.food_category %></li>
-    <li><%= @favorite_food.food_type.food_type %></li>
-    <li><%= @favorite_food.rating %></li>
-    <li><%= @favorite_food.note %></li>
-    <% if @favorite_food.share_with_others %>
-      <li>You chose to share this favorite with others</li>
-    <% else %>
-      <li>You chose not to share this food with others</li>  
-    <% end %>
-    <li><%= link_to 'Edit My Favorite Food', edit_child_account_favorite_food_path(@favorite_food.child_account, @favorite_food) %></li>
+    <li>Category: <%= @favorite_food.food_category.try(:food_category) %></li>
+    <li>Type: <%= @favorite_food.food_type.food_type %></li>
+    <li>Rating: <%= @favorite_food.rating %></li>
+    <li>Note: <%= @favorite_food.note %></li>
   </ul>
+  <%= link_to "Edit #{@favorite_food.child_account.username}'s Fav" , edit_child_account_favorite_food_path(@favorite_food.child_account, @favorite_food), class: 'submit' %>
+</div>
+<div class='bottom-links'>
+  <%= link_to "Cancel / #{@favorite_food.child_account.username}'s Favs", child_account_favorite_foods_path(@favorite_food.child_account) %>
+  <%= link_to 'Remove', child_account_favorite_food_path(@favorite_food.child_account, @favorite_food), method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>

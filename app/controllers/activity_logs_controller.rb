@@ -1,6 +1,10 @@
 class ActivityLogsController < ApplicationController
+	before_filter :authenticate_family_account!
+	before_filter :find_child
+	before_filter :right_kid?
+	before_filter :right_log?, :except => [:new, :create, :index]
+	
 	def index
-		@child_account = ChildAccount.find(params[:child_account_id])
 		@search = @child_account.activity_logs.search(params[:q])
 		@activity_logs = @search.result.page(params[:page]).per(params[:limit] || 15)
 	end
@@ -10,7 +14,6 @@ class ActivityLogsController < ApplicationController
 	end
 
 	def create
-		@child_account = ChildAccount.find(params[:child_account_id])
 		@activity_log = @child_account.activity_logs.build(params[:activity_log])
 
 		if @activity_log.save
@@ -38,7 +41,6 @@ class ActivityLogsController < ApplicationController
 	end
 
 	def destroy
-		@child_account = ChildAccount.find(params[:child_account_id])
 		@activity_log = ActivityLog.find(params[:id])
 		@activity_log.destroy
 
@@ -46,6 +48,22 @@ class ActivityLogsController < ApplicationController
 		flash[:notice] = 'The log entry has been removed'
 	end
 
+	protected
+    def find_child
+      @child_account = ChildAccount.find(params[:child_account_id])
+    end
+
+    def right_kid?
+      if @child_account.family_account != current_family_account
+        redirect_to root_path
+      end
+    end
+
+    def right_log?
+      @activity_log = ActivityLog.find(params[:id])
+      if @activity_log.child_account != @child_account
+        redirect_to root_path
+      end
+    end
+
 end
-
-

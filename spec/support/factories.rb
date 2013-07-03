@@ -19,7 +19,6 @@ FactoryGirl.define do
   factory :food do
     sequence(:name) { |n| "Peanut Butter#{n}" }
     food_type
-    food_category
   end
 
   factory :food_category do
@@ -34,7 +33,6 @@ FactoryGirl.define do
     sequence(:name) { |n| "Peanut#{n} Butter#{n}" }
     note 'The best food ever!!!'
     rating '5'
-    share_with_others 'true'
     food_type
     food_category
     child_account
