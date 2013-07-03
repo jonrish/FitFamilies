@@ -1,16 +1,14 @@
 class ChildAccountsController < ApplicationController
   before_filter :authenticate_family_account!
   before_filter :find_parent
-  before_filter :right_kid?, :except => [:new, :create]
+  before_filter :right_child?, :except => [:new, :create]
 
 
   def new
-    # @family_account = FamilyAccount.find(params[:family_account_id])
     @child_account = @family_account.child_accounts.build
   end
 
   def create
-    # @family_account = current_family_account
     @child_account = @family_account.child_accounts.build(params[:child_account])
 
     if @child_account.save
@@ -21,7 +19,6 @@ class ChildAccountsController < ApplicationController
   end
 
   def update
-    # @family_account = current_family_account
     @child_account = @family_account.child_accounts.find(params[:id])
 
     if @child_account.update_attributes(params[:child_account])
@@ -32,17 +29,14 @@ class ChildAccountsController < ApplicationController
   end
 
   def show
-    # @family_account = current_family_account
     @child_account = ChildAccount.find(params[:id])
   end
 
   def edit
-    # @family_account = current_family_account
     @child_account = ChildAccount.find(params[:id])    
   end
 
   def destroy
-    # @family_account = current_family_account
     @child_account = ChildAccount.find(params[:id])
     @child_account.destroy
 
@@ -54,7 +48,7 @@ class ChildAccountsController < ApplicationController
       @family_account = current_family_account
     end
 
-    def right_kid?
+    def right_child?
       @child_account = ChildAccount.find(params[:id])
       if @child_account.family_account != current_family_account
         redirect_to root_path

@@ -49,16 +49,7 @@ class ActivityLogsController < ApplicationController
 	end
 
 	protected
-    def find_child
-      @child_account = ChildAccount.find(params[:child_account_id])
-    end
-
-    def right_kid?
-      if @child_account.family_account != current_family_account
-        redirect_to root_path
-      end
-    end
-
+    
     def right_log?
       @activity_log = ActivityLog.find(params[:id])
       if @activity_log.child_account != @child_account
