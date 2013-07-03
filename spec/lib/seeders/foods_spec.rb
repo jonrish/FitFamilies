@@ -10,6 +10,7 @@ describe Seeders::Foods do
 		food = Food.last
 		type = FoodType.find_by_food_type("Milk, Dairy & Eggs")
 		expect(food.food_type).to eql(type)
+		expect(food.name).to eql("Butter, salted")
 	end
 
 end
