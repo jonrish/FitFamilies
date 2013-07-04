@@ -35,7 +35,7 @@ module Seeders
 				"1600" => "Protein (like Meat, Fish & Beans)",
 				"1700" => "Protein (like Meat, Fish & Beans)",
 				"0400" => "Fat (like Butter, Oil & Cheese)",
-				"1800" => "Sweets & Treats",
+				"1800" => "Carbs (like Bread & Pasta)",
 				"1900" => "Sweets & Treats",
 				"2100" => "Sweets & Treats",
 				"2500" => "Sweets & Treats",
