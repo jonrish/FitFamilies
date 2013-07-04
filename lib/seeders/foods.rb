@@ -2,7 +2,6 @@ module Seeders
 	module Foods
 
 		def self.seed_with(file_path)
-			Food.destroy_all
 			File.open(file_path, 'r').each_line do |line|
 				create_food(line)
 			end
@@ -13,11 +12,9 @@ module Seeders
 			food_type_name = food_map[data[1]]
 
 			if food_type_name
-				food = Food.new
-				food.name = data[2]
-				food.food_type = FoodType.find_or_create_by_food_type(food_type_name)
-				food.save
-				puts food.id
+				Food.where(name: data[2]).first_or_create do |food|
+					food.food_type = FoodType.find_or_create_by_food_type(food_type_name)
+				end
 			end
 
 		end
