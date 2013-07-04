@@ -27,12 +27,12 @@
         <% if family_account_signed_in? %>
           <%= link_to('Log Out', destroy_family_account_session_path, :method => :delete) %>
           <%= link_to 'My Account', family_account_path(current_family_account) %><br />
-          <b>You are signed in as: <%= current_family_account.email %></b><br />
-          
+          <b>Signed in: <%= current_family_account.email %></b><br />
+          <b><%= notice %><%= alert %></b>
         <% else %>
           <%= link_to('Log In', new_family_account_session_path)  %><br />
+          <b><%= notice %><%= alert %></b>
         <% end %>
-        <b><%= notice %><%= alert %></b>
       </div>
     </div>
   </header>
@@ -60,10 +60,6 @@
 
 </div>
 
-<footer>
-</footer>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <%= javascript_include_tag 'layout' %>
 </body>
 </html>

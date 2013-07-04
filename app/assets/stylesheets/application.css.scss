@@ -74,8 +74,8 @@ header {
       padding: 1.6em 0;
     }
     .signer {
-      @include span-columns(4 of 12);
-      @include shift(4);
+      @include span-columns(5 of 12);
+      @include shift(3);
       padding: 10px 0;
       a {
         padding: 0 10px;
