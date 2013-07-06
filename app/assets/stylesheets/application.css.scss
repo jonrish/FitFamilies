@@ -156,4 +156,10 @@ table {
   @include button(shiny, #E83D37);
 }
 
-
+.footer {
+  @include outer-container;
+  min-width: 800px;
+  img {
+    height: 10em;
+  }
+}
