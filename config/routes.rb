@@ -1,5 +1,8 @@
 Bt3::Application.routes.draw do
+
   devise_for :family_accounts, :controllers => { :registrations => :registrations }
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :family_accounts, :only => [:index, :show] do
     resources :child_accounts, :except => [:index]

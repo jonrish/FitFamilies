@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701170748) do
+ActiveRecord::Schema.define(:version => 20130707205135) do
 
   create_table "activities", :force => true do |t|
     t.string   "name",                 :null => false
@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(:version => 20130701170748) do
   end
 
   create_table "family_accounts", :force => true do |t|
-    t.string   "email",                                  :null => false
-    t.string   "first_name",                             :null => false
-    t.string   "last_name",                              :null => false
-    t.date     "date_of_birth",                          :null => false
-    t.string   "zip_code",                               :null => false
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                                     :null => false
+    t.string   "first_name",                                :null => false
+    t.string   "last_name",                                 :null => false
+    t.date     "date_of_birth",                             :null => false
+    t.string   "zip_code",                                  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130701170748) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "admin",                  :default => false
   end
 
   add_index "family_accounts", ["email"], :name => "index_family_accounts_on_email", :unique => true
@@ -114,5 +115,18 @@ ActiveRecord::Schema.define(:version => 20130701170748) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
 end
