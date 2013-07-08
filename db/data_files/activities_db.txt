@@ -1,10 +1,61 @@
-Hockey~^~Team Sport~^~fast-paced on ice
-Jogging~^~Cardio~^~easy to do & good for you too
-Chest Press~^~Upper Body~^~works major muscles
-Crunches~^~Core~^~good form is important
-Leg Extensions~^~Legs~^~works the quads
-Soccer~^~Team Sport~^~great for endurance
-Walking~^~Cardio~^~just put one foot in front of the other
-Push Ups~^~Upper Body~^~works chest, arms & shoulders
-Sit Ups~^~Core~^~strengthen core
-Lunges~^~Legs~^~major leg muscles
+Ice Hockey~^~Team Sport~^~skating, fast-paced
+Soccer~^~Team Sport~^~running, endurance
+Baseball~^~Team Sport~^~hand-eye coordination, speed & strength
+Softball~^~Team Sport~^~hand-eye coordination, speed & strength
+Basketball~^~Team Sport~^~running, endurance & jumping
+Football~^~Team Sport~^~contact sport, strength & speed
+Lacrosse~^~Team Sport~^~running, endurance, passing & shooting
+Field Hockey~^~Team Sport~^~running, endurance, passing & shooting
+Cheerleading~^~Team Sport~^~jumping, balance & gymnastics
+Cross Country~^~Team Sport~^~running & endurance
+Wrestling~^~Team Sport~^~strength, quickness & agility
+Volleyball~^~Team Sport~^~jumping, quickness & hand-eye coordination
+Track & Field~^~Individual Sport~^~running, jumping, endurance, strength & agility
+Figure Skating~^~Individual Sport~^~speed, balance & agility
+Golf~^~Individual Sport~^~hand-eye coordination & balance
+Gynmastics~^~Individual Sport~^~balance, strength, agility flexability
+Martial Arts~^~Individual Sport~^~balance, strength & quickness
+Tennis~^~Individual Sport~^~hand-eye coordination, quickness & power
+Skiing~^~Individual Sport~^~balance, strength & agility
+Surfing~^~Individual Sport~^~balance & agility
+Skateboarding~^~Individual Sport~^~balance & quickness
+Badminton~^~Individual Sport~^~hand-eye coordination & quickness
+Ping Pong~^~Individual Sport~^~hand-eye coordination & quicknees
+Bowling~^~Individual Sport~^~strength & power
+Rowing~^~Individual Sport~^~strength, power & endurance
+Yoga~^~Individual Sport~^~flexability, agility & balance
+Aerobics~^~Cardio~^~jumping, balance and endurance
+Bike Riding~^~Cardio~^~strength & endurance
+Swimming~^~Cardio~^~endurance - works major muscle groups as well
+Walking~^~Cardio~^~simple, effective and can be done by almost anyone
+Jogging~^~Cardio~^~more intense and faster movement than walking
+Running~^~Cardio~^~power, speed & endurance depending on duration, distance & intensity
+Elliptical~^~Cardio~^~low impact cardio in controlled environment
+Treadmill~^~Cardio~^~walk, run or jog in a controlled environment
+Jump Rope~^~Cardio~^~high intensity jumping in one location
+Roller Blading~^~Cardio~^~requires good balance and helps with strength and endurance
+Dancing~^~Cardio~^~balance & agility 
+Push Up~^~Upper Body~^~basic exercise using own body weight for resistance
+Chest Press~^~Upper Body~^~works chest & arm muscles - weights for resistance
+Chest Flys~^~Upper Body~^~focuses on major chest muscles
+Bicep Curls~^~Upper Body~^~works bicep muscle
+Tricep Extension~^~Upper Body~^~works tricep muscles
+Tricep Pushdowns~^~Upper Body~^~works tricep muscles
+Shoulder Press~^~Upper Body~^~strengthens shoulder
+One Arm Bent Over Row~^~Upper Body~^~focus on back muscles
+Crunches~^~Core~^~basic exercise for abs using own body weight for resistance
+Crunches with Stability Ball~^~Core~^~use stability ball between legs to increase difficulty
+Stability Ball Pass~^~Core~^~pass stability ball from legs to arms
+Crunches with Resistance~^~Core~^~add weight held either on your chest or over your head to increase difficulty
+Leg Pull Ins~^~Core~^~works lower abdominal muscles
+Torso Twist~^~Core~^~seated or standing - use weight to work the side abdominal muscles
+Incline Crunches~^~Core~^~use an incline bench to increase the degree of difficulty
+Side Bends~^~Core~^~use resistance to work the side abdominal muscles
+Deadlift~^~Core~^~use resistance to strengthen your lower back
+Leg Press~^~Legs~^~focus on major leg & quad muscles
+Leg Extensions~^~Legs~^~targets quad muscles
+Hamstring Curls~^~Legs~^~targets the large hamstring muscles
+Lunges~^~Legs~^~works multiple leg muscles & requires balance
+Squats~^~Legs~^~can start with body weight or add additional resistance
+Calf Raises~^~Legs~^~targets the calf muscles
+Step Ups~^~Legs~^~works major leg muscles - start with body weight & add resistance to increase difficulty
