@@ -21,7 +21,12 @@
   <table id="food_table">
     <th>Food</th>
     <th>Food Type</th> 
-    <th>Add To:</th> 
+    <th>Add To:</th>
+    <%- if current_family_account -%>
+      <%- (current_family_account.child_accounts.count - 1).times do -%>
+        <th></th>
+      <%- end -%>
+    <%- end -%> 
     <% @foods.each do |food| %>
       <tr id="food_id_<%= food.id %>">
         <td id='name'><%= food.name %></td>

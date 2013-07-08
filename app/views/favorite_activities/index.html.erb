@@ -28,6 +28,8 @@
       <th>Category</th>
       <th><%= sort_link(@search, :rating, 'Rating') %></th>
       <th>Add To:</th>
+      <th></th>
+      <th></th>
       <% @favorite_activities.each do |activity| %>
         <tr>
           <td id='name'><%= link_to activity.name, child_account_favorite_activity_path(@child_account, activity) %></td>

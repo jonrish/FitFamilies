@@ -27,6 +27,8 @@
 			<th>Category</th>
 			<th>Description</th>
 			<th><%= sort_link(@search, :date, 'Date Added') %></th>
+			<th></th>
+			<th></th>
 			<%- @activity_logs.each do |log| -%>
 				<tr>
 					<td id='name'><%= link_to log.name, child_account_activity_log_path(@child_account, log) %></td>

@@ -24,6 +24,11 @@
     <th>Category</th>
     <th>Description</th>
     <th>Add To:</th>
+    <%- if current_family_account -%>
+      <%- (current_family_account.child_accounts.count - 1).times do -%>
+        <th></th>
+      <%- end -%>
+    <%- end -%>
     <% @activities.each do |activity| %>
       <tr id="activity_id_<%= activity.id %>">
         <td id='name'><%= activity.name %></td>
