@@ -129,10 +129,12 @@ table {
   @include span-columns(10 of 12);
   @include shift (1);
   tr td {
-    border-style: solid;
-    border-width: 2px;
-    border-color: #CDCFD1;
+    border-bottom: 2px solid #63d392;
   }
+  #name {
+      @include linear-gradient(to left, white, rgb(234, 253, 243));
+      border-left: 1px solid #08cc39;
+    }
   th td {
     @include span-columns(2 of 12);
   }
@@ -162,4 +164,8 @@ table {
   img {
     height: 10em;
   }
+}
+
+.none {
+  display: none;
 }

@@ -24,7 +24,7 @@
     <th>Add To:</th> 
     <% @foods.each do |food| %>
       <tr id="food_id_<%= food.id %>">
-        <td><%= food.name %></td>
+        <td id='name'><%= food.name %></td>
         <td><%= food.food_type.food_type %></td>
         <% if family_account_signed_in? %>
           <% current_family_account.child_accounts.each do |account| %>
