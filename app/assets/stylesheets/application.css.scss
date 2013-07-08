@@ -128,8 +128,12 @@ header {
 table {
   @include span-columns(10 of 12);
   @include shift (1);
+  th {
+    color: #AA2A26;
+    border-bottom: 2px solid #2351EB;
+  }
   tr td {
-    border-bottom: 2px solid #63d392;
+    border-bottom: 1px solid #63d392;
   }
   #name {
       @include linear-gradient(to left, white, rgb(234, 253, 243));
