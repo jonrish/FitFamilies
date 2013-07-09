@@ -7,10 +7,16 @@ class ApplicationController < ActionController::Base
       @child_account = ChildAccount.find(params[:child_account_id])
     end
 
-	  def right_kid?
-	    if @child_account.family_account != current_family_account
-	    	redirect_to root_path
-	    end
-	  end
+		def right_kid?
+		  if @child_account.family_account != current_family_account
+		    redirect_to root_path
+		   end
+		end
+
+		def authorize
+  		if current_familiy_account.is_admin? 
+    		Rack::MiniProfiler.authorize_request
+  		end
+		end
 
 end
