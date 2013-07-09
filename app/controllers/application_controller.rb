@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		def authorize
-  		if current_familiy_account.is_admin? 
+  		if current_family_account.admin? 
     		Rack::MiniProfiler.authorize_request
   		end
 		end
