@@ -52,7 +52,7 @@
 
   <div class='nav'>
     <div id="food">
-      <%= link_to image_tag('fruit.png'), foods_path%>
+      <%= link_to image_tag('fruit.png'), foods_path %>
     </div>
     <div id="fitness">
       <%= link_to image_tag('balls.png'), activities_path %>
@@ -67,4 +67,14 @@
 
 <%= javascript_include_tag 'layout' %>
 </body>
+<footer
+  <%- if request.fullpath == family_accounts_path -%>
+    class="none"
+  <%- elsif request.fullpath == root_path -%>
+    class="none"
+  <%- else -%>
+    class="footer"
+  <%- end -%>>
+  <%= link_to image_tag('soccer.png'), activities_path %>
+</footer>
 </html>

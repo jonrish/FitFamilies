@@ -31,9 +31,11 @@
       <th>Food Category</th>
       <th>Food Type</th>
       <th><%= sort_link(@search, :rating, 'Rating') %></th>
+      <th></th>
+      <th></th>
       <% @favorite_foods.each do |ff| %>
         <tr id="ff_table">
-          <td><%= link_to ff.name, child_account_favorite_food_path(@child_account, ff) %></td>
+          <td id='name'><%= link_to ff.name, child_account_favorite_food_path(@child_account, ff) %></td>
           <td><%= ff.food_category.try(:food_category) %></td>
           <td><%= ff.food_type.food_type %></td>
           <td id="rating"><%= ff.rating %></td>

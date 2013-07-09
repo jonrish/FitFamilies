@@ -23,13 +23,15 @@
 		</div>
 
 		<table id="activity_log_table">
-			<th>Activity Name</th>
+			<th>Activity</th>
 			<th>Category</th>
 			<th>Description</th>
 			<th><%= sort_link(@search, :date, 'Date Added') %></th>
+			<th></th>
+			<th></th>
 			<%- @activity_logs.each do |log| -%>
 				<tr>
-					<td><%= link_to log.name, child_account_activity_log_path(@child_account, log) %></td>
+					<td id='name'><%= link_to log.name, child_account_activity_log_path(@child_account, log) %></td>
 					<td><%= log.activity_category.activity_category %></td>
 					<td><%= log.description %></td>
 					<td><%= log.date %></td>

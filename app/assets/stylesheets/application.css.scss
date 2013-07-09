@@ -128,11 +128,17 @@ header {
 table {
   @include span-columns(10 of 12);
   @include shift (1);
-  tr td {
-    border-style: solid;
-    border-width: 2px;
-    border-color: #CDCFD1;
+  th {
+    color: #AA2A26;
+    border-bottom: 2px solid #2351EB;
   }
+  tr td {
+    border-bottom: 1px solid #63d392;
+  }
+  #name {
+      @include linear-gradient(to left, white, rgb(234, 253, 243));
+      border-left: 1px solid #08cc39;
+    }
   th td {
     @include span-columns(2 of 12);
   }
@@ -156,4 +162,14 @@ table {
   @include button(shiny, #E83D37);
 }
 
+.footer {
+  @include outer-container;
+  min-width: 800px;
+  img {
+    height: 10em;
+  }
+}
 
+.none {
+  display: none;
+}
