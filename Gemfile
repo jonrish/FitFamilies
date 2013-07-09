@@ -42,6 +42,7 @@ end
 
 gem 'devise'
 gem 'rails_admin'
+gem 'rack-mini-profiler'
 
 
 gem 'jquery-rails'
