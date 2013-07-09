@@ -74,8 +74,8 @@ header {
       padding: 1.6em 0;
     }
     .signer {
-      @include span-columns(4 of 12);
-      @include shift(4);
+      float: right;
+      @include shift(2);
       padding: 10px 0;
       a {
         padding: 0 10px;
@@ -86,8 +86,8 @@ header {
 }
 
 .kids {
-  @include span-columns(5 of 12);
-  @include shift(7);
+  float: right;
+  @include shift(6);
   padding: 4em 0 0 0;
   a {
     font-size: 1.8em;
@@ -148,6 +148,10 @@ table {
   @include button(pill);
   font-family: 'Coming Soon', cursive;
   font-size: 1.2em;
+}
+
+.pagination {
+  @include span-columns(12);
 }
 
 .bottom-links {
