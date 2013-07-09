@@ -165,11 +165,24 @@ table {
 .footer {
   @include outer-container;
   min-width: 800px;
-  img {
-    height: 10em;
+
+  #foot-activity img {
+    height: 9em;
+    width: 23em; 
+  }
+  #foot-food img {
+    height: 9em;
+    width: 23em;
+    float: right;
   }
 }
 
 .none {
   display: none;
+}
+
+#very-bottom {
+  // height: 1em;
+  // border-bottom: 4px solid #2de574;
+  box-shadow: 0 0 35px 15px #2de574;
 }
