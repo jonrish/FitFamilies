@@ -75,6 +75,16 @@
   <%- else -%>
     class="footer"
   <%- end -%>>
-  <%= link_to image_tag('soccer.png'), activities_path %>
+  <%= link_to image_tag('soccer.png'), activities_path, id: 'foot-activity' %>
+  <%= link_to image_tag('food_at_bottom.png'), foods_path, id: 'foot-food' %>
 </footer>
+<div 
+  <%- if request.fullpath == family_accounts_path -%>
+    class="none"
+  <%- elsif request.fullpath == root_path -%>
+    class="none"
+  <%- else -%>
+    id="very-bottom"
+  <%- end -%>>
+</div>
 </html>
