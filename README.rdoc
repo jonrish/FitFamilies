@@ -2,11 +2,11 @@ Welcome to FitFamilies!
 
 You can visit us at: http://fitfamilies.herokuapp.com
 
-This web app was created to promote healthy nutrition and fitness for families. It is specifically aimed at families with children in eight to thirteen age range. However, FitFamilies can be used by older children and other adults alike. 
+This web app was created to promote healthy nutrition and fitness for families. It is specifically aimed at families with children in the eight to thirteen age range. However, FitFamilies can be used by older children and other adults alike. 
 
 What does it do? 
 
-FitFamilies allows parents to create a master family account. Within that master account individual children can be added. Each child then can add foods and activities to their favorites list from the main database, or they can add their own. Children also have the ability to customize the attributes of their chosen favorites. In addition, children may add activities from their favorites list to their activity log. There they have the ability to add as little or as much detail as they wish about the logged activity. 
+FitFamilies allows parents to create a master family account. Within that master account individual children can be added. Each child then can add foods and activities to their favorites list from the main database, or they're able to create their own. Children also have the ability to customize the attributes of their chosen favorites. In addition, children may add activities from their favorites list to their activity log. There they have the ability to add as little or as much detail as they wish about the logged activity. 
 
 As FitFamilies continues to evolve I hope it can become a resource for parents and a way for them to engage their children in an age appropriate way that is approachable and not overwhelming. 
 
