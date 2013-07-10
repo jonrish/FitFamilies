@@ -1,6 +1,6 @@
 Welcome to FitFamilies!
 
-You can visit us at: http://fitfamilies.herokuapp.com/
+You can visit us at: http://fitfamilies.herokuapp.com
 
 This web app was created to promote healthy nutrition and fitness for families. It is specifically aimed at families with children in eight to thirteen age range. However, FitFamilies can be used by older children and other adults alike. 
 
@@ -10,4 +10,4 @@ FitFamilies allows parents to create a master family account. Within that master
 
 As FitFamilies continues to evolve I hope it can become a resource for parents and a way for them to engage their children in an age appropriate way that is approachable and not overwhelming. 
 
-I am a graduate of the very frst cohort at LaunchAcademy.com. This is my project. 
+I am a graduate of the very frst cohort at http://LaunchAcademy.com. This is my project. 
