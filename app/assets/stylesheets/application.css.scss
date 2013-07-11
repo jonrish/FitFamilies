@@ -49,6 +49,14 @@ a:hover {
   color: #FAE642;
 }
 
+img {
+  border: 0;
+}
+
+a img {
+  outline: none;
+}
+
 .submit {
   @include button(shiny, #2351EB);
   font-weight: bold;
